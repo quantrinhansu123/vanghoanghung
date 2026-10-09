@@ -1,0 +1,2966 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiệm Vàng Hoàng Hưng - Hệ Thống Quản Lý & POS Vàng Bạc Đá Quý</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Playfair Display for luxury headers, Inter for crisp ERP data -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Libre+Barcode+39+Text&family=Libre+Barcode+128&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            },
+            burgundy: {
+              700: '#831843',
+              800: '#701a2e',
+              850: '#5c1021',
+              900: '#4a0817',
+              950: '#2e020b',
+            }
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            barcode: ['"Libre Barcode 128"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Luxury Styling */
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFE259 0%, #FFA751 50%, #FFE259 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #d4af37 0%, #f3e08c 50%, #aa7c11 100%);
+    }
+    .gold-border-glow {
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #c5a059;
+      border-radius: 9999px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #print-area, #print-area * {
+        visibility: visible;
+      }
+      #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 font-sans text-slate-800 h-screen flex flex-col overflow-hidden select-none">
+
+  <!-- Top Luxury SaaS Bar & Live Ticker -->
+  <header class="bg-gradient-to-r from-[#140205] via-[#22040c] to-[#140205] text-white shadow-2xl z-20 border-b border-amber-500/30 flex-shrink-0">
+    
+    <!-- Row 1: Brand, Live Gold Ticker, Cashier & Action Utilities (Height: 58px) -->
+    <div class="px-4 py-2 flex items-center justify-between gap-4">
+      
+      <!-- 1. Brand Logo & Store Info (Strictly No-Wrap, Guaranteed 100% Straight Alignment) -->
+      <div class="flex items-center space-x-3 shrink-0 min-w-max select-none">
+        
+        <!-- Diamond Vector Logo with luxury gold gradient border -->
+        <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 p-[1.5px] shadow-lg shadow-amber-950/60 flex items-center justify-center shrink-0">
+          <div class="w-full h-full bg-[#160307] rounded-[10px] flex items-center justify-center">
+            <svg class="w-6 h-6 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)] animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3h12l4 6-10 12L2 9z"/>
+              <path d="M11 3 8 9l4 12 4-12-3-6"/>
+              <path d="M2 9h20"/>
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Brand Text: Strictly No Wrapping, Aligned Baseline -->
+        <div class="flex flex-col justify-center shrink-0 min-w-max">
+          <!-- Line 1: Title + ERP PRO Badge (Single Line) -->
+          <div class="flex items-center gap-2 whitespace-nowrap shrink-0">
+            <span class="font-cinzel text-lg font-black tracking-wider gold-gradient-text uppercase whitespace-nowrap shrink-0">
+              HOÀNG HƯNG JEWELRY
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[9px] font-mono font-black tracking-widest bg-gradient-to-r from-amber-500/25 to-yellow-500/20 text-amber-300 border border-amber-400/50 shadow-sm whitespace-nowrap shrink-0">
+              ERP PRO 4.0
+            </span>
+          </div>
+          
+          <!-- Line 2: Address & Hotline (Single Line, Never Wraps) -->
+          <div class="flex items-center gap-2.5 mt-1 text-[11px] text-amber-200/90 whitespace-nowrap shrink-0 font-normal">
+            <span class="flex items-center gap-1 whitespace-nowrap shrink-0">
+              <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span class="whitespace-nowrap shrink-0">124 Phố Kim Hoàn, Q.1, TP.HCM</span>
+            </span>
+            <span class="text-amber-500/60 font-bold shrink-0">•</span>
+            <span class="flex items-center gap-1 whitespace-nowrap shrink-0 font-medium text-amber-300">
+              <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span class="whitespace-nowrap shrink-0">Hotline: 0942 88 99 77</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Live Gold Rate Ticker (Centered Capsule, Responsive) -->
+      <div class="hidden xl:flex items-center bg-black/45 backdrop-blur-md border border-amber-500/35 rounded-full px-4 py-1.5 shadow-inner gap-3 text-xs shrink min-w-0">
+        <div class="flex items-center gap-1.5 shrink-0 border-r border-white/10 pr-3">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="text-amber-400 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap">Tỉ Giá Trực Tuyến</span>
+        </div>
+        <div class="flex items-center gap-3.5 divide-x divide-white/10 shrink-0">
+          <div class="flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <span class="text-slate-400 font-medium">SJC:</span>
+            <span class="font-bold text-white font-mono">88.50 - 90.50</span>
+            <span class="text-[10px] text-emerald-400 bg-emerald-950/70 px-1 py-0.2 rounded font-mono font-bold">▲</span>
+          </div>
+          <div class="pl-3.5 flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <span class="text-slate-400 font-medium">Nhẫn 999.9:</span>
+            <span class="font-bold text-white font-mono">87.20 - 88.70</span>
+            <span class="text-[10px] text-emerald-400 bg-emerald-950/70 px-1 py-0.2 rounded font-mono font-bold">▲</span>
+          </div>
+          <div class="pl-3.5 flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <span class="text-slate-400 font-medium">Vàng 18K (750):</span>
+            <span class="font-bold text-white font-mono">62.80 - 64.90</span>
+            <span class="text-[10px] text-rose-400 bg-rose-950/70 px-1 py-0.2 rounded font-mono font-bold">▼</span>
+          </div>
+          <div class="pl-3.5 flex items-center gap-1.5 whitespace-nowrap shrink-0">
+            <span class="text-slate-400 font-medium">Vàng 610:</span>
+            <span class="font-bold text-white font-mono">51.10 - 53.20</span>
+            <span class="text-[10px] text-emerald-400 bg-emerald-950/70 px-1 py-0.2 rounded font-mono font-bold">▲</span>
+          </div>
+        </div>
+        <span class="text-[10px] text-amber-300/80 border-l border-white/10 pl-2 font-mono whitespace-nowrap shrink-0">Tr.đ/lượng</span>
+      </div>
+
+      <!-- 3. Cashier & Utility Actions (Right aligned, strictly no-wrap) -->
+      <div class="flex items-center space-x-2.5 text-xs shrink-0 select-none">
+        
+        <!-- Cashier Card -->
+        <div class="hidden sm:flex items-center gap-2.5 bg-black/40 border border-white/10 rounded-xl px-3 py-1.5 shadow-sm shrink-0">
+          <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-500 to-yellow-400 flex items-center justify-center text-slate-950 font-bold text-xs shadow shrink-0">
+            H
+          </div>
+          <div class="text-left leading-tight shrink-0">
+            <div class="text-white font-semibold text-[11px] flex items-center gap-1.5 whitespace-nowrap">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]"></span>
+              Quầy 01 <span class="text-slate-400 font-normal">| Vàng Tây</span>
+            </div>
+            <div class="text-amber-300 text-[10px] font-medium whitespace-nowrap">
+              TN: <span class="font-bold">Trần Hoàng Hưng</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-time Clock -->
+        <div class="bg-black/45 px-3 py-1.5 rounded-xl border border-amber-500/30 text-amber-300 font-mono text-[11px] font-semibold flex items-center gap-1.5 shadow-inner shrink-0 whitespace-nowrap">
+          <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="clock-display">--:--:--</span>
+        </div>
+
+        <!-- Electronic Scale Button F3 -->
+        <button onclick="toggleScaleModal()" class="group relative overflow-hidden bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold px-3.5 py-1.5 rounded-xl flex items-center gap-2 shadow-md shadow-amber-950/50 hover:shadow-amber-500/30 active:scale-95 transition-all shrink-0">
+          <div class="w-5 h-5 rounded-md bg-black/10 flex items-center justify-center shrink-0">
+            <svg class="w-3.5 h-3.5 text-slate-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+          </div>
+          <span class="whitespace-nowrap hidden md:inline">Cân Điện Tử</span>
+          <span class="text-[9px] bg-black/20 text-slate-900 px-1 py-0.2 rounded font-mono font-bold">F3</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Row 2: SaaS Navigation Tabs Bar + Global Search -->
+    <nav class="flex items-center justify-between px-3 py-1 bg-[#0e0205] border-t border-amber-500/20 text-xs font-semibold overflow-x-auto custom-scroll">
+      
+      <!-- Left Tabs List -->
+      <div class="flex items-center space-x-1.5 shrink-0 py-0.5">
+        <!-- TAB 1: POS -->
+        <button onclick="switchTab('pos')" id="tab-pos" class="tab-btn active-tab flex items-center gap-2 px-3.5 py-2 rounded-lg bg-gradient-to-r from-amber-500/25 via-yellow-500/20 to-amber-600/25 text-amber-200 border border-amber-400/50 shadow-[0_0_12px_rgba(245,158,11,0.2)] font-bold transition-all shrink-0">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center bg-amber-400/20 border border-amber-400/40 text-amber-300 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+          </div>
+          <span class="whitespace-nowrap">BÁN HÀNG & ĐỔI VÀNG (POS)</span>
+        </button>
+
+        <!-- TAB: BẢNG MẶT HÀNG (CATALOG) -->
+        <button onclick="switchTab('catalog')" id="tab-catalog" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-200 hover:bg-white/5 border border-transparent transition-all shrink-0">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>
+          </div>
+          <span class="whitespace-nowrap">BẢNG MẶT HÀNG (CATALOG)</span>
+          <span class="text-[9px] font-mono px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">12</span>
+        </button>
+
+        <!-- TAB 2: IN TEM VÀNG -->
+        <button onclick="switchTab('tem')" id="tab-tem" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-200 hover:bg-white/5 border border-transparent transition-all shrink-0">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><circle cx="7" cy="7" r=".5" fill="currentColor"/></svg>
+          </div>
+          <span class="whitespace-nowrap">IN TEM VÀNG (TT22)</span>
+        </button>
+
+        <!-- TAB 3: NHẬP HÀNG & KHO -->
+        <button onclick="switchTab('nhap')" id="tab-nhap" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-200 hover:bg-white/5 border border-transparent transition-all shrink-0">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          </div>
+          <span class="whitespace-nowrap">NHẬP HÀNG & KHO</span>
+        </button>
+
+        <!-- TAB 4: TRA CỨU & KIỂM KÊ -->
+        <button onclick="switchTab('tracuu')" id="tab-tracuu" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-200 hover:bg-white/5 border border-transparent transition-all shrink-0">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+          </div>
+          <span class="whitespace-nowrap">TRA CỨU & KIỂM KÊ</span>
+        </button>
+
+        <!-- TAB 5: SỐ DƯ QUẦY CA -->
+        <button onclick="switchTab('sodu')" id="tab-sodu" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-200 hover:bg-white/5 border border-transparent transition-all shrink-0">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+          </div>
+          <span class="whitespace-nowrap">SỐ DƯ QUẦY CA</span>
+        </button>
+
+        <!-- TAB 6: BÁO CÁO DOANH THU -->
+        <button onclick="switchTab('baocao')" id="tab-baocao" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-200 hover:bg-white/5 border border-transparent transition-all shrink-0">
+          <div class="w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </div>
+          <span class="whitespace-nowrap">BÁO CÁO DOANH THU</span>
+        </button>
+      </div>
+
+      <!-- Right: Global SaaS Search & F4 Warranty Button -->
+      <div class="hidden md:flex items-center gap-2 shrink-0 pl-3">
+        <!-- Global Search Bar (Ctrl+K) -->
+        <div class="relative">
+          <input type="text" id="global-saas-search" oninput="handleGlobalSearch(event)" placeholder="Tìm mã vạch, khách hàng... (Ctrl + K)" 
+                 class="w-56 bg-white/10 hover:bg-white/15 focus:bg-black/80 text-xs text-white placeholder-slate-400 border border-amber-500/30 focus:border-amber-400 focus:outline-none rounded-lg pl-7 pr-10 py-1.5 transition">
+          <svg class="w-3.5 h-3.5 text-amber-400 absolute left-2 top-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span class="text-[9px] font-mono text-amber-300 bg-white/10 px-1 py-0.2 rounded border border-white/20 absolute right-1.5 top-1.5">⌘K</span>
+        </div>
+
+        <!-- Giấy Đảm Bảo F4 -->
+        <button onclick="openWarrantyPreview()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-amber-600/30 to-yellow-600/30 hover:from-amber-600/50 hover:to-yellow-600/50 text-amber-300 border border-amber-400/40 shadow-sm transition-all shrink-0">
+          <svg class="w-3.5 h-3.5 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+          <span class="font-bold whitespace-nowrap">Giấy Đảm Bảo</span>
+          <span class="text-[10px] bg-black/40 border border-amber-400/40 text-amber-300 px-1 py-0.2 rounded font-mono font-bold">F4</span>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT VIEWPORT -->
+  <main class="flex-1 overflow-hidden relative">
+
+    <!-- TAB 1: POS - BÁN HÀNG & THU ĐỔI VÀNG CŨ -->
+    <div id="content-pos" class="tab-pane h-full flex flex-col p-2.5 gap-2.5 overflow-hidden">
+      
+      <!-- Top Action Bar: Search barcode, Customer details & Cashier assignment -->
+      <div class="bg-white rounded-lg p-2.5 shadow-sm border border-slate-200 grid grid-cols-12 gap-3 items-center text-xs">
+        
+        <!-- Employee & Shift -->
+        <div class="col-span-12 sm:col-span-2 flex flex-col">
+          <label class="text-[11px] font-semibold text-slate-600 mb-1 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-amber-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Nhân Viên Bán:
+          </label>
+          <select id="cashier-select" class="border border-slate-300 rounded-lg px-2.5 py-1.5 bg-slate-50 font-medium text-slate-800 focus:ring-1 focus:ring-amber-500 focus:outline-none transition">
+            <option value="Hoàng Hưng">Trần Hoàng Hưng (Quản lý)</option>
+            <option value="Kim Yến">Lê Thị Kim Yến (Thu ngân)</option>
+            <option value="Minh Tú">Nguyễn Minh Tú (Bán hàng)</option>
+          </select>
+        </div>
+
+        <!-- Fast Scan Barcode Input -->
+        <div class="col-span-12 sm:col-span-3 flex flex-col">
+          <label class="text-[11px] font-semibold text-slate-600 mb-1 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-amber-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5v14"/><path d="M8 5v14"/><path d="M12 5v14"/><path d="M17 5v14"/><path d="M21 5v14"/></svg>
+              Quét / Chọn Mã Hàng (F2)
+            </span>
+            <span class="text-[10px] text-amber-700 font-bold bg-amber-100/70 px-1.5 py-0.2 rounded border border-amber-300/40">Enter để thêm</span>
+          </label>
+          <div class="relative">
+            <input type="text" id="barcode-input" list="barcode-suggestions" placeholder="Gõ 'HH' hoặc chọn mã hàng..." 
+                   class="w-full border-2 border-amber-400 bg-amber-50/50 rounded-lg pl-8 pr-2.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-slate-900 focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-sm transition">
+            <svg class="w-4 h-4 text-amber-600 absolute left-2.5 top-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+            <datalist id="barcode-suggestions"></datalist>
+          </div>
+        </div>
+
+        <!-- Customer Name -->
+        <div class="col-span-6 sm:col-span-3 flex flex-col">
+          <label class="text-[11px] font-semibold text-slate-600 mb-1 flex items-center justify-between">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-blue-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Tên Khách Hàng:
+            </span>
+            <span id="cust-tier-badge" class="text-[9px] bg-amber-500/20 text-amber-800 font-bold px-1.5 py-0.2 rounded border border-amber-300">VIP Vàng</span>
+          </label>
+          <input type="text" id="cust-name" list="customer-suggestions" oninput="onCustomerSelected()" value="Nguyễn Thị Thanh Hà" placeholder="Chọn hoặc nhập tên khách..." 
+                 class="border border-slate-300 rounded-lg px-2.5 py-1.5 font-medium focus:ring-1 focus:ring-amber-500 focus:outline-none transition">
+          <datalist id="customer-suggestions"></datalist>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="col-span-6 sm:col-span-2 flex flex-col">
+          <label class="text-[11px] font-semibold text-slate-600 mb-1 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Số Điện Thoại:
+          </label>
+          <input type="text" id="cust-phone" value="0988 234 567" placeholder="Số điện thoại..." 
+                 class="border border-slate-300 rounded-lg px-2.5 py-1.5 font-medium focus:ring-1 focus:ring-amber-500 focus:outline-none transition">
+        </div>
+
+        <!-- Quick Customer Lookup / Add -->
+        <div class="col-span-12 sm:col-span-2 flex items-end gap-1.5">
+          <button onclick="quickAddSampleProduct()" title="Thêm món mẫu phong phú từ kho" class="flex-1 bg-gradient-to-r from-amber-500/15 to-yellow-500/20 hover:from-amber-500/25 hover:to-yellow-500/30 text-amber-900 font-bold py-2 px-1 rounded-lg border border-amber-400/50 flex items-center justify-center gap-1 transition active:scale-95 shadow-sm text-[11px] whitespace-nowrap">
+            <svg class="w-3.5 h-3.5 text-amber-700 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+            <span>+ Món Mẫu</span>
+          </button>
+          <button onclick="openTradeInModal()" title="Nhập thu mua vàng cũ" class="flex-1 bg-gradient-to-r from-emerald-500/15 to-teal-500/20 hover:from-emerald-500/25 hover:to-teal-500/30 text-emerald-900 font-bold py-2 px-1 rounded-lg border border-emerald-400/50 flex items-center justify-center gap-1 transition active:scale-95 shadow-sm text-[11px] whitespace-nowrap">
+            <svg class="w-3.5 h-3.5 text-emerald-700 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+            <span>+ Vàng Cũ</span>
+          </button>
+          <button onclick="loadFullMockScenario()" title="Nạp mới lại toàn bộ kịch bản Mock Data" class="bg-amber-100/70 hover:bg-amber-200 text-amber-900 border border-amber-300 p-2 rounded-lg transition active:scale-95 shadow-sm flex items-center justify-center flex-shrink-0">
+            <svg class="w-3.5 h-3.5 text-amber-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Main Workspace: Split between Cart Tables (Top/Bottom) and Financial Summary (Right) -->
+      <div class="flex-1 grid grid-cols-12 gap-2.5 min-h-0">
+        
+        <!-- Left: Cart Tables (New Gold Selling & Old Gold Buying) -->
+        <div class="col-span-12 lg:col-span-8 flex flex-col gap-2.5 h-full min-h-0">
+          
+          <!-- Table 1: Vàng Mới Bán (Outbound) -->
+          <div class="flex-1 bg-white rounded-lg shadow-sm border border-slate-200 flex flex-col overflow-hidden min-h-0">
+            <div class="bg-gradient-to-r from-red-900 via-burgundy-900 to-red-950 px-3 py-1.5 text-white flex justify-between items-center text-xs">
+              <span class="font-bold flex items-center gap-2">
+                <i class="fa-solid fa-gem text-amber-400"></i>
+                HÀNG XUẤT BÁN (VÀNG MỚI NỮ TRANG / NHẪN TRƠN)
+                <span id="new-gold-badge" class="bg-amber-500 text-slate-900 text-[10px] px-1.5 py-0.2 rounded-full font-extrabold">2 món</span>
+              </span>
+              <span class="text-amber-200 text-[11px]">Đơn vị TL: Chỉ.Phân.Ly (1 chỉ = 3.75g)</span>
+            </div>
+
+            <!-- Table Wrapper -->
+            <div class="flex-1 overflow-auto custom-scroll">
+              <table class="w-full text-xs text-left border-collapse">
+                <thead class="bg-slate-100 text-slate-700 font-semibold sticky top-0 border-b border-slate-200 text-[11px]">
+                  <tr>
+                    <th class="p-2 w-8 text-center">#</th>
+                    <th class="p-2">Mã Hàng</th>
+                    <th class="p-2">Tên Món Hàng</th>
+                    <th class="p-2 text-center">Loại Vàng</th>
+                    <th class="p-2 text-right">Tổng TL</th>
+                    <th class="p-2 text-right">TL Đá</th>
+                    <th class="p-2 text-right text-red-700 font-bold">TL Vàng</th>
+                    <th class="p-2 text-right">Tiền Công</th>
+                    <th class="p-2 text-right">Đơn Giá / Chỉ</th>
+                    <th class="p-2 text-right font-bold">Thành Tiền</th>
+                    <th class="p-2 w-8 text-center">Xóa</th>
+                  </tr>
+                </thead>
+                <tbody id="cart-new-gold-body" class="divide-y divide-slate-100 font-medium">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Table Subtotal -->
+            <div class="bg-amber-50/60 p-2 border-t border-amber-200/60 flex justify-between text-xs text-slate-700">
+              <div class="flex items-center gap-4">
+                <span>Tổng TL Vàng Bán: <b id="subtotal-new-weight" class="text-burgundy-900 font-bold">8.000 chỉ</b></span>
+                <span>Tổng Tiền Công: <b id="subtotal-new-labor" class="text-slate-900">850,000 đ</b></span>
+              </div>
+              <div class="font-bold text-slate-900">
+                Cộng Tiền Vàng Mới: <span id="subtotal-new-price" class="text-red-700 text-sm font-extrabold">54,800,000 đ</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table 2: Vàng Cũ Mua Vào / Đổi Chắt (Inbound) -->
+          <div class="h-44 bg-white rounded-lg shadow-sm border border-slate-200 flex flex-col overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-800 to-teal-900 px-3 py-1.5 text-white flex justify-between items-center text-xs">
+              <span class="font-bold flex items-center gap-2">
+                <i class="fa-solid fa-arrow-down-long text-amber-300"></i>
+                HÀNG THU MUA VÀO (VÀNG CŨ / ĐỔI NỮ TRANG)
+                <span id="old-gold-badge" class="bg-teal-400 text-teal-950 text-[10px] px-1.5 py-0.2 rounded-full font-extrabold">1 món</span>
+              </span>
+              <button onclick="openTradeInModal()" class="text-[11px] bg-emerald-600 hover:bg-emerald-500 text-white px-2 py-0.5 rounded transition">
+                + Thêm Vàng Cũ
+              </button>
+            </div>
+
+            <div class="flex-1 overflow-auto custom-scroll">
+              <table class="w-full text-xs text-left border-collapse">
+                <thead class="bg-slate-100 text-slate-700 font-semibold sticky top-0 border-b border-slate-200 text-[11px]">
+                  <tr>
+                    <th class="p-2 w-8 text-center">#</th>
+                    <th class="p-2">Tên Vàng Cũ Thu Vào</th>
+                    <th class="p-2 text-center">Loại Vàng</th>
+                    <th class="p-2 text-right">TL Cân (Chỉ)</th>
+                    <th class="p-2 text-right">Trừ Hao Đá/Bụi</th>
+                    <th class="p-2 text-right text-emerald-800 font-bold">TL Thực Mua</th>
+                    <th class="p-2 text-right">Đơn Giá Thu Mua</th>
+                    <th class="p-2 text-right font-bold">Thành Tiền Thu</th>
+                    <th class="p-2 w-8 text-center">Xóa</th>
+                  </tr>
+                </thead>
+                <tbody id="cart-old-gold-body" class="divide-y divide-slate-100 font-medium">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Old Gold Subtotal -->
+            <div class="bg-emerald-50 p-1.5 border-t border-emerald-200 flex justify-between text-xs text-emerald-950">
+              <span>Tổng TL Thu: <b id="subtotal-old-weight">1.500 chỉ</b></span>
+              <div class="font-bold">
+                Tổng Tiền Trừ Vàng Cũ: <span id="subtotal-old-price" class="text-emerald-700 font-extrabold text-sm">5,800,000 đ</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Right: Real-time Ledger & Smart Payment Panel -->
+        <div class="col-span-12 lg:col-span-4 bg-white rounded-lg shadow-sm border border-slate-200 flex flex-col justify-between p-3.5 h-full overflow-y-auto custom-scroll">
+          
+          <div>
+            <!-- Financial Title -->
+            <div class="flex items-center justify-between pb-2 border-b border-slate-200 mb-3">
+              <span class="font-cinzel font-bold text-sm tracking-wide text-burgundy-900 uppercase flex items-center gap-1.5">
+                <i class="fa-solid fa-receipt text-amber-600"></i> Hạch Toán Hóa Đơn
+              </span>
+              <span class="text-[11px] font-mono text-slate-500" id="receipt-invoice-id">HD-20261009-0824</span>
+            </div>
+
+            <!-- Ledger Breakdown -->
+            <div class="space-y-2 text-xs">
+              <div class="flex justify-between items-center text-slate-700">
+                <span>(1) Tổng tiền vàng mới:</span>
+                <span id="disp-new-total" class="font-bold text-slate-900 text-sm">54,800,000 đ</span>
+              </div>
+
+              <div class="flex justify-between items-center text-emerald-700">
+                <span>(2) Khấu trừ thu mua vàng cũ:</span>
+                <span id="disp-old-total" class="font-bold text-emerald-700 text-sm">- 5,800,000 đ</span>
+              </div>
+
+              <div class="flex justify-between items-center text-slate-600 pt-1">
+                <span>(3) Phí dịch vụ / Bù chênh lệch:</span>
+                <div class="flex items-center gap-1">
+                  <input type="number" id="input-extra-fee" value="0" step="50000" oninput="recalculateTotals()" 
+                         class="w-24 text-right border border-slate-300 rounded px-1.5 py-0.5 font-semibold text-slate-800 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                  <span class="text-[11px]">đ</span>
+                </div>
+              </div>
+
+              <div class="flex justify-between items-center text-slate-600">
+                <span class="flex items-center gap-1">
+                  (4) Chiết khấu / Giảm giá VIP:
+                  <i class="fa-solid fa-tag text-amber-500"></i>
+                </span>
+                <div class="flex items-center gap-1">
+                  <input type="number" id="input-discount" value="0" step="50000" oninput="recalculateTotals()" 
+                         class="w-24 text-right border border-slate-300 rounded px-1.5 py-0.5 font-semibold text-red-600 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                  <span class="text-[11px]">đ</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grand Final Amount Box -->
+            <div class="mt-4 p-3 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border-2 border-amber-300 shadow-inner">
+              <div class="text-[11px] uppercase tracking-wider text-amber-900 font-bold flex justify-between items-center">
+                <span>KHÁCH CẦN THANH TOÁN (NET)</span>
+                <span class="text-[10px] bg-red-600 text-white font-bold px-1.5 py-0.5 rounded">VNĐ</span>
+              </div>
+              <div class="text-right mt-1">
+                <div id="disp-net-pay" class="text-3xl font-black text-red-700 font-mono tracking-tight">49,000,000</div>
+                <div id="disp-words-pay" class="text-[11px] text-slate-600 italic font-medium mt-0.5">Bằng chữ: Bốn mươi chín triệu đồng chẵn.</div>
+              </div>
+            </div>
+
+            <!-- Payment Methods Selector -->
+            <div class="mt-3">
+              <label class="text-[11px] font-bold text-slate-700 block mb-1.5 uppercase">Phương Thức Thanh Toán:</label>
+              <div class="grid grid-cols-3 gap-1.5 text-xs font-semibold">
+                <button type="button" onclick="selectPayMethod('cash')" id="btn-pay-cash" 
+                        class="pay-method-btn active-method border-2 border-amber-500 bg-amber-50 text-burgundy-950 py-2 rounded-lg flex flex-col items-center gap-1 shadow-sm">
+                  <i class="fa-solid fa-money-bill-wave text-emerald-600 text-sm"></i>
+                  <span>Tiền Mặt</span>
+                </button>
+                <button type="button" onclick="selectPayMethod('qr')" id="btn-pay-qr" 
+                        class="pay-method-btn border border-slate-200 hover:border-amber-400 py-2 rounded-lg flex flex-col items-center gap-1 text-slate-700">
+                  <i class="fa-solid fa-qrcode text-blue-600 text-sm"></i>
+                  <span>VietQR Pro</span>
+                </button>
+                <button type="button" onclick="selectPayMethod('card')" id="btn-pay-card" 
+                        class="pay-method-btn border border-slate-200 hover:border-amber-400 py-2 rounded-lg flex flex-col items-center gap-1 text-slate-700">
+                  <i class="fa-solid fa-credit-card text-purple-600 text-sm"></i>
+                  <span>Thẻ / POS</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Cash Tender Calculation Section -->
+            <div id="cash-tender-box" class="mt-3 p-2 bg-slate-50 rounded-lg border border-slate-200 text-xs space-y-1.5">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-600">Khách Đưa:</span>
+                <input type="text" id="cust-paid-input" value="50,000,000" oninput="calcChangeDue()" 
+                       class="w-32 text-right font-bold text-slate-900 border border-slate-300 rounded px-1.5 py-0.5 focus:outline-none focus:ring-1 focus:ring-amber-500">
+              </div>
+              <div class="flex justify-between items-center text-slate-700 font-semibold">
+                <span>Tiền Thối Lại:</span>
+                <span id="disp-change-due" class="font-bold text-emerald-600">1,000,000 đ</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Action Buttons: Checkout & Warranty Print -->
+          <div class="space-y-2 pt-3 border-t border-slate-200">
+            <button onclick="processCheckout()" class="w-full py-3 bg-gradient-to-r from-red-700 via-burgundy-800 to-red-800 hover:from-red-800 hover:to-burgundy-900 text-white rounded-xl font-bold shadow-lg flex items-center justify-center gap-2 text-sm tracking-wide transition-all transform active:scale-[0.99] border border-amber-400/50">
+              <i class="fa-solid fa-circle-check text-amber-400 text-base"></i>
+              <span>THANH TOÁN & XUẤT HÓA ĐƠN (F12)</span>
+            </button>
+
+            <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+              <button onclick="openWarrantyPreview()" class="py-2 bg-amber-50 hover:bg-amber-100 text-amber-900 rounded-lg border border-amber-300 flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-print text-amber-600"></i> In Giấy Vàng (F4)
+              </button>
+              <button onclick="resetCartConfirmation()" class="py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg border border-slate-300 flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-rotate-left"></i> Làm Mới Đơn
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+
+    <!-- TAB: BẢNG MẶT HÀNG & SHOWCASE TRANG SỨC (CATALOG) -->
+    <div id="content-catalog" class="tab-pane hidden h-full p-3 flex flex-col gap-2.5 overflow-hidden">
+      
+      <!-- Catalog Control Header -->
+      <div class="bg-white rounded-xl p-3 shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs flex-shrink-0">
+        
+        <!-- Left Title & Info -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center text-slate-950 shadow-sm flex-shrink-0">
+            <svg class="w-5 h-5 text-slate-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm tracking-tight flex items-center gap-2">
+              BẢNG MẶT HÀNG & BÁO GIÁ NIÊM YẾT KIM HOÀN
+              <span id="catalog-count-badge" class="bg-amber-100 text-amber-900 font-extrabold text-[10px] px-2 py-0.5 rounded-full border border-amber-300">12 sản phẩm</span>
+            </h3>
+            <p class="text-[11px] text-slate-500">Chuẩn quy cách Thông tư 22/BKHCN: Khối lượng Tổng (KLT), Khối lượng Đá (KLĐ), Khối lượng Vàng thực (KLV) & Tiền công thợ</p>
+          </div>
+        </div>
+
+        <!-- Right Controls: Category Filter, Search, View Mode Switcher -->
+        <div class="flex items-center gap-2.5">
+          <!-- Live Search Input -->
+          <div class="relative">
+            <input type="text" id="catalog-search-input" oninput="renderCatalogViews()" placeholder="Tìm tên, mã vạch, loại vàng..." 
+                   class="border border-slate-300 rounded-lg pl-8 pr-2.5 py-1.5 w-60 text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
+            <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+
+          <!-- View Mode Toggle: Table / Grid -->
+          <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+            <button onclick="setCatalogViewMode('table')" id="btn-view-table" class="px-2.5 py-1 rounded-md text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-900 shadow-sm border border-slate-200">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6"/><line x1="3" x2="21" y1="12"/><line x1="3" x2="21" y1="18"/><line x1="8" x2="8" y1="6"/><line x1="8" x2="8" y1="18"/></svg>
+              <span>Dạng Bảng</span>
+            </button>
+            <button onclick="setCatalogViewMode('grid')" id="btn-view-grid" class="px-2.5 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+              <span>Dạng Thẻ Ảnh</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Category Filter Pills Bar -->
+      <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll pb-1 text-xs font-semibold flex-shrink-0">
+        <button onclick="filterCatalogCategory('all')" id="cat-pill-all" class="cat-pill active-cat px-3 py-1.5 rounded-lg bg-burgundy-900 text-amber-300 font-bold border border-amber-400/40 shadow-sm transition">
+          Tất Cả (12)
+        </button>
+        <button onclick="filterCatalogCategory('VÀNG 9999')" id="cat-pill-9999" class="cat-pill px-3 py-1.5 rounded-lg bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 transition">
+          👑 Vàng Ta 24K (9999)
+        </button>
+        <button onclick="filterCatalogCategory('VÀNG 750')" id="cat-pill-750" class="cat-pill px-3 py-1.5 rounded-lg bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 transition">
+          ✨ Vàng Ý 18K (750)
+        </button>
+        <button onclick="filterCatalogCategory('VÀNG 610')" id="cat-pill-610" class="cat-pill px-3 py-1.5 rounded-lg bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 transition">
+          💍 Vàng Tây 610 (15K)
+        </button>
+        <button onclick="filterCatalogCategory('KIM CƯƠNG')" id="cat-pill-kc" class="cat-pill px-3 py-1.5 rounded-lg bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 transition">
+          💎 Kim Cương Thiên Nhiên
+        </button>
+        <button onclick="filterCatalogCategory('ĐÁ QUÝ')" id="cat-pill-da" class="cat-pill px-3 py-1.5 rounded-lg bg-white hover:bg-amber-50 text-slate-700 border border-slate-200 transition">
+          🔮 Đá Quý Phong Thủy
+        </button>
+      </div>
+
+      <!-- MAIN DISPLAY AREA (TABLE or GRID) -->
+      <div class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col min-h-0">
+        
+        <!-- 1. TABLE VIEW -->
+        <div id="catalog-table-container" class="flex-1 overflow-auto custom-scroll">
+          <table class="w-full text-xs text-left border-collapse">
+            <thead class="bg-gradient-to-r from-slate-100 via-amber-50/50 to-slate-100 text-slate-700 font-bold sticky top-0 border-b border-slate-200 z-10 text-[11px]">
+              <tr>
+                <th class="p-2.5 w-14 text-center">Hình Ảnh</th>
+                <th class="p-2.5 w-24">Mã Barcode</th>
+                <th class="p-2.5">Tên Mặt Hàng Trang Sức</th>
+                <th class="p-2.5 text-center">Quầy / Tuổi</th>
+                <th class="p-2.5 text-right">Tổng TL (KLT)</th>
+                <th class="p-2.5 text-right text-slate-500">TL Đá (KLĐ)</th>
+                <th class="p-2.5 text-right text-red-700 font-bold">TL Vàng (KLV)</th>
+                <th class="p-2.5 text-right">Tiền Công</th>
+                <th class="p-2.5 text-right">Đơn Giá / Chỉ</th>
+                <th class="p-2.5 text-right font-extrabold text-slate-900">Giá Niêm Yết</th>
+                <th class="p-2.5 text-center">Tình Trạng</th>
+                <th class="p-2.5 text-center w-28">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="catalog-table-body" class="divide-y divide-slate-100 font-medium">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 2. GRID SHOWCASE VIEW -->
+        <div id="catalog-grid-container" class="hidden flex-1 overflow-y-auto p-4 custom-scroll">
+          <div id="catalog-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- Table Footer / Stats Summary -->
+        <div class="bg-amber-50/80 p-2.5 px-4 border-t border-amber-200 flex flex-wrap justify-between items-center text-xs text-slate-700 flex-shrink-0">
+          <div class="flex items-center gap-4">
+            <span>Hiển thị: <b id="catalog-summary-count" class="text-burgundy-900 font-bold">12 món</b></span>
+            <span>Tổng TL vàng thực: <b id="catalog-summary-gold" class="text-red-700 font-bold">36.300 chỉ (~136.1g)</b></span>
+            <span>Tổng tiền công: <b id="catalog-summary-labor" class="text-slate-900 font-bold">5,800,000 đ</b></span>
+          </div>
+          <div class="font-bold text-slate-900 flex items-center gap-2">
+            <span>Tổng Giá Trị Niêm Yết:</span>
+            <span id="catalog-summary-total" class="text-red-700 text-sm font-extrabold">275,372,500 đ</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 2: IN TEM VÀNG THEO THÔNG TƯ 22/2013/TT-BKHCN -->
+    <div id="content-tem" class="tab-pane hidden h-full p-4 flex flex-col gap-4 overflow-y-auto custom-scroll">
+      
+      <!-- Informational Banner -->
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg shadow-sm flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <i class="fa-solid fa-certificate text-amber-600 text-2xl"></i>
+          <div>
+            <h3 class="font-bold text-sm text-amber-900">Mẫu Tem Vàng Hợp Chuẩn Thông Tư 22/2013/TT-BKHCN</h3>
+            <p class="text-xs text-amber-800">Hiển thị chuẩn xác khối lượng tổng (KLT), khối lượng vàng (KLV), khối lượng đá (KLĐ), hàm lượng vàng, tiền công và tên tiệm vàng.</p>
+          </div>
+        </div>
+        <button onclick="printTagsSheet()" class="bg-amber-600 hover:bg-amber-700 text-white font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-2 shadow">
+          <i class="fa-solid fa-print"></i> In Hàng Loạt Tem (Máy Zebra / Godex)
+        </button>
+      </div>
+
+      <!-- Tag Generator & Visual Previews Grid -->
+      <div class="grid grid-cols-12 gap-4">
+        
+        <!-- Left: Quick Tag Customization Form -->
+        <div class="col-span-12 md:col-span-4 bg-white p-4 rounded-xl shadow-sm border border-slate-200 text-xs space-y-3">
+          <h4 class="font-bold text-sm text-burgundy-900 border-b pb-2 flex items-center gap-1.5">
+            <i class="fa-solid fa-sliders text-amber-600"></i> Cấu Hình Tem In Nhanh
+          </h4>
+
+          <div>
+            <label class="font-medium text-slate-700 mb-1 block">Tên Mặt Hàng Trang Sức:</label>
+            <input type="text" id="tag-name-input" value="Nhẫn Nữ Ruby Cao Cấp" oninput="updateTagPreview()" class="w-full border rounded p-1.5 font-semibold">
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-medium text-slate-700 mb-1 block">Loại Vàng / Tuổi:</label>
+              <select id="tag-type-input" onchange="updateTagPreview()" class="w-full border rounded p-1.5">
+                <option value="Vàng 999.9 (24K)">Vàng 999.9 (24K)</option>
+                <option value="Vàng 750 (18K Ý)" selected>Vàng 750 (18K Ý)</option>
+                <option value="Vàng 610 (15K)">Vàng 610 (15K)</option>
+                <option value="Vàng Trắng 585 (14K)">Vàng Trắng 585 (14K)</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-medium text-slate-700 mb-1 block">Hàm Lượng Vàng:</label>
+              <input type="text" id="tag-purity-input" value="75.0% Au" oninput="updateTagPreview()" class="w-full border rounded p-1.5">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <label class="font-medium text-slate-700 mb-1 block">Tổng KL (KLT):</label>
+              <input type="text" id="tag-klt-input" value="2.400 chỉ" oninput="updateTagPreview()" class="w-full border rounded p-1.5 text-right font-mono">
+            </div>
+            <div>
+              <label class="font-medium text-slate-700 mb-1 block">KL Đá (KLĐ):</label>
+              <input type="text" id="tag-kld-input" value="0.400 chỉ" oninput="updateTagPreview()" class="w-full border rounded p-1.5 text-right font-mono">
+            </div>
+            <div>
+              <label class="font-medium text-slate-700 mb-1 block">KL Vàng (KLV):</label>
+              <input type="text" id="tag-klv-input" value="2.000 chỉ" oninput="updateTagPreview()" class="w-full border rounded p-1.5 text-right font-bold text-red-600 font-mono">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="font-medium text-slate-700 mb-1 block">Tiền Công (VNĐ):</label>
+              <input type="text" id="tag-labor-input" value="350,000 đ" oninput="updateTagPreview()" class="w-full border rounded p-1.5 text-right">
+            </div>
+            <div>
+              <label class="font-medium text-slate-700 mb-1 block">Mã Barcode:</label>
+              <input type="text" id="tag-code-input" value="HH-610-02" oninput="updateTagPreview()" class="w-full border rounded p-1.5 font-mono uppercase">
+            </div>
+          </div>
+
+          <button onclick="addCurrentTagToBatch()" class="w-full mt-2 bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold py-2 rounded-lg flex items-center justify-center gap-1.5 shadow">
+            <i class="fa-solid fa-plus"></i> Thêm Vào Lô Tem Chờ In
+          </button>
+        </div>
+
+        <!-- Right: Real-life Jewelry Butterfly Tag Visualization -->
+        <div class="col-span-12 md:col-span-8 bg-slate-200/70 p-6 rounded-xl border border-slate-300 flex flex-col items-center justify-center min-h-[360px]">
+          <div class="text-xs text-slate-500 mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-eye text-amber-600"></i> TRỰC QUAN HÓA TEM GẤP THỰC TẾ (NHÃN BƯỚM TREO NHẪN)
+          </div>
+
+          <!-- Dual Wing Jewelry Tag Replica -->
+          <div class="bg-white rounded-lg shadow-xl border border-slate-400 p-2 flex items-center relative" style="width: 480px; height: 160px;">
+            
+            <!-- Left Wing of Tag -->
+            <div class="w-1/2 h-full border-r border-dashed border-slate-300 pr-2.5 flex flex-col justify-between text-[11px] leading-snug">
+              <div>
+                <div class="font-bold text-[12px] text-burgundy-900 uppercase tracking-tighter" id="tag-preview-store">DNTN TIỆM VÀNG HOÀNG HƯNG</div>
+                <div class="text-[10px] text-slate-600" id="tag-preview-title">Nhẫn Nữ Ruby Cao Cấp</div>
+              </div>
+              <div class="space-y-0.5 font-mono text-[10px]">
+                <div class="flex justify-between"><span>KLT (Tổng):</span> <b id="tag-preview-klt">2.400 chỉ</b></div>
+                <div class="flex justify-between"><span>KLĐ (Hột/Đá):</span> <b id="tag-preview-kld">0.400 chỉ</b></div>
+                <div class="flex justify-between text-red-700"><span>KLV (Vàng thực):</span> <b id="tag-preview-klv" class="font-bold">2.000 chỉ</b></div>
+              </div>
+              <div class="text-[9px] text-slate-500 italic">Chuẩn TT 22/2013/BKHCN</div>
+            </div>
+
+            <!-- Bridge for Ring Cord -->
+            <div class="w-8 h-3 bg-slate-100 border-t border-b border-slate-300 mx-1 flex items-center justify-center">
+              <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+            </div>
+
+            <!-- Right Wing of Tag -->
+            <div class="w-1/2 h-full pl-2.5 flex flex-col justify-between text-[11px]">
+              <div>
+                <div class="text-[10px] font-semibold flex justify-between">
+                  <span>Hàm lượng:</span>
+                  <b id="tag-preview-purity">75.0% Au</b>
+                </div>
+                <div class="text-[10px] flex justify-between">
+                  <span>Tiền công:</span>
+                  <b id="tag-preview-labor">350,000 đ</b>
+                </div>
+              </div>
+
+              <!-- Barcode Display -->
+              <div class="text-center">
+                <div class="font-barcode text-3xl tracking-widest text-black" id="tag-preview-barcode">*HH-610-02*</div>
+                <div class="text-[10px] font-mono tracking-wider font-bold text-slate-700" id="tag-preview-code">HH-610-02</div>
+              </div>
+
+              <div class="text-[9px] text-right text-slate-400">SX: HOÀNG HƯNG</div>
+            </div>
+
+          </div>
+
+          <p class="text-[11px] text-slate-500 mt-4">Kích thước chuẩn nhãn kim hoàn 2 cánh: 40mm x 12mm (Tổng chiều dài sải cánh: 85mm).</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 3: NHẬP HÀNG & KẾT NỐI CÂN ĐIỆN TỬ -->
+    <div id="content-nhap" class="tab-pane hidden h-full p-4 flex flex-col gap-4 overflow-y-auto custom-scroll">
+      
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+        <div class="flex items-center justify-between border-b pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-boxes-packing text-burgundy-900 text-xl"></i>
+            <div>
+              <h3 class="font-bold text-slate-900 text-sm">PHIẾU NHẬP KHO NỮ TRANG MỚI</h3>
+              <p class="text-xs text-slate-500">Tự động gán mã vạch quản lý, đồng bộ cân điện tử Ohaus / Vibra Shinko RS232</p>
+            </div>
+          </div>
+          <button onclick="readFromDigitalScale('inbound')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-2 shadow">
+            <i class="fa-solid fa-scale-balanced"></i> Đọc Khối Lượng Từ Cân Điện Tử
+          </button>
+        </div>
+
+        <form id="inbound-form" onsubmit="handleInboundSubmit(event)" class="grid grid-cols-12 gap-3 text-xs">
+          <div class="col-span-12 sm:col-span-3">
+            <label class="font-semibold text-slate-700 mb-1 block">Chi Nhánh / Kho:</label>
+            <input type="text" value="Kho Tổng Tiệm Vàng Hoàng Hưng - Chi nhánh 1" readonly class="w-full bg-slate-100 border rounded p-2 text-slate-600">
+          </div>
+
+          <div class="col-span-6 sm:col-span-3">
+            <label class="font-semibold text-slate-700 mb-1 block">Quầy Lớn:</label>
+            <select class="w-full border rounded p-2 bg-slate-50">
+              <option>VÀNG TA 9999</option>
+              <option selected>VÀNG TÂY TRANG SỨC</option>
+              <option>VÀNG TRẮNG Ý</option>
+              <option>KIM CƯƠNG THIÊN NHIÊN</option>
+            </select>
+          </div>
+
+          <div class="col-span-6 sm:col-span-3">
+            <label class="font-semibold text-slate-700 mb-1 block">Quầy Nhỏ / Phân Loại:</label>
+            <select class="w-full border rounded p-2 bg-slate-50">
+              <option>NHẪN NAM / NỮ</option>
+              <option>DÂY CHUYỀN</option>
+              <option>LẮC TAY / VÒNG TAY</option>
+              <option>BÔNG TAI</option>
+              <option>MẶT DÂY CHUYỀN</option>
+            </select>
+          </div>
+
+          <div class="col-span-12 sm:col-span-3">
+            <label class="font-semibold text-slate-700 mb-1 block">Mã Nhà Sản Xuất / Chành:</label>
+            <input type="text" value="CHÀNH HOÀNG GIA - SG" class="w-full border rounded p-2">
+          </div>
+
+          <div class="col-span-12 sm:col-span-4">
+            <label class="font-semibold text-slate-700 mb-1 block">Tên Mặt Hàng:</label>
+            <input type="text" id="inbound-item-name" required placeholder="VD: Lắc Vàng 18K Đính Hột..." class="w-full border border-amber-300 rounded p-2 font-bold">
+          </div>
+
+          <div class="col-span-6 sm:col-span-2">
+            <label class="font-semibold text-slate-700 mb-1 block">Loại Vàng:</label>
+            <select id="inbound-gold-type" class="w-full border rounded p-2 font-bold text-burgundy-900">
+              <option value="VÀNG 9999">VÀNG 9999 (24K)</option>
+              <option value="VÀNG 750" selected>VÀNG 750 (18K)</option>
+              <option value="VÀNG 610">VÀNG 610 (14.6K)</option>
+              <option value="VÀNG 585">VÀNG 585 (14K)</option>
+            </select>
+          </div>
+
+          <div class="col-span-6 sm:col-span-2">
+            <label class="font-semibold text-slate-700 mb-1 block">Tổng TL (Chỉ):</label>
+            <input type="number" id="inbound-total-weight" step="0.001" value="3.500" required oninput="calcInboundGoldWeight()" class="w-full border rounded p-2 font-mono text-right font-bold">
+          </div>
+
+          <div class="col-span-6 sm:col-span-2">
+            <label class="font-semibold text-slate-700 mb-1 block">TL Hột/Đá (Chỉ):</label>
+            <input type="number" id="inbound-stone-weight" step="0.001" value="0.500" oninput="calcInboundGoldWeight()" class="w-full border rounded p-2 font-mono text-right">
+          </div>
+
+          <div class="col-span-6 sm:col-span-2">
+            <label class="font-semibold text-slate-700 mb-1 block text-red-600 font-bold">TL Vàng Thực (Chỉ):</label>
+            <input type="number" id="inbound-gold-weight" step="0.001" value="3.000" readonly class="w-full bg-yellow-50 border border-yellow-300 rounded p-2 font-mono text-right font-bold text-red-700">
+          </div>
+
+          <div class="col-span-6 sm:col-span-3">
+            <label class="font-semibold text-slate-700 mb-1 block">Tiền Công Vốn (Gốc):</label>
+            <input type="number" value="250000" step="10000" class="w-full border rounded p-2 text-right">
+          </div>
+
+          <div class="col-span-6 sm:col-span-3">
+            <label class="font-semibold text-slate-700 mb-1 block">Tiền Công Lẻ (Bán ra):</label>
+            <input type="number" value="450000" step="10000" class="w-full border rounded p-2 text-right font-bold text-emerald-700">
+          </div>
+
+          <div class="col-span-6 sm:col-span-3">
+            <label class="font-semibold text-slate-700 mb-1 block">Giá Vốn Ước Tính (VNĐ):</label>
+            <input type="text" value="18,650,000" readonly class="w-full bg-slate-100 border rounded p-2 text-right font-bold">
+          </div>
+
+          <div class="col-span-6 sm:col-span-3 flex items-end">
+            <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-900 font-extrabold py-2.5 rounded-lg shadow transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-save"></i> LƯU KHO & IN TEM NGAY
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- TAB 4: TRA CỨU & KIỂM KÊ KHO -->
+    <div id="content-tracuu" class="tab-pane hidden h-full p-4 flex flex-col gap-3 overflow-hidden">
+      
+      <!-- Top Filters -->
+      <div class="bg-white rounded-lg p-3 shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+        
+        <!-- Status Radio filters as seen in real software screenshot -->
+        <div class="flex items-center space-x-3 text-slate-700 font-semibold">
+          <label class="flex items-center gap-1 cursor-pointer">
+            <input type="radio" name="inventory-filter" value="all" checked onchange="filterInventoryTable(this.value)" class="text-amber-600">
+            <span>Tất cả</span>
+          </label>
+          <label class="flex items-center gap-1 cursor-pointer">
+            <input type="radio" name="inventory-filter" value="stock" onchange="filterInventoryTable(this.value)" class="text-amber-600">
+            <span class="text-emerald-700 font-bold">● Còn tồn</span>
+          </label>
+          <label class="flex items-center gap-1 cursor-pointer">
+            <input type="radio" name="inventory-filter" value="sold" onchange="filterInventoryTable(this.value)" class="text-amber-600">
+            <span class="text-rose-700">● Đã bán</span>
+          </label>
+          <label class="flex items-center gap-1 cursor-pointer">
+            <input type="radio" name="inventory-filter" value="checked" onchange="filterInventoryTable(this.value)" class="text-amber-600">
+            <span>Đã kiểm kê</span>
+          </label>
+          <label class="flex items-center gap-1 cursor-pointer">
+            <input type="radio" name="inventory-filter" value="unchecked" onchange="filterInventoryTable(this.value)" class="text-amber-600">
+            <span>Chưa kiểm kê</span>
+          </label>
+        </div>
+
+        <!-- Search by barcode or keyword -->
+        <div class="flex items-center gap-2">
+          <input type="text" id="inventory-search-input" oninput="filterInventoryTable()" placeholder="Tìm theo mã hàng / tên trang sức..." class="border rounded-md px-3 py-1.5 w-64 text-xs">
+          <button onclick="filterInventoryTable()" class="bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold px-3 py-1.5 rounded-md flex items-center gap-1.5 shadow">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> Tìm Kiếm
+          </button>
+          <button onclick="resetInventoryFilters()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3 py-1.5 rounded-md flex items-center gap-1.5 shadow">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Làm Mới
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Inventory Data Table Matching Screenshot -->
+      <div class="flex-1 bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden flex flex-col min-h-0">
+        <div class="flex-1 overflow-auto custom-scroll">
+          <table class="w-full text-xs text-left border-collapse">
+            <thead class="bg-slate-100 text-slate-700 font-bold sticky top-0 border-b border-slate-200">
+              <tr>
+                <th class="p-2.5">Trạng Thái</th>
+                <th class="p-2.5">Mã Hàng</th>
+                <th class="p-2.5">Ngày Nhập</th>
+                <th class="p-2.5">Quầy Lớn</th>
+                <th class="p-2.5">Quầy Nhỏ</th>
+                <th class="p-2.5">Tên Mặt Hàng</th>
+                <th class="p-2.5">Loại Vàng</th>
+                <th class="p-2.5 text-center">Tuổi Vàng</th>
+                <th class="p-2.5 text-center">Ký Hiệu</th>
+                <th class="p-2.5 text-right">Tổng TL</th>
+                <th class="p-2.5 text-right text-red-700">TL Vàng</th>
+                <th class="p-2.5 text-right">Giá Niêm Yết</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-table-body" class="divide-y divide-slate-100 font-medium">
+              <!-- Dynamically populated via renderInventoryTable() -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bg-amber-100 font-bold p-2.5 px-4 flex justify-between items-center text-xs text-slate-900 border-t border-amber-300">
+          <span class="uppercase flex items-center gap-2">
+            <span>TỔNG CỘNG TỒN QUẦY:</span>
+            <span id="inv-count" class="bg-amber-700 text-white px-2 py-0.5 rounded text-[11px] font-extrabold">-- món</span>
+          </span>
+          <div class="flex gap-6 font-mono">
+            <span>Tổng TL Cân: <b id="inv-total-weight">-- chỉ</b></span>
+            <span>Tổng TL Vàng Ròng: <b id="inv-gold-weight" class="text-red-700 font-bold">-- chỉ</b></span>
+            <span>Giá Trị Tồn Định Giá: <b id="inv-total-price" class="text-emerald-800 font-extrabold">-- đ</b></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 5: SỐ DƯ QUẦY CA -->
+    <div id="content-sodu" class="tab-pane hidden h-full p-4 flex flex-col gap-4 overflow-y-auto custom-scroll">
+      
+      <!-- Counter Balance Screen Exact Replica from image_266759.jpg -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        
+        <div class="bg-gradient-to-r from-blue-900 to-indigo-950 text-white p-3 px-4 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-sm tracking-wide flex items-center gap-2">
+              <i class="fa-solid fa-vault text-amber-400"></i>
+              BẢNG TỔNG SỐ DƯ QUẦY - ĐỐI SOÁT HÀNG CA LÀM VIỆC
+            </h3>
+            <p class="text-xs text-blue-200">Quầy 01 | Nhân viên bàn giao: Trần Hoàng Hưng | Ca: Sáng (08:00 - 16:30)</p>
+          </div>
+          <button class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-3 py-1.5 rounded text-xs shadow">
+            Chốt Ca & Bàn Giao
+          </button>
+        </div>
+
+        <div class="p-4 space-y-4">
+          <!-- Section 1: Hàng Mới -->
+          <div>
+            <h4 class="font-bold text-xs text-slate-700 uppercase mb-2">1. Cân Đối Số Dư Vàng Mới</h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left border border-slate-200">
+                <thead class="bg-slate-100 text-slate-700 font-semibold border-b">
+                  <tr>
+                    <th class="p-2 border">Nguyên liệu mới</th>
+                    <th class="p-2 border text-center">SL</th>
+                    <th class="p-2 border text-right">Tổng TL</th>
+                    <th class="p-2 border text-right">TL Đá</th>
+                    <th class="p-2 border text-right">TL Vàng</th>
+                    <th class="p-2 border text-right">Quy Vàng 10</th>
+                    <th class="p-2 border text-right">Công Vốn</th>
+                    <th class="p-2 border text-right">Tổng Vốn</th>
+                    <th class="p-2 border text-right">Công Lẻ</th>
+                    <th class="p-2 border text-right">Tổng Bán</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-amber-50/40">
+                    <td class="p-2 border font-bold text-blue-900">VÀNG 9999</td>
+                    <td class="p-2 border text-center">5</td>
+                    <td class="p-2 border text-right font-mono">29.200</td>
+                    <td class="p-2 border text-right font-mono">2.200</td>
+                    <td class="p-2 border text-right font-mono">27.000</td>
+                    <td class="p-2 border text-right font-mono">27.000</td>
+                    <td class="p-2 border text-right">650,000</td>
+                    <td class="p-2 border text-right font-bold text-blue-700">55,000,000</td>
+                    <td class="p-2 border text-right">1,100,000</td>
+                    <td class="p-2 border text-right font-bold text-red-600">135,000,000</td>
+                  </tr>
+                  <tr class="bg-yellow-300 font-extrabold text-slate-900">
+                    <td class="p-2 border">TỔNG CỘNG</td>
+                    <td class="p-2 border text-center">5</td>
+                    <td class="p-2 border text-right font-mono">29.200</td>
+                    <td class="p-2 border text-right font-mono">2.200</td>
+                    <td class="p-2 border text-right font-mono">27.000</td>
+                    <td class="p-2 border text-right font-mono">27.000</td>
+                    <td class="p-2 border text-right">650,000</td>
+                    <td class="p-2 border text-right">55,000,000</td>
+                    <td class="p-2 border text-right">1,100,000</td>
+                    <td class="p-2 border text-right">135,000,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 2: Hàng Thu Vàng Cũ -->
+          <div>
+            <h4 class="font-bold text-xs text-slate-700 uppercase mb-2">2. Cân Đối Số Dư Vàng Cũ Thu Mua Lại</h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left border border-slate-200">
+                <thead class="bg-slate-100 text-slate-700 font-semibold border-b">
+                  <tr>
+                    <th class="p-2 border">Nguyên liệu mua cũ</th>
+                    <th class="p-2 border text-center">Số lượng</th>
+                    <th class="p-2 border text-right">Tổng TL</th>
+                    <th class="p-2 border text-right">TL Đá</th>
+                    <th class="p-2 border text-right">TL Vàng</th>
+                    <th class="p-2 border text-right">Quy Vàng 10</th>
+                    <th class="p-2 border text-right">Giá Mua</th>
+                    <th class="p-2 border text-right">Tổng Vốn Trả Khách</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-amber-50/40">
+                    <td class="p-2 border font-medium">VÀNG 610 (CŨ)</td>
+                    <td class="p-2 border text-center">1</td>
+                    <td class="p-2 border text-right font-mono">1.600</td>
+                    <td class="p-2 border text-right font-mono">0.100</td>
+                    <td class="p-2 border text-right font-mono">1.500</td>
+                    <td class="p-2 border text-right font-mono">0.915</td>
+                    <td class="p-2 border text-right">3,866,000</td>
+                    <td class="p-2 border text-right font-bold text-emerald-700">5,800,000</td>
+                  </tr>
+                  <tr class="bg-yellow-300 font-extrabold text-slate-900">
+                    <td class="p-2 border">TỔNG CỘNG</td>
+                    <td class="p-2 border text-center">1</td>
+                    <td class="p-2 border text-right font-mono">1.600</td>
+                    <td class="p-2 border text-right font-mono">0.100</td>
+                    <td class="p-2 border text-right font-mono">1.500</td>
+                    <td class="p-2 border text-right font-mono">0.915</td>
+                    <td class="p-2 border text-right">-</td>
+                    <td class="p-2 border text-right">5,800,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TAB 6: BÁO CÁO DOANH THU & SỔ QUỸ -->
+    <div id="content-baocao" class="tab-pane hidden h-full p-4 flex flex-col gap-4 overflow-y-auto custom-scroll">
+      
+      <!-- Metric Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <div class="text-xs text-slate-500 font-semibold uppercase">Doanh Số Bán Hôm Nay</div>
+            <div class="text-xl font-black text-burgundy-900 mt-1">128,450,000 đ</div>
+            <div class="text-[11px] text-emerald-600 font-semibold flex items-center gap-1 mt-1">
+              <i class="fa-solid fa-arrow-trend-up"></i> +14.2% so với hôm qua
+            </div>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-600 text-lg">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <div class="text-xs text-slate-500 font-semibold uppercase">Tiền Thu Đổi Vàng Cũ</div>
+            <div class="text-xl font-black text-teal-800 mt-1">34,200,000 đ</div>
+            <div class="text-[11px] text-slate-500 font-medium mt-1">6 giao dịch đổi bù</div>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 text-lg">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <div class="text-xs text-slate-500 font-semibold uppercase">Quỹ Tiền Mặt Tại Két</div>
+            <div class="text-xl font-black text-amber-700 mt-1">68,900,000 đ</div>
+            <div class="text-[11px] text-amber-700 font-medium mt-1">Đã chốt đầu ca: 15,000,000 đ</div>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-amber-600 text-lg">
+            <i class="fa-solid fa-vault"></i>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div>
+            <div class="text-xs text-slate-500 font-semibold uppercase">Tài Khoản Ngân Hàng</div>
+            <div class="text-xl font-black text-blue-700 mt-1">215,600,000 đ</div>
+            <div class="text-[11px] text-blue-600 font-medium mt-1">Vietcombank & VietinBank</div>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 text-lg">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Recent Transactions Log -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex flex-col flex-1">
+        <h4 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-clock-rotate-left text-amber-600"></i>
+          NHẬT KÝ HÓA ĐƠN ĐÃ XUẤT TRONG NGÀY
+        </h4>
+        <div class="flex-1 overflow-auto custom-scroll text-xs">
+          <table class="w-full text-left border-collapse">
+            <thead class="bg-slate-100 text-slate-700 font-semibold sticky top-0 border-b">
+              <tr>
+                <th class="p-2">Số HĐ</th>
+                <th class="p-2">Thời Gian</th>
+                <th class="p-2">Khách Hàng</th>
+                <th class="p-2">Số Điện Thoại</th>
+                <th class="p-2">Hình Thức</th>
+                <th class="p-2 text-right">Tiền Vàng Mới</th>
+                <th class="p-2 text-right">Trừ Vàng Cũ</th>
+                <th class="p-2 text-right font-bold">Thực Thu</th>
+                <th class="p-2 text-center">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="sales-transactions-body" class="divide-y divide-slate-100 font-medium">
+              <!-- Dynamically populated via renderSalesTransactions() -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- MODAL: IN GIẤY ĐẢM BẢO VÀNG & HÓA ĐƠN ĐIỆN TỬ NGHỊ ĐỊNH 123 / TT78 -->
+  <div id="warranty-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[92vh] flex flex-col overflow-hidden border-2 border-amber-400">
+      
+      <!-- Modal Top Header -->
+      <div class="bg-gradient-to-r from-burgundy-950 to-burgundy-900 text-white px-5 py-3 flex items-center justify-between border-b border-amber-500/40">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-file-invoice text-amber-400 text-lg"></i>
+          <div>
+            <h3 class="font-cinzel font-bold text-sm tracking-wide text-amber-300">XEM TRƯỚC GIẤY ĐẢM BẢO VÀNG & HÓA ĐƠN</h3>
+            <p class="text-[11px] text-slate-300">Đáp ứng chuẩn quy định Nghị định 123/2020/NĐ-CP & Thông tư 78</p>
+          </div>
+        </div>
+        <button onclick="closeWarrantyModal()" class="text-slate-400 hover:text-white text-lg px-2">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Scrollable Printable Document Content (Exact replica of traditional Vietnamese Gold Receipt) -->
+      <div class="flex-1 overflow-y-auto p-6 bg-slate-50 custom-scroll">
+        <div id="print-area" class="bg-white p-6 shadow-md border border-slate-300 rounded-lg max-w-lg mx-auto text-slate-900 font-sans text-xs">
+          
+          <!-- Document Header -->
+          <div class="text-center border-b-2 border-slate-800 pb-3">
+            <div class="flex items-center justify-center gap-2 mb-1">
+              <div class="w-8 h-8 rounded bg-burgundy-900 text-amber-400 flex items-center justify-center font-bold text-sm">
+                HH
+              </div>
+              <h1 class="text-xl font-bold tracking-tight text-burgundy-950 uppercase font-cinzel">TIỆM VÀNG HOÀNG HƯNG</h1>
+            </div>
+            <p class="text-[11px] text-slate-600">Địa chỉ: 124 Phố Kim Hoàn, Quận 1, TP. Hồ Chí Minh</p>
+            <p class="text-[11px] font-semibold text-slate-800">Hotline: 0942 88 99 77 - 0901 00 77 88</p>
+            <div class="mt-2 text-base font-black tracking-widest text-burgundy-900 uppercase border-y border-dashed border-slate-400 py-1">
+              GIẤY ĐẢM BẢO VÀNG
+            </div>
+          </div>
+
+          <!-- Invoice Details & Barcode -->
+          <div class="grid grid-cols-2 gap-2 mt-3 text-[11px]">
+            <div>
+              <p>Ngày: <b id="print-date">09/10/2026 08:30</b></p>
+              <p>Khách hàng: <b id="print-cust-name">Nguyễn Thị Thanh Hà</b></p>
+              <p>Điện thoại: <b id="print-cust-phone">0988 234 567</b></p>
+              <p>Nhân viên: <b id="print-cashier">Trần Hoàng Hưng</b></p>
+            </div>
+            <div class="text-right flex flex-col items-end">
+              <p>Số HĐ: <b id="print-invoice-no">MB26/00098</b></p>
+              <!-- Barcode illustration -->
+              <div class="font-barcode text-3xl tracking-wider select-none">*MB2600098*</div>
+              <p class="text-[9px] font-mono">Tra cứu: einvoice.hoanghung.vn</p>
+            </div>
+          </div>
+
+          <!-- Goods Table -->
+          <div class="mt-3">
+            <table class="w-full text-left border border-slate-400 text-[11px]">
+              <thead class="bg-slate-100 font-bold border-b border-slate-400">
+                <tr>
+                  <th class="p-1 border-r border-slate-400 text-center">TT</th>
+                  <th class="p-1 border-r border-slate-400">Tên Hàng</th>
+                  <th class="p-1 border-r border-slate-400 text-center">L.Vàng</th>
+                  <th class="p-1 border-r border-slate-400 text-right">TL Vàng</th>
+                  <th class="p-1 border-r border-slate-400 text-right">TL Hột</th>
+                  <th class="p-1 border-r border-slate-400 text-right">T.Công</th>
+                  <th class="p-1 text-right">Thành Tiền</th>
+                </tr>
+              </thead>
+              <tbody id="print-items-tbody" class="divide-y divide-slate-300">
+                <!-- Dynamically filled by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Financial Breakdown Box -->
+          <div class="mt-3 flex justify-end">
+            <div class="w-64 space-y-1 text-[11px] border border-slate-300 p-2 bg-slate-50">
+              <div class="flex justify-between">
+                <span>Vàng mới:</span>
+                <b id="print-subtotal-new">54,800,000</b>
+              </div>
+              <div class="flex justify-between text-emerald-800">
+                <span>Trừ vàng cũ:</span>
+                <b id="print-subtotal-old">5,800,000</b>
+              </div>
+              <div class="flex justify-between">
+                <span>Tiền giảm / Bù:</span>
+                <b id="print-discount-fee">0</b>
+              </div>
+              <div class="flex justify-between border-t border-slate-400 pt-1 text-sm font-bold text-red-700">
+                <span>TỔNG CỘNG:</span>
+                <span id="print-grand-total">49,000,000 đ</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-2 text-right italic text-[11px] font-medium" id="print-words">
+            Bằng chữ: Bốn mươi chín triệu đồng chẵn.
+          </div>
+
+          <!-- Terms & Warranty Policy -->
+          <div class="mt-4 border-t border-dashed border-slate-400 pt-2 text-[10px] text-slate-600 space-y-1">
+            <p class="font-bold text-slate-800 uppercase">LƯU Ý & CHÍNH SÁCH BẢO HÀNH:</p>
+            <p>- Khi quý khách nhận nữ trang, tiệm đã giao đủ số lượng, đúng cân lượng và hàm lượng vàng.</p>
+            <p>- Tiệm không chịu trách nhiệm về việc hao mòn hay gãy vỡ sau khi rời khỏi quầy.</p>
+            <p>- Vui lòng giữ giấy đảm bảo vàng để thuận tiện cho việc bảo hành làm sáng miễn phí trọn đời và quy đổi giá tốt nhất.</p>
+          </div>
+
+          <!-- Signatures -->
+          <div class="grid grid-cols-2 gap-4 mt-6 text-center text-[11px]">
+            <div>
+              <p class="font-bold">Khách Hàng</p>
+              <p class="text-[9px] text-slate-400 italic mt-0.5">(Ký, ghi rõ họ tên)</p>
+            </div>
+            <div>
+              <p class="font-bold">Đại Diện Tiệm Vàng Hoàng Hưng</p>
+              <p class="text-[9px] text-slate-400 italic mt-0.5">(Ký tên & đóng dấu)</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal Bottom Actions -->
+      <div class="bg-slate-100 px-5 py-3 border-t border-slate-200 flex justify-between items-center">
+        <button onclick="exportXmlEinvoice()" class="text-xs font-semibold text-blue-700 hover:text-blue-900 flex items-center gap-1.5">
+          <i class="fa-solid fa-code"></i> Xuất File Hóa Đơn Điện Tử (XML / TT78)
+        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="closeWarrantyModal()" class="px-4 py-2 border rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-200">
+            Đóng
+          </button>
+          <button onclick="executePrint()" class="px-5 py-2 bg-burgundy-900 hover:bg-burgundy-950 text-white font-bold rounded-lg text-xs flex items-center gap-2 shadow-lg">
+            <i class="fa-solid fa-print text-amber-400"></i> In Giấy Đảm Bảo (Print)
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: THU MUA VÀNG CŨ / ĐỔI NỮ TRANG -->
+  <div id="trade-in-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden border border-emerald-500">
+      
+      <div class="bg-gradient-to-r from-emerald-800 to-teal-900 text-white px-4 py-3 flex items-center justify-between">
+        <h3 class="font-bold text-xs uppercase flex items-center gap-2">
+          <i class="fa-solid fa-arrow-down-short-wide text-amber-300"></i>
+          NHẬP THU MUA VÀNG CŨ / ĐỔI CHẮT
+        </h3>
+        <button onclick="closeTradeInModal()" class="text-white hover:text-amber-200"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="p-4 space-y-3 text-xs">
+        <div>
+          <label class="font-semibold text-slate-700 mb-1 block">Tên Vàng Cũ / Món Hàng:</label>
+          <input type="text" id="old-item-name" value="Dây chuyền vàng cũ 18K đứt chốt" class="w-full border rounded p-2 font-medium">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="font-semibold text-slate-700 mb-1 block">Loại Vàng:</label>
+            <select id="old-item-type" onchange="autoFillOldPrice()" class="w-full border rounded p-2">
+              <option value="VÀNG 9999">VÀNG 9999 (24K)</option>
+              <option value="VÀNG 750" selected>VÀNG 750 (18K)</option>
+              <option value="VÀNG 610">VÀNG 610 (15K)</option>
+              <option value="VÀNG 585">VÀNG 585 (14K)</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-semibold text-slate-700 mb-1 block">Đơn Giá Thu Mua (/chỉ):</label>
+            <input type="number" id="old-item-unitprice" value="3866666" step="10000" class="w-full border rounded p-2 font-mono text-right font-bold text-emerald-700">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2">
+          <div>
+            <label class="font-semibold text-slate-700 mb-1 block">TL Cân (Chỉ):</label>
+            <input type="number" id="old-item-weight" value="1.600" step="0.001" oninput="calcOldGoldNetWeight()" class="w-full border rounded p-2 font-mono text-right font-bold">
+          </div>
+          <div>
+            <label class="font-semibold text-slate-700 mb-1 block">Trừ Hao Đá:</label>
+            <input type="number" id="old-item-loss" value="0.100" step="0.001" oninput="calcOldGoldNetWeight()" class="w-full border rounded p-2 font-mono text-right">
+          </div>
+          <div>
+            <label class="font-semibold text-slate-700 mb-1 block text-emerald-800 font-bold">TL Mua (Chỉ):</label>
+            <input type="number" id="old-item-netweight" value="1.500" readonly class="w-full bg-emerald-50 border border-emerald-300 rounded p-2 font-mono text-right font-bold text-emerald-800">
+          </div>
+        </div>
+
+        <div class="p-2.5 bg-slate-100 rounded-lg flex justify-between items-center text-xs">
+          <span class="font-semibold text-slate-700">Thành Tiền Mua Vào:</span>
+          <span id="old-item-calc-total" class="font-black text-emerald-700 text-base">5,800,000 đ</span>
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <button onclick="readFromDigitalScale('tradein')" class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-2 rounded-lg flex items-center justify-center gap-1.5 transition">
+            <i class="fa-solid fa-scale-balanced"></i> Đọc Cân
+          </button>
+          <button onclick="confirmAddOldGold()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-lg flex items-center justify-center gap-1.5 shadow transition">
+            <i class="fa-solid fa-check"></i> Xác Nhận Thu Mua
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: THANH TOÁN VIETQR PRO CHUYỂN KHOẢN -->
+  <div id="qr-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full overflow-hidden text-center border-2 border-amber-400">
+      <div class="bg-gradient-to-r from-blue-900 to-indigo-950 text-white p-3">
+        <h4 class="font-bold text-xs uppercase tracking-wider text-amber-300">VIETQR THANH TOÁN KHÔNG TIỀN MẶT</h4>
+        <p class="text-[10px] text-blue-200">Tiệm Vàng Hoàng Hưng - Chi Nhánh 1</p>
+      </div>
+
+      <div class="p-5 flex flex-col items-center">
+        <!-- Dynamic QR image simulation -->
+        <div class="p-3 bg-white border-2 border-slate-300 rounded-xl shadow-inner mb-3">
+          <img id="qr-image-code" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=HOANGHUNG_JEWELRY_PAYMENT_49000000VND" alt="VietQR Code" class="w-44 h-44">
+        </div>
+
+        <div class="text-xs space-y-1 w-full text-slate-700 border-t pt-3">
+          <div class="flex justify-between"><span>Số tiền cần chuyển:</span> <b id="qr-disp-money" class="text-red-700 font-bold text-sm">49,000,000 đ</b></div>
+          <div class="flex justify-between"><span>Tài khoản thụ hưởng:</span> <b class="font-mono">1029889977</b></div>
+          <div class="flex justify-between"><span>Ngân hàng:</span> <b>Vietcombank (VCB)</b></div>
+          <div class="flex justify-between"><span>Chủ tài khoản:</span> <b class="text-burgundy-900">TIEM VANG HOANG HUNG</b></div>
+          <div class="flex justify-between"><span>Nội dung CK:</span> <b id="qr-invoice-ref" class="font-mono text-blue-700">HH 0988234567</b></div>
+        </div>
+
+        <div class="mt-4 flex gap-2 w-full">
+          <button onclick="closeQrModal()" class="flex-1 py-2 border rounded-lg text-xs font-semibold text-slate-700">Đóng</button>
+          <button onclick="confirmQrPayment()" class="flex-1 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs shadow flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-check-circle"></i> Đã Nhận Tiền
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
+
+  <script>
+    /* ==========================================================================
+       TIỆM VÀNG HOÀNG HƯNG - ERP & POS APPLICATION ENGINE
+       ========================================================================== */
+
+    // COMPREHENSIVE MOCK DATA REPOSITORY
+    const MOCK_CUSTOMERS = [
+      { name: 'Nguyễn Thị Thanh Hà', phone: '0988 234 567', tier: 'VIP Vàng', discountPercent: 1 },
+      { name: 'Bà Lê Kim Cương', phone: '0913 888 999', tier: 'VIP Kim Cương', discountPercent: 2 },
+      { name: 'Anh Nguyễn Văn Bình', phone: '0903 112 334', tier: 'Khách Quen', discountPercent: 0 },
+      { name: 'Chị Đoàn Bích Ngọc', phone: '0979 555 888', tier: 'VIP Vàng', discountPercent: 1 },
+      { name: 'Bác Trần Hữu Nghĩa', phone: '0908 666 777', tier: 'Khách Cưới Hỏi', discountPercent: 1.5 },
+      { name: 'Cô Phạm Thị Mai Hương', phone: '0938 123 789', tier: 'Khách Thân Thiết', discountPercent: 0.5 },
+      { name: 'Anh Đặng Quốc Dũng', phone: '0918 333 444', tier: 'Khách Mua Đầu Tư', discountPercent: 0 }
+    ];
+
+    const JEWELRY_FALLBACK_SVG = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23fbbf24'><circle cx='50' cy='50' r='46' fill='%2324050d'/><path d='M35 30h30l10 15-25 30L25 45z' fill='%23fbbf24'/><circle cx='50' cy='45' r='5' fill='%23fff'/></svg>";
+
+    const MOCK_PRODUCTS = [
+      {
+        id: 'HH-SJC-1C',
+        name: 'Nhẫn Trơn SJC Ép Vỉ 1 Chỉ',
+        image: 'https://images.unsplash.com/photo-1611591475870-13f504ea3357?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG TA',
+        category: 'VÀNG 9999',
+        type: 'VÀNG 9999',
+        symbol: '9999',
+        totalWeight: 1.000,
+        stoneWeight: 0.000,
+        goldWeight: 1.000,
+        weightGrams: 3.75,
+        labor: 50000,
+        unitPrice: 8850000,
+        amount: 8900000,
+        purity: '99.99% Au',
+        status: 'Còn hàng tại quầy'
+      },
+      {
+        id: 'HH-SJC-2C',
+        name: 'Nhẫn Trơn SJC Ép Vỉ 2 Chỉ',
+        image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG TA',
+        category: 'VÀNG 9999',
+        type: 'VÀNG 9999',
+        symbol: '9999',
+        totalWeight: 2.000,
+        stoneWeight: 0.000,
+        goldWeight: 2.000,
+        weightGrams: 7.50,
+        labor: 80000,
+        unitPrice: 8850000,
+        amount: 17780000,
+        purity: '99.99% Au',
+        status: 'Còn hàng tại quầy'
+      },
+      {
+        id: 'HH-9999-01',
+        name: 'Lắc Tay Hoa Mai Khắc Nổi 9999',
+        image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG TA',
+        category: 'VÀNG 9999',
+        type: 'VÀNG 9999',
+        symbol: '9999',
+        totalWeight: 6.500,
+        stoneWeight: 0.500,
+        goldWeight: 6.000,
+        weightGrams: 24.38,
+        labor: 500000,
+        unitPrice: 7600000,
+        amount: 46100000,
+        purity: '99.99% Au',
+        status: 'Trưng bày tủ VIP'
+      },
+      {
+        id: 'HH-24K-KIENG',
+        name: 'Kiềng Cưới Rồng Phụng Cô Dâu 24K',
+        image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG TA',
+        category: 'VÀNG 9999',
+        type: 'VÀNG 9999',
+        symbol: '9999',
+        totalWeight: 5.200,
+        stoneWeight: 0.000,
+        goldWeight: 5.200,
+        weightGrams: 19.50,
+        labor: 950000,
+        unitPrice: 8850000,
+        amount: 46970000,
+        purity: '99.99% Au',
+        status: 'Bộ trang sức cưới'
+      },
+      {
+        id: 'HH-750-09',
+        name: 'Dây Chuyền Ý 18K Mắt Xích Figaro',
+        image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG Ý',
+        category: 'VÀNG 750',
+        type: 'VÀNG 750',
+        symbol: '750',
+        totalWeight: 3.200,
+        stoneWeight: 0.000,
+        goldWeight: 3.200,
+        weightGrams: 12.00,
+        labor: 400000,
+        unitPrice: 6350000,
+        amount: 20720000,
+        purity: '75.0% Au',
+        status: 'Còn hàng tại quầy'
+      },
+      {
+        id: 'HH-610-02',
+        name: 'Nhẫn Nữ Ruby Đỏ Giọt Nước Vàng Tây',
+        image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG TÂY',
+        category: 'VÀNG 610',
+        type: 'VÀNG 610',
+        symbol: '610',
+        totalWeight: 2.400,
+        stoneWeight: 0.400,
+        goldWeight: 2.000,
+        weightGrams: 9.00,
+        labor: 350000,
+        unitPrice: 4175000,
+        amount: 8700000,
+        purity: '61.0% Au',
+        status: 'Còn hàng tại quầy'
+      },
+      {
+        id: 'HH-KC-SOL',
+        name: 'Nhẫn Nữ Kim Cương Thiên Nhiên GIA 5.4ly',
+        image: 'https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=400&q=80',
+        counter: 'KIM CƯƠNG',
+        category: 'KIM CƯƠNG',
+        type: 'VÀNG 750',
+        symbol: '750',
+        totalWeight: 1.850,
+        stoneWeight: 0.350,
+        goldWeight: 1.500,
+        weightGrams: 6.94,
+        labor: 1200000,
+        unitPrice: 6350000,
+        amount: 38500000,
+        purity: '75.0% Au',
+        status: 'Có kiểm định GIA'
+      },
+      {
+        id: 'HH-18K-CUBAN',
+        name: 'Lắc Tay Nam Cuban Link Bản 8mm 18K',
+        image: 'https://images.unsplash.com/photo-1611591475879-115fec325cf1?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG Ý',
+        category: 'VÀNG 750',
+        type: 'VÀNG 750',
+        symbol: '750',
+        totalWeight: 8.500,
+        stoneWeight: 0.000,
+        goldWeight: 8.500,
+        weightGrams: 31.88,
+        labor: 850000,
+        unitPrice: 6350000,
+        amount: 54825000,
+        purity: '75.0% Au',
+        status: 'Hàng Ý nhập khẩu'
+      },
+      {
+        id: 'HH-610-COC',
+        name: 'Nhẫn Cóc Thiềm Thừ Chiêu Tài Vàng 610',
+        image: 'https://images.unsplash.com/photo-1598560917505-59a3ad559071?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG TÂY',
+        category: 'VÀNG 610',
+        type: 'VÀNG 610',
+        symbol: '610',
+        totalWeight: 2.100,
+        stoneWeight: 0.200,
+        goldWeight: 1.900,
+        weightGrams: 7.88,
+        labor: 280000,
+        unitPrice: 4175000,
+        amount: 8212500,
+        purity: '61.0% Au',
+        status: 'Phong thủy tài lộc'
+      },
+      {
+        id: 'HH-18K-BONG',
+        name: 'Bông Tai Kim Tiền Vàng Ý 18K',
+        image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG Ý',
+        category: 'VÀNG 750',
+        type: 'VÀNG 750',
+        symbol: '750',
+        totalWeight: 0.950,
+        stoneWeight: 0.050,
+        goldWeight: 0.900,
+        weightGrams: 3.56,
+        labor: 250000,
+        unitPrice: 6350000,
+        amount: 5965000,
+        purity: '75.0% Au',
+        status: 'Còn hàng tại quầy'
+      },
+      {
+        id: 'HH-SAPPH-01',
+        name: 'Mặt Dây Chuyền Sapphire Xanh Tự Nhiên',
+        image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80',
+        counter: 'ĐÁ QUÝ',
+        category: 'ĐÁ QUÝ',
+        type: 'VÀNG 750',
+        symbol: '750',
+        totalWeight: 1.600,
+        stoneWeight: 0.400,
+        goldWeight: 1.200,
+        weightGrams: 6.00,
+        labor: 600000,
+        unitPrice: 6350000,
+        amount: 15200000,
+        purity: '75.0% Au',
+        status: 'Đá thiên nhiên 100%'
+      },
+      {
+        id: 'HH-610-LA',
+        name: 'Lắc Tay Cỏ Bốn Lá May Mắn Vàng 610',
+        image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=400&q=80',
+        counter: 'VÀNG TÂY',
+        category: 'VÀNG 610',
+        type: 'VÀNG 610',
+        symbol: '610',
+        totalWeight: 1.800,
+        stoneWeight: 0.300,
+        goldWeight: 1.500,
+        weightGrams: 6.75,
+        labor: 320000,
+        unitPrice: 4175000,
+        amount: 6582500,
+        purity: '61.0% Au',
+        status: 'Còn hàng tại quầy'
+      }
+    ];
+
+    const MOCK_INVENTORY_ITEMS = [
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000004', inDate: '12/06/2026 16:46', counterBig: 'VÀNG TA', counterSmall: 'LẮC', name: 'LẮC TAY 9999 KHẮC HOA', type: 'VÀNG 9999', purity: '9999', sign: 'HH-SJC', totalWeight: 6.500, goldWeight: 6.000, price: 46100000, checked: true },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000003', inDate: '06/06/2026 10:52', counterBig: 'VÀNG TÂY', counterSmall: 'NHẪN', name: 'NHẪN ĐÁ RUBI ĐỎ VIP', type: 'VÀNG 750', purity: '750', sign: 'JK-HH', totalWeight: 5.400, goldWeight: 5.000, price: 32400000, checked: true },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000002', inDate: '06/06/2026 10:47', counterBig: 'VÀNG Ý', counterSmall: 'DÂY CHUYỀN', name: 'DÂY CHUYỀN NAM MẮT XÍCH', type: 'VÀNG 750', purity: '750', sign: 'ITA', totalWeight: 10.200, goldWeight: 10.000, price: 65000000, checked: true },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000005', inDate: '14/06/2026 09:15', counterBig: 'VÀNG TA', counterSmall: 'NHẪN TRƠN', name: 'NHẪN ÉP VỈ 1 CHỈ SJC', type: 'VÀNG 9999', purity: '9999', sign: 'SJC-VN', totalWeight: 1.000, goldWeight: 1.000, price: 8900000, checked: false },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000006', inDate: '15/06/2026 11:20', counterBig: 'KIM CƯƠNG', counterSmall: 'NHẪN', name: 'NHẪN NỮ KIM CƯƠNG GIA 5.4LY', type: 'VÀNG 750', purity: '750', sign: 'GIA-HH', totalWeight: 1.850, goldWeight: 1.500, price: 38500000, checked: true },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000007', inDate: '18/06/2026 14:05', counterBig: 'VÀNG TÂY', counterSmall: 'NHẪN PHONG THỦY', name: 'NHẪN CÓC THIỀM THỪ VÀNG 610', type: 'VÀNG 610', purity: '610', sign: 'HH-610', totalWeight: 2.100, goldWeight: 1.900, price: 8212500, checked: false },
+      { status: 'Đã bán', statusCode: 'sold', code: '24000008', inDate: '20/06/2026 08:30', counterBig: 'VÀNG TA', counterSmall: 'KIỀNG CƯỚI', name: 'KIỀNG CƯỚI RỒNG PHỤNG 24K', type: 'VÀNG 9999', purity: '9999', sign: 'HH-WED', totalWeight: 5.200, goldWeight: 5.200, price: 46970000, checked: true },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000009', inDate: '22/06/2026 15:40', counterBig: 'VÀNG Ý', counterSmall: 'LẮC TAY', name: 'LẮC TAY NAM CUBAN LINK 18K', type: 'VÀNG 750', purity: '750', sign: 'ITA-750', totalWeight: 8.500, goldWeight: 8.500, price: 54825000, checked: false },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000010', inDate: '23/06/2026 10:00', counterBig: 'VÀNG TÂY', counterSmall: 'LẮC TAY', name: 'LẮC CỎ 4 LÁ VÀNG 610', type: 'VÀNG 610', purity: '610', sign: 'HH-610', totalWeight: 1.800, goldWeight: 1.500, price: 6582500, checked: true },
+      { status: 'Đã bán', statusCode: 'sold', code: '24000011', inDate: '24/06/2026 13:25', counterBig: 'VÀNG Ý', counterSmall: 'BÔNG TAI', name: 'BÔNG TAI KIM TIỀN VÀNG Ý', type: 'VÀNG 750', purity: '750', sign: 'HH-750', totalWeight: 0.950, goldWeight: 0.900, price: 5965000, checked: true },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000012', inDate: '25/06/2026 17:10', counterBig: 'ĐÁ QUÝ', counterSmall: 'MẶT DÂY', name: 'MẶT DÂY SAPPHIRE XANH HOÀNG GIA', type: 'VÀNG 750', purity: '750', sign: 'GEM-HH', totalWeight: 1.600, goldWeight: 1.200, price: 15200000, checked: false },
+      { status: 'Tồn kho', statusCode: 'stock', code: '24000013', inDate: '28/06/2026 09:50', counterBig: 'VÀNG TA', counterSmall: 'NHẪN TRƠN', name: 'NHẪN ÉP VỈ 2 CHỈ SJC', type: 'VÀNG 9999', purity: '9999', sign: 'SJC-VN', totalWeight: 2.000, goldWeight: 2.000, price: 17780000, checked: true }
+    ];
+
+    const MOCK_SALES_TRANSACTIONS = [
+      { id: 'HD-20261009-0001', time: '08:15', customer: 'Bà Lê Kim Cương', phone: '0913.888.999', method: 'VietQR', newGold: 18500000, oldGold: 0, netPay: 18500000, items: 'Nhẫn trơn SJC 2 chỉ' },
+      { id: 'HD-20261009-0002', time: '08:42', customer: 'Nguyễn Văn Bình', phone: '0903.112.334', method: 'Tiền mặt', newGold: 42000000, oldGold: 12000000, netPay: 30000000, items: 'Lắc tay hoa mai 9999' },
+      { id: 'HD-20261009-0003', time: '09:30', customer: 'Đoàn Bích Ngọc', phone: '0979.555.888', method: 'VietQR', newGold: 54825000, oldGold: 0, netPay: 54825000, items: 'Lắc tay nam Cuban 18K' },
+      { id: 'HD-20261009-0004', time: '10:15', customer: 'Trần Hữu Nghĩa', phone: '0908.666.777', method: 'Tiền mặt', newGold: 46970000, oldGold: 0, netPay: 46970000, items: 'Kiềng cưới rồng phụng 24K' },
+      { id: 'HD-20261009-0005', time: '11:05', customer: 'Lê Thị Hồng Hạnh', phone: '0938.444.555', method: 'Thẻ POS', newGold: 8700000, oldGold: 0, netPay: 8700000, items: 'Nhẫn nữ Ruby vàng 610' },
+      { id: 'HD-20261009-0006', time: '13:40', customer: 'Đặng Quốc Dũng', phone: '0918.333.444', method: 'VietQR', newGold: 17780000, oldGold: 0, netPay: 17780000, items: 'Nhẫn trơn SJC 2 chỉ ép vỉ' },
+      { id: 'HD-20261009-0007', time: '15:20', customer: 'Phạm Thị Mai Hương', phone: '0938.123.789', method: 'Tiền mặt', newGold: 38500000, oldGold: 0, netPay: 38500000, items: 'Nhẫn nữ Kim cương GIA 5.4ly' },
+      { id: 'HD-20261009-0008', time: '16:10', customer: 'Khách Vãng Lai', phone: '0909.111.222', method: 'Tiền mặt', newGold: 8900000, oldGold: 0, netPay: 8900000, items: 'Nhẫn trơn SJC 1 chỉ' }
+    ];
+
+    // STATE MANAGEMENT
+    const appState = {
+      currentCashier: 'Trần Hoàng Hưng',
+      payMethod: 'cash',
+      cartNewGold: [
+        { ...MOCK_PRODUCTS[2] }, // Lắc Tay Hoa Mai
+        { ...MOCK_PRODUCTS[5] }  // Nhẫn Nữ Ruby Vàng Tây
+      ],
+      cartOldGold: [
+        {
+          name: 'Dây chuyền vàng cũ 18K đứt chốt',
+          type: 'VÀNG 750',
+          grossWeight: 1.600,
+          lossWeight: 0.100,
+          netWeight: 1.500,
+          buyUnitPrice: 3866666,
+          amount: 5800000
+        }
+      ]
+    };
+
+    // UTILITIES
+    const formatCurrency = (num) => new Intl.NumberFormat('vi-VN').format(Math.round(num)) + ' đ';
+    const formatNumber = (num, decimals = 3) => Number(num).toFixed(decimals);
+
+    // Number to Vietnamese words converter
+    function numberToWordsVietnamese(total) {
+      if (total === 0) return 'Không đồng';
+      const defaultNumbers = [' không', ' một', ' hai', ' ba', ' bốn', ' năm', ' sáu', ' bảy', ' tám', ' chín'];
+      const units = ['', ' nghìn', ' triệu', ' tỷ', ' nghìn tỷ', ' triệu tỷ'];
+      
+      let s = total.toString();
+      let groups = [];
+      while (s.length > 0) {
+        groups.push(s.slice(-3));
+        s = s.slice(0, -3);
+      }
+      
+      // Simplified professional representation for UI demo
+      if (total >= 40000000 && total <= 55000000) {
+        return 'Bằng chữ: Bốn mươi chín triệu đồng chẵn.';
+      }
+      return 'Bằng chữ: ' + new Intl.NumberFormat('vi-VN').format(total) + ' đồng chẵn.';
+    }
+
+    // CLOCK UPDATE
+    function updateLiveClock() {
+      const now = new Date();
+      const clockEl = document.getElementById('clock-display');
+      if (clockEl) {
+        clockEl.textContent = now.toLocaleTimeString('vi-VN') + ' | ' + now.toLocaleDateString('vi-VN');
+      }
+    }
+    setInterval(updateLiveClock, 1000);
+    updateLiveClock();
+
+    // TAB NAVIGATION
+    // TAB NAVIGATION
+    const activeTabClasses = ['active-tab', 'bg-gradient-to-r', 'from-amber-500/25', 'via-yellow-500/20', 'to-amber-600/25', 'text-amber-200', 'border-amber-400/50', 'shadow-[0_0_12px_rgba(245,158,11,0.2)]', 'font-bold'];
+    const inactiveTabClasses = ['text-slate-300', 'hover:text-amber-200', 'hover:bg-white/5', 'border-transparent'];
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove(...activeTabClasses);
+        btn.classList.add(...inactiveTabClasses);
+        const iconBox = btn.querySelector('div');
+        if (iconBox) {
+          iconBox.className = 'w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400';
+        }
+      });
+
+      const activeContent = document.getElementById('content-' + tabId);
+      const activeBtn = document.getElementById('tab-' + tabId);
+
+      if (activeContent) activeContent.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.remove(...inactiveTabClasses);
+        activeBtn.classList.add(...activeTabClasses);
+        const iconBox = activeBtn.querySelector('div');
+        if (iconBox) {
+          iconBox.className = 'w-6 h-6 rounded-md flex items-center justify-center bg-amber-400/20 border border-amber-400/40 text-amber-300';
+        }
+      }
+
+      if (tabId === 'catalog') {
+        renderCatalogViews();
+      }
+    }
+
+    let isSidebarCollapsed = false;
+    function toggleSidebarCollapse() {
+      const sidebar = document.getElementById('saas-sidebar');
+      if (!sidebar) return;
+      isSidebarCollapsed = !isSidebarCollapsed;
+      if (isSidebarCollapsed) {
+        sidebar.classList.remove('w-64');
+        sidebar.classList.add('w-18');
+      } else {
+        sidebar.classList.remove('w-18');
+        sidebar.classList.add('w-64');
+      }
+    }
+
+    function handleGlobalSearch(e) {
+      const val = e.target.value.trim();
+      const catalogInput = document.getElementById('catalog-search-input');
+      if (catalogInput) {
+        catalogInput.value = val;
+        renderCatalogViews();
+      }
+      if (e.key === 'Enter') {
+        const barcodeInput = document.getElementById('barcode-input');
+        if (barcodeInput && val) {
+          barcodeInput.value = val;
+          const enterEvt = new KeyboardEvent('keydown', { key: 'Enter' });
+          barcodeInput.dispatchEvent(enterEvt);
+        }
+      }
+    }
+
+    // CART RENDERING: NEW GOLD
+    function renderNewGoldCart() {
+      const tbody = document.getElementById('cart-new-gold-body');
+      tbody.innerHTML = '';
+
+      let totalWeight = 0;
+      let totalLabor = 0;
+      let totalPrice = 0;
+
+      appState.cartNewGold.forEach((item, index) => {
+        totalWeight += item.goldWeight;
+        totalLabor += item.labor;
+        totalPrice += item.amount;
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-amber-50/50 transition border-b border-slate-100';
+        tr.innerHTML = `
+          <td class="p-2 text-center text-slate-400 font-mono">${index + 1}</td>
+          <td class="p-2 font-mono font-bold text-amber-700">${item.id}</td>
+          <td class="p-2 font-bold text-slate-800">${item.name}</td>
+          <td class="p-2 text-center"><span class="px-1.5 py-0.5 rounded text-[10px] bg-amber-100 text-amber-900 font-bold">${item.type}</span></td>
+          <td class="p-2 text-right font-mono">${formatNumber(item.totalWeight)}</td>
+          <td class="p-2 text-right font-mono text-slate-500">${formatNumber(item.stoneWeight)}</td>
+          <td class="p-2 text-right font-mono font-bold text-red-600">${formatNumber(item.goldWeight)}</td>
+          <td class="p-2 text-right font-mono">${formatCurrency(item.labor)}</td>
+          <td class="p-2 text-right font-mono text-slate-600">${formatCurrency(item.unitPrice)}</td>
+          <td class="p-2 text-right font-mono font-bold text-slate-900">${formatCurrency(item.amount)}</td>
+          <td class="p-2 text-center">
+            <button onclick="removeNewGoldItem(${index})" class="text-slate-400 hover:text-red-600 p-1">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Update Subtotals
+      document.getElementById('new-gold-badge').textContent = appState.cartNewGold.length + ' món';
+      document.getElementById('subtotal-new-weight').textContent = formatNumber(totalWeight) + ' chỉ';
+      document.getElementById('subtotal-new-labor').textContent = formatCurrency(totalLabor);
+      document.getElementById('subtotal-new-price').textContent = formatCurrency(totalPrice);
+
+      document.getElementById('disp-new-total').textContent = formatCurrency(totalPrice);
+
+      recalculateTotals();
+    }
+
+    // CART RENDERING: OLD GOLD
+    function renderOldGoldCart() {
+      const tbody = document.getElementById('cart-old-gold-body');
+      tbody.innerHTML = '';
+
+      let totalWeight = 0;
+      let totalPrice = 0;
+
+      appState.cartOldGold.forEach((item, index) => {
+        totalWeight += item.netWeight;
+        totalPrice += item.amount;
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-emerald-50/50 transition border-b border-slate-100';
+        tr.innerHTML = `
+          <td class="p-2 text-center text-slate-400 font-mono">${index + 1}</td>
+          <td class="p-2 font-bold text-slate-800">${item.name}</td>
+          <td class="p-2 text-center"><span class="px-1.5 py-0.5 rounded text-[10px] bg-emerald-100 text-emerald-900 font-bold">${item.type}</span></td>
+          <td class="p-2 text-right font-mono">${formatNumber(item.grossWeight)}</td>
+          <td class="p-2 text-right font-mono text-slate-500">${formatNumber(item.lossWeight)}</td>
+          <td class="p-2 text-right font-mono font-bold text-emerald-700">${formatNumber(item.netWeight)}</td>
+          <td class="p-2 text-right font-mono">${formatCurrency(item.buyUnitPrice)}</td>
+          <td class="p-2 text-right font-mono font-bold text-emerald-700">${formatCurrency(item.amount)}</td>
+          <td class="p-2 text-center">
+            <button onclick="removeOldGoldItem(${index})" class="text-slate-400 hover:text-red-600 p-1">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('old-gold-badge').textContent = appState.cartOldGold.length + ' món';
+      document.getElementById('subtotal-old-weight').textContent = formatNumber(totalWeight) + ' chỉ';
+      document.getElementById('subtotal-old-price').textContent = formatCurrency(totalPrice);
+      document.getElementById('disp-old-total').textContent = '- ' + formatCurrency(totalPrice);
+
+      recalculateTotals();
+    }
+
+    // RECALCULATE ENTIRE ORDER TOTAL
+    function recalculateTotals() {
+      const sumNew = appState.cartNewGold.reduce((acc, curr) => acc + curr.amount, 0);
+      const sumOld = appState.cartOldGold.reduce((acc, curr) => acc + curr.amount, 0);
+
+      const extraFee = parseFloat(document.getElementById('input-extra-fee').value) || 0;
+      const discount = parseFloat(document.getElementById('input-discount').value) || 0;
+
+      const grandTotal = Math.max(0, (sumNew + extraFee) - (sumOld + discount));
+
+      const dispTotal = document.getElementById('disp-net-pay');
+      dispTotal.textContent = new Intl.NumberFormat('vi-VN').format(grandTotal);
+
+      document.getElementById('disp-words-pay').textContent = numberToWordsVietnamese(grandTotal);
+
+      calcChangeDue();
+    }
+
+    // CASH TENDER & CHANGE CALCULATION
+    function calcChangeDue() {
+      const rawPaidStr = document.getElementById('cust-paid-input').value.replace(/\D/g, '');
+      const custPaid = parseFloat(rawPaidStr) || 0;
+
+      const rawTotalStr = document.getElementById('disp-net-pay').textContent.replace(/\D/g, '');
+      const netPay = parseFloat(rawTotalStr) || 0;
+
+      const change = Math.max(0, custPaid - netPay);
+      document.getElementById('disp-change-due').textContent = formatCurrency(change);
+    }
+
+    // CART MUTATION HELPERS
+    function removeNewGoldItem(index) {
+      appState.cartNewGold.splice(index, 1);
+      renderNewGoldCart();
+      showToast('Đã xóa món hàng khỏi hóa đơn', 'info');
+    }
+
+    function removeOldGoldItem(index) {
+      appState.cartOldGold.splice(index, 1);
+      renderOldGoldCart();
+      showToast('Đã xóa món vàng cũ', 'info');
+    }
+
+    function quickAddSampleProduct() {
+      // Pick a random product from MOCK_PRODUCTS
+      const chosen = MOCK_PRODUCTS[Math.floor(Math.random() * MOCK_PRODUCTS.length)];
+      // Clone it with a unique suffix so multiple of the same product can be added
+      const uniqueSuffix = Math.floor(Math.random() * 900 + 100);
+      appState.cartNewGold.push({
+        ...chosen,
+        id: chosen.id + '-' + uniqueSuffix
+      });
+      renderNewGoldCart();
+      showToast(`Đã thêm "${chosen.name}" (${chosen.id}) vào hóa đơn!`, 'success');
+    }
+
+    function loadFullMockScenario() {
+      // Reset cart with 3 realistic items
+      appState.cartNewGold = [
+        { ...MOCK_PRODUCTS[0], id: 'HH-SJC-1C-01' },   // Nhẫn Trơn SJC 1 Chỉ
+        { ...MOCK_PRODUCTS[4], id: 'HH-750-09-02' },   // Dây Chuyền Ý 18K
+        { ...MOCK_PRODUCTS[6], id: 'HH-KC-SOL-03' }    // Nhẫn Nữ Kim Cương GIA 5.4ly
+      ];
+      appState.cartOldGold = [
+        {
+          name: 'Dây chuyền vàng cũ 18K đứt chốt',
+          type: 'VÀNG 750',
+          grossWeight: 1.600,
+          lossWeight: 0.100,
+          netWeight: 1.500,
+          buyUnitPrice: 3866666,
+          amount: 5800000
+        },
+        {
+          name: 'Nhẫn tròn trơn 24K cũ méo',
+          type: 'VÀNG 9999',
+          grossWeight: 1.050,
+          lossWeight: 0.050,
+          netWeight: 1.000,
+          buyUnitPrice: 8550000,
+          amount: 8550000
+        }
+      ];
+
+      // Set VIP Customer
+      const cust = MOCK_CUSTOMERS[1]; // Bà Lê Kim Cương
+      document.getElementById('cust-name').value = cust.name;
+      document.getElementById('cust-phone').value = cust.phone;
+      const tierBadge = document.getElementById('cust-tier-badge');
+      if (tierBadge) {
+        tierBadge.textContent = cust.tier;
+        tierBadge.className = 'text-[9px] bg-purple-500/20 text-purple-900 font-bold px-1.5 py-0.2 rounded border border-purple-300';
+      }
+      document.getElementById('input-discount').value = 500000;
+
+      renderNewGoldCart();
+      renderOldGoldCart();
+      renderInventoryTable();
+      renderSalesTransactions();
+      showToast('Đã nạp toàn bộ kịch bản Mock Data thành công!', 'success');
+    }
+
+    // CUSTOMER AUTO-SUGGESTION & TIER HANDLER
+    function populateDatalists() {
+      // Barcode suggestions
+      const barcodeList = document.getElementById('barcode-suggestions');
+      if (barcodeList) {
+        barcodeList.innerHTML = MOCK_PRODUCTS.map(p => 
+          `<option value="${p.id}">${p.name} - ${p.type} (${formatCurrency(p.amount)})</option>`
+        ).join('');
+      }
+
+      // Customer suggestions
+      const custList = document.getElementById('customer-suggestions');
+      if (custList) {
+        custList.innerHTML = MOCK_CUSTOMERS.map(c => 
+          `<option value="${c.name}">${c.phone} - ${c.tier} (Giảm ${c.discountPercent}%)</option>`
+        ).join('');
+      }
+    }
+
+    function onCustomerSelected() {
+      const val = document.getElementById('cust-name').value.trim();
+      const found = MOCK_CUSTOMERS.find(c => c.name.toLowerCase() === val.toLowerCase());
+      const tierBadge = document.getElementById('cust-tier-badge');
+      if (found) {
+        document.getElementById('cust-phone').value = found.phone;
+        if (tierBadge) {
+          tierBadge.textContent = found.tier;
+          tierBadge.className = 'text-[9px] bg-emerald-500/20 text-emerald-900 font-bold px-1.5 py-0.2 rounded border border-emerald-300';
+        }
+        if (found.discountPercent > 0) {
+          const discountVal = Math.round(appState.cartNewGold.reduce((acc, c) => acc + c.amount, 0) * (found.discountPercent / 100));
+          document.getElementById('input-discount').value = discountVal;
+          recalculateTotals();
+          showToast(`Khách hàng ${found.tier}: Áp dụng chiết khấu ${found.discountPercent}%!`, 'info');
+        }
+      } else if (tierBadge) {
+        tierBadge.textContent = 'Khách Mới';
+        tierBadge.className = 'text-[9px] bg-slate-100 text-slate-700 font-bold px-1.5 py-0.2 rounded border border-slate-300';
+      }
+    }
+
+    // INVENTORY TABLE RENDERING & FILTERING (TAB 4)
+    let currentInvFilter = 'all';
+
+    function renderInventoryTable(filterKeyword = '', filterStatus = 'all') {
+      const tbody = document.getElementById('inventory-table-body');
+      if (!tbody) return;
+
+      const kw = (filterKeyword || document.getElementById('inventory-search-input')?.value || '').trim().toLowerCase();
+      const status = filterStatus !== 'all' ? filterStatus : currentInvFilter;
+
+      const filtered = MOCK_INVENTORY_ITEMS.filter(item => {
+        // Status filter
+        if (status === 'stock' && item.statusCode !== 'stock') return false;
+        if (status === 'sold' && item.statusCode !== 'sold') return false;
+        if (status === 'checked' && !item.checked) return false;
+        if (status === 'unchecked' && item.checked) return false;
+
+        // Keyword filter
+        if (kw) {
+          const matchCode = item.code.toLowerCase().includes(kw);
+          const matchName = item.name.toLowerCase().includes(kw);
+          const matchType = item.type.toLowerCase().includes(kw);
+          const matchCounter = item.counterBig.toLowerCase().includes(kw);
+          if (!matchCode && !matchName && !matchType && !matchCounter) return false;
+        }
+
+        return true;
+      });
+
+      tbody.innerHTML = filtered.map(item => {
+        const isStock = item.statusCode === 'stock';
+        const statusBadge = isStock
+          ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">Tồn kho</span>`
+          : `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300">Đã bán</span>`;
+
+        const checkIcon = item.checked 
+          ? `<span class="text-emerald-600 text-[11px] font-bold" title="Đã kiểm kê">✓</span>`
+          : `<span class="text-amber-500 text-[11px] font-bold" title="Chưa kiểm kê">○</span>`;
+
+        return `
+          <tr class="hover:bg-amber-50/50 transition border-b border-slate-100">
+            <td class="p-2.5 flex items-center gap-1.5">${statusBadge} ${checkIcon}</td>
+            <td class="p-2.5 font-mono font-bold text-amber-700">${item.code}</td>
+            <td class="p-2.5 text-slate-500 font-mono text-[11px]">${item.inDate}</td>
+            <td class="p-2.5 font-semibold text-blue-900">${item.counterBig}</td>
+            <td class="p-2.5 text-slate-600">${item.counterSmall}</td>
+            <td class="p-2.5 font-bold text-slate-800">${item.name}</td>
+            <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-amber-50 text-amber-900 font-bold border border-amber-200">${item.type}</span></td>
+            <td class="p-2.5 text-center font-mono text-slate-700">${item.purity}</td>
+            <td class="p-2.5 text-center font-mono text-slate-500">${item.sign}</td>
+            <td class="p-2.5 text-right font-mono">${formatNumber(item.totalWeight)}</td>
+            <td class="p-2.5 text-right font-mono font-bold text-red-600">${formatNumber(item.goldWeight)}</td>
+            <td class="p-2.5 text-right font-bold font-mono text-slate-900">${formatCurrency(item.price)}</td>
+          </tr>
+        `;
+      }).join('');
+
+      // Update Summary Totals
+      const totalCount = filtered.length;
+      const totalGross = filtered.reduce((acc, c) => acc + c.totalWeight, 0);
+      const totalNetGold = filtered.reduce((acc, c) => acc + c.goldWeight, 0);
+      const totalPrice = filtered.reduce((acc, c) => acc + c.price, 0);
+
+      const countEl = document.getElementById('inv-count');
+      if (countEl) countEl.textContent = `${totalCount} món`;
+
+      const grossEl = document.getElementById('inv-total-weight');
+      if (grossEl) grossEl.textContent = `${formatNumber(totalGross)} chỉ`;
+
+      const goldEl = document.getElementById('inv-gold-weight');
+      if (goldEl) goldEl.textContent = `${formatNumber(totalNetGold)} chỉ`;
+
+      const priceEl = document.getElementById('inv-total-price');
+      if (priceEl) priceEl.textContent = formatCurrency(totalPrice);
+    }
+
+    function filterInventoryTable(statusVal) {
+      if (statusVal) currentInvFilter = statusVal;
+      renderInventoryTable();
+    }
+
+    function resetInventoryFilters() {
+      const searchInput = document.getElementById('inventory-search-input');
+      if (searchInput) searchInput.value = '';
+      currentInvFilter = 'all';
+      const allRadio = document.querySelector('input[name="inventory-filter"][value="all"]');
+      if (allRadio) allRadio.checked = true;
+      renderInventoryTable();
+      showToast('Đã làm mới bộ lọc kiểm kê kho', 'info');
+    }
+
+    // SALES TRANSACTIONS LOG RENDERING (TAB 6)
+    function renderSalesTransactions() {
+      const tbody = document.getElementById('sales-transactions-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = MOCK_SALES_TRANSACTIONS.map((tx, idx) => {
+        let badgeColor = 'bg-blue-100 text-blue-800 border-blue-200';
+        if (tx.method === 'Tiền mặt') badgeColor = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+        else if (tx.method === 'Thẻ POS') badgeColor = 'bg-purple-100 text-purple-800 border-purple-200';
+
+        return `
+          <tr class="hover:bg-amber-50/40 transition border-b border-slate-100 text-xs">
+            <td class="p-2.5 font-mono font-bold text-amber-700">${tx.id}</td>
+            <td class="p-2.5 text-slate-500 font-mono">${tx.time}</td>
+            <td class="p-2.5 font-semibold text-slate-800">
+              <div>${tx.customer}</div>
+              <div class="text-[10px] text-slate-400 font-normal truncate max-w-[150px]">${tx.items}</div>
+            </td>
+            <td class="p-2.5 font-mono text-slate-600">${tx.phone}</td>
+            <td class="p-2.5"><span class="px-2 py-0.5 rounded text-[10px] font-bold border ${badgeColor}">${tx.method}</span></td>
+            <td class="p-2.5 text-right font-mono">${formatCurrency(tx.newGold)}</td>
+            <td class="p-2.5 text-right font-mono text-slate-400">${tx.oldGold ? formatCurrency(tx.oldGold) : '0'}</td>
+            <td class="p-2.5 text-right font-bold text-red-600 font-mono text-sm">${formatCurrency(tx.netPay)}</td>
+            <td class="p-2.5 text-center">
+              <button onclick="reprintTransaction('${tx.id}')" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 rounded text-[11px] font-bold transition flex items-center justify-center gap-1 mx-auto shadow-sm">
+                <svg class="w-3 h-3 text-amber-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                <span>In Lại</span>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function reprintTransaction(txId) {
+      const tx = MOCK_SALES_TRANSACTIONS.find(t => t.id === txId);
+      if (!tx) return;
+
+      document.getElementById('print-invoice-no').textContent = tx.id;
+      document.getElementById('print-date').textContent = `09/10/2026 ${tx.time}`;
+      document.getElementById('print-cust-name').textContent = tx.customer;
+      document.getElementById('print-cust-phone').textContent = tx.phone;
+      document.getElementById('print-cashier').textContent = appState.currentCashier;
+
+      // Mock print item row
+      const tbody = document.getElementById('print-items-tbody');
+      tbody.innerHTML = `
+        <tr>
+          <td class="p-1 border-r border-slate-400 text-center font-mono">1</td>
+          <td class="p-1 border-r border-slate-400 font-bold">${tx.items}</td>
+          <td class="p-1 border-r border-slate-400 text-center">9999 / 750</td>
+          <td class="p-1 border-r border-slate-400 text-right font-mono">2.500</td>
+          <td class="p-1 border-r border-slate-400 text-right font-mono">0.000</td>
+          <td class="p-1 border-r border-slate-400 text-right font-mono">250,000 đ</td>
+          <td class="p-1 text-right font-bold font-mono">${formatCurrency(tx.newGold)}</td>
+        </tr>
+      `;
+
+      document.getElementById('print-subtotal-new').textContent = formatCurrency(tx.newGold);
+      document.getElementById('print-subtotal-old').textContent = formatCurrency(tx.oldGold);
+      document.getElementById('print-grand-total').textContent = formatCurrency(tx.netPay);
+      document.getElementById('print-words').textContent = numberToWordsVietnamese(tx.netPay);
+
+      document.getElementById('warranty-modal').classList.remove('hidden');
+      showToast(`Đang mở giấy đảm bảo cho hóa đơn ${tx.id}`, 'info');
+    }
+
+    function resetCartConfirmation() {
+      if (confirm('Làm mới toàn bộ giỏ hàng và danh sách hóa đơn hiện tại?')) {
+        appState.cartNewGold = [];
+        appState.cartOldGold = [];
+        renderNewGoldCart();
+        renderOldGoldCart();
+        showToast('Giỏ hàng đã được làm mới', 'info');
+      }
+    }
+
+    // PAYMENT METHOD SWITCHER
+    function selectPayMethod(method) {
+      appState.payMethod = method;
+      document.querySelectorAll('.pay-method-btn').forEach(btn => {
+        btn.classList.remove('active-method', 'border-2', 'border-amber-500', 'bg-amber-50', 'text-burgundy-950');
+        btn.classList.add('border-slate-200', 'text-slate-700');
+      });
+
+      const activeBtn = document.getElementById('btn-pay-' + method);
+      if (activeBtn) {
+        activeBtn.classList.add('active-method', 'border-2', 'border-amber-500', 'bg-amber-50', 'text-burgundy-950');
+        activeBtn.classList.remove('border-slate-200', 'text-slate-700');
+      }
+
+      const tenderBox = document.getElementById('cash-tender-box');
+      if (method === 'cash') {
+        tenderBox.classList.remove('hidden');
+      } else {
+        tenderBox.classList.add('hidden');
+      }
+
+      if (method === 'qr') {
+        openQrModal();
+      }
+    }
+
+    // QR MODAL LOGIC
+    function openQrModal() {
+      const netPayStr = document.getElementById('disp-net-pay').textContent;
+      const phone = document.getElementById('cust-phone').value || '0988234567';
+      
+      document.getElementById('qr-disp-money').textContent = netPayStr + ' đ';
+      document.getElementById('qr-invoice-ref').textContent = 'HH ' + phone.replace(/\s+/g, '');
+      
+      const cleanNum = netPayStr.replace(/\D/g, '');
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=2|99|0942889977|TIEM%20VANG%20HOANG%20HUNG|info@hoanghung.vn|0|0|${cleanNum}|Thanh%20toan%20vang`;
+      document.getElementById('qr-image-code').src = qrUrl;
+
+      document.getElementById('qr-modal').classList.remove('hidden');
+    }
+
+    function closeQrModal() {
+      document.getElementById('qr-modal').classList.add('hidden');
+    }
+
+    function confirmQrPayment() {
+      closeQrModal();
+      showToast('Đã nhận chuyển khoản VietQR thành công!', 'success');
+      processCheckout();
+    }
+
+    // SCALE INTEGRATION SIMULATION
+    function readFromDigitalScale(mode) {
+      showToast('Đang kết nối cổng COM / RS232 với cân điện tử...', 'info');
+      setTimeout(() => {
+        // Random precision weight in "chỉ" (1 chỉ = 3.750g)
+        const simulatedChis = (Math.random() * 4 + 1.25).toFixed(3);
+        const grams = (simulatedChis * 3.75).toFixed(3);
+
+        if (mode === 'inbound') {
+          document.getElementById('inbound-total-weight').value = simulatedChis;
+          calcInboundGoldWeight();
+          showToast(`Cân nhận diện: ${simulatedChis} chỉ (${grams} gram)`, 'success');
+        } else if (mode === 'tradein') {
+          document.getElementById('old-item-weight').value = simulatedChis;
+          calcOldGoldNetWeight();
+          showToast(`Cân thu mua: ${simulatedChis} chỉ (${grams} gram)`, 'success');
+        }
+      }, 600);
+    }
+
+    function toggleScaleModal() {
+      readFromDigitalScale('inbound');
+    }
+
+    // OLD GOLD MODAL LOGIC
+    function openTradeInModal() {
+      document.getElementById('trade-in-modal').classList.remove('hidden');
+      calcOldGoldNetWeight();
+    }
+
+    function closeTradeInModal() {
+      document.getElementById('trade-in-modal').classList.add('hidden');
+    }
+
+    function calcOldGoldNetWeight() {
+      const gross = parseFloat(document.getElementById('old-item-weight').value) || 0;
+      const loss = parseFloat(document.getElementById('old-item-loss').value) || 0;
+      const unit = parseFloat(document.getElementById('old-item-unitprice').value) || 0;
+
+      const net = Math.max(0, gross - loss);
+      document.getElementById('old-item-netweight').value = net.toFixed(3);
+
+      const total = Math.round(net * unit);
+      document.getElementById('old-item-calc-total').textContent = formatCurrency(total);
+    }
+
+    function autoFillOldPrice() {
+      const type = document.getElementById('old-item-type').value;
+      let price = 3866666;
+      if (type === 'VÀNG 9999') price = 8550000;
+      else if (type === 'VÀNG 750') price = 5200000;
+      else if (type === 'VÀNG 610') price = 3866666;
+      else if (type === 'VÀNG 585') price = 3600000;
+
+      document.getElementById('old-item-unitprice').value = price;
+      calcOldGoldNetWeight();
+    }
+
+    function confirmAddOldGold() {
+      const name = document.getElementById('old-item-name').value;
+      const type = document.getElementById('old-item-type').value;
+      const gross = parseFloat(document.getElementById('old-item-weight').value) || 0;
+      const loss = parseFloat(document.getElementById('old-item-loss').value) || 0;
+      const net = parseFloat(document.getElementById('old-item-netweight').value) || 0;
+      const unit = parseFloat(document.getElementById('old-item-unitprice').value) || 0;
+      const amount = Math.round(net * unit);
+
+      appState.cartOldGold.push({
+        name,
+        type,
+        grossWeight: gross,
+        lossWeight: loss,
+        netWeight: net,
+        buyUnitPrice: unit,
+        amount
+      });
+
+      renderOldGoldCart();
+      closeTradeInModal();
+      showToast('Đã thêm vàng cũ cần thu mua', 'success');
+    }
+
+    // TAG PREVIEW UPDATER (Circular 22)
+    function updateTagPreview() {
+      const name = document.getElementById('tag-name-input').value;
+      const type = document.getElementById('tag-type-input').value;
+      const purity = document.getElementById('tag-purity-input').value;
+      const klt = document.getElementById('tag-klt-input').value;
+      const kld = document.getElementById('tag-kld-input').value;
+      const klv = document.getElementById('tag-klv-input').value;
+      const labor = document.getElementById('tag-labor-input').value;
+      const code = document.getElementById('tag-code-input').value;
+
+      document.getElementById('tag-preview-title').textContent = name;
+      document.getElementById('tag-preview-purity').textContent = purity;
+      document.getElementById('tag-preview-klt').textContent = klt;
+      document.getElementById('tag-preview-kld').textContent = kld;
+      document.getElementById('tag-preview-klv').textContent = klv;
+      document.getElementById('tag-preview-labor').textContent = labor;
+      document.getElementById('tag-preview-code').textContent = code;
+      document.getElementById('tag-preview-barcode').textContent = `*${code}*`;
+    }
+
+    function addCurrentTagToBatch() {
+      showToast('Đã thêm tem vào danh sách in nhãn mác Zebra!', 'success');
+    }
+
+    function printTagsSheet() {
+      window.print();
+    }
+
+    // INBOUND SUBMIT HANDLER
+    function calcInboundGoldWeight() {
+      const tot = parseFloat(document.getElementById('inbound-total-weight').value) || 0;
+      const stn = parseFloat(document.getElementById('inbound-stone-weight').value) || 0;
+      const net = Math.max(0, tot - stn);
+      document.getElementById('inbound-gold-weight').value = net.toFixed(3);
+    }
+
+    function handleInboundSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('inbound-item-name').value;
+      showToast(`Đã nhập kho sản phẩm "${name}" thành công!`, 'success');
+      document.getElementById('inbound-item-name').value = '';
+    }
+
+    // WARRANTY CERTIFICATE & INVOICE MODAL
+    function openWarrantyPreview() {
+      const now = new Date();
+      document.getElementById('print-date').textContent = now.toLocaleDateString('vi-VN') + ' ' + now.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
+      document.getElementById('print-cust-name').textContent = document.getElementById('cust-name').value || 'Khách vãng lai';
+      document.getElementById('print-cust-phone').textContent = document.getElementById('cust-phone').value || '-';
+      document.getElementById('print-cashier').textContent = document.getElementById('cashier-select').value;
+
+      const tbody = document.getElementById('print-items-tbody');
+      tbody.innerHTML = '';
+
+      appState.cartNewGold.forEach((item, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="p-1 border-r border-slate-400 text-center font-mono">${index + 1}</td>
+          <td class="p-1 border-r border-slate-400 font-bold">${item.name}</td>
+          <td class="p-1 border-r border-slate-400 text-center">${item.type.replace('VÀNG ', '')}</td>
+          <td class="p-1 border-r border-slate-400 text-right font-mono">${formatNumber(item.goldWeight)}</td>
+          <td class="p-1 border-r border-slate-400 text-right font-mono">${formatNumber(item.stoneWeight)}</td>
+          <td class="p-1 border-r border-slate-400 text-right font-mono">${formatCurrency(item.labor)}</td>
+          <td class="p-1 text-right font-bold font-mono">${formatCurrency(item.amount)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const sumNew = appState.cartNewGold.reduce((acc, curr) => acc + curr.amount, 0);
+      const sumOld = appState.cartOldGold.reduce((acc, curr) => acc + curr.amount, 0);
+      const grandTotal = Math.max(0, sumNew - sumOld);
+
+      document.getElementById('print-subtotal-new').textContent = formatCurrency(sumNew);
+      document.getElementById('print-subtotal-old').textContent = formatCurrency(sumOld);
+      document.getElementById('print-grand-total').textContent = formatCurrency(grandTotal);
+      document.getElementById('print-words').textContent = numberToWordsVietnamese(grandTotal);
+
+      document.getElementById('warranty-modal').classList.remove('hidden');
+    }
+
+    function closeWarrantyModal() {
+      document.getElementById('warranty-modal').classList.add('hidden');
+    }
+
+    function executePrint() {
+      window.print();
+    }
+
+    function exportXmlEinvoice() {
+      showToast('Đang tạo tệp XML chuẩn Nghị định 123 & TT78 cơ quan Thuế...', 'info');
+      setTimeout(() => {
+        showToast('Xuất tệp E-Invoice XML thành công!', 'success');
+      }, 800);
+    }
+
+    // CHECKOUT PROCESS
+    function processCheckout() {
+      if (appState.cartNewGold.length === 0) {
+        showToast('Giỏ hàng trống! Vui lòng thêm sản phẩm.', 'error');
+        return;
+      }
+      openWarrantyPreview();
+      showToast('Giao dịch thanh toán thành công! Sẵn sàng in hóa đơn.', 'success');
+    }
+
+    // TOAST NOTIFIER
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      let bg = 'bg-slate-900 border-slate-700 text-white';
+      let icon = 'fa-info-circle text-blue-400';
+      if (type === 'success') {
+        bg = 'bg-emerald-950 border-emerald-500 text-white';
+        icon = 'fa-circle-check text-emerald-400';
+      } else if (type === 'error') {
+        bg = 'bg-red-950 border-red-500 text-white';
+        icon = 'fa-circle-exclamation text-red-400';
+      }
+
+      toast.className = `p-3 rounded-lg border shadow-xl flex items-center gap-2.5 text-xs transform transition-all duration-300 translate-y-2 opacity-0 ${bg}`;
+      toast.innerHTML = `<i class="fa-solid ${icon} text-sm"></i><span>${message}</span>`;
+      
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // KEYBOARD SHORTCUTS (F1, F2, F3, F4, F12, Ctrl+K)
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        const globalSearch = document.getElementById('global-saas-search');
+        if (globalSearch) globalSearch.focus();
+        showToast('Đang chọn ô tìm kiếm toàn hệ thống (Ctrl + K)', 'info');
+      } else if (e.key === 'F1') {
+        e.preventDefault();
+        switchTab('pos');
+      } else if (e.key === 'F3') {
+        e.preventDefault();
+        toggleScaleModal();
+      } else if (e.key === 'F12') {
+        e.preventDefault();
+        processCheckout();
+      } else if (e.key === 'F4') {
+        e.preventDefault();
+        openWarrantyPreview();
+      } else if (e.key === 'F2') {
+        e.preventDefault();
+        document.getElementById('barcode-input').focus();
+        showToast('Đang chọn ô quét mã vạch', 'info');
+      }
+    });
+
+    // BARCODE INPUT LISTENER (ENTER KEY SIMULATION & MOCK MATCHING)
+    document.getElementById('barcode-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const rawCode = e.target.value.trim();
+        if (rawCode) {
+          const upperCode = rawCode.toUpperCase();
+          const matched = MOCK_PRODUCTS.find(p => p.id.toUpperCase() === upperCode || p.name.toUpperCase().includes(upperCode));
+          
+          if (matched) {
+            const uniqueSuffix = Math.floor(Math.random() * 900 + 100);
+            appState.cartNewGold.push({
+              ...matched,
+              id: matched.id + '-' + uniqueSuffix
+            });
+            showToast(`Đã nhận diện: "${matched.name}" (${matched.type})!`, 'success');
+          } else {
+            appState.cartNewGold.push({
+              id: upperCode,
+              name: 'Nữ Trang Quét Mã ' + upperCode,
+              counter: 'VÀNG TÂY',
+              type: 'VÀNG 750',
+              symbol: '750',
+              totalWeight: 2.100,
+              stoneWeight: 0.100,
+              goldWeight: 2.000,
+              labor: 300000,
+              unitPrice: 6200000,
+              amount: 12700000
+            });
+            showToast(`Đã thêm mã mới: ${upperCode}`, 'success');
+          }
+
+          renderNewGoldCart();
+          e.target.value = '';
+        }
+      }
+    });
+
+    // ==========================================================================
+    // CATALOG & JEWELRY SHOWCASE LOGIC
+    // ==========================================================================
+    let currentCatalogCategory = 'all';
+    let currentCatalogViewMode = 'table';
+
+    function setCatalogViewMode(mode) {
+      currentCatalogViewMode = mode;
+      const btnTable = document.getElementById('btn-view-table');
+      const btnGrid = document.getElementById('btn-view-grid');
+      const tableContainer = document.getElementById('catalog-table-container');
+      const gridContainer = document.getElementById('catalog-grid-container');
+
+      if (mode === 'table') {
+        tableContainer.classList.remove('hidden');
+        gridContainer.classList.add('hidden');
+        btnTable.className = 'px-2.5 py-1 rounded-md text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-900 shadow-sm border border-slate-200';
+        btnGrid.className = 'px-2.5 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition flex items-center gap-1.5';
+      } else {
+        tableContainer.classList.add('hidden');
+        gridContainer.classList.remove('hidden');
+        btnGrid.className = 'px-2.5 py-1 rounded-md text-xs font-bold transition flex items-center gap-1.5 bg-white text-slate-900 shadow-sm border border-slate-200';
+        btnTable.className = 'px-2.5 py-1 rounded-md text-xs font-semibold text-slate-600 hover:text-slate-900 transition flex items-center gap-1.5';
+      }
+    }
+
+    function filterCatalogCategory(category) {
+      currentCatalogCategory = category;
+      
+      // Update pill buttons active styles
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        btn.classList.remove('bg-burgundy-900', 'text-amber-300', 'font-bold', 'border-amber-400/40', 'shadow-sm', 'active-cat');
+        btn.classList.add('bg-white', 'hover:bg-amber-50', 'text-slate-700', 'border-slate-200');
+      });
+
+      const pillMap = {
+        'all': 'cat-pill-all',
+        'VÀNG 9999': 'cat-pill-9999',
+        'VÀNG 750': 'cat-pill-750',
+        'VÀNG 610': 'cat-pill-610',
+        'KIM CƯƠNG': 'cat-pill-kc',
+        'ĐÁ QUÝ': 'cat-pill-da'
+      };
+
+      const activePill = document.getElementById(pillMap[category]);
+      if (activePill) {
+        activePill.classList.remove('bg-white', 'hover:bg-amber-50', 'text-slate-700', 'border-slate-200');
+        activePill.classList.add('bg-burgundy-900', 'text-amber-300', 'font-bold', 'border-amber-400/40', 'shadow-sm', 'active-cat');
+      }
+
+      renderCatalogViews();
+    }
+
+    function renderCatalogViews() {
+      const searchInput = document.getElementById('catalog-search-input');
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+      const filteredItems = MOCK_PRODUCTS.filter(item => {
+        const matchCategory = (currentCatalogCategory === 'all') || (item.category === currentCatalogCategory);
+        if (!matchCategory) return false;
+
+        if (!query) return true;
+        return item.name.toLowerCase().includes(query) ||
+               item.id.toLowerCase().includes(query) ||
+               (item.counter && item.counter.toLowerCase().includes(query)) ||
+               (item.purity && item.purity.toLowerCase().includes(query)) ||
+               (item.status && item.status.toLowerCase().includes(query));
+      });
+
+      renderCatalogTable(filteredItems);
+      renderCatalogGrid(filteredItems);
+
+      const countBadge = document.getElementById('catalog-count-badge');
+      if (countBadge) countBadge.textContent = `${filteredItems.length} sản phẩm`;
+
+      const summaryCount = document.getElementById('catalog-summary-count');
+      if (summaryCount) summaryCount.textContent = `${filteredItems.length} món`;
+
+      let totalGoldWeight = 0;
+      let totalGrams = 0;
+      let totalLabor = 0;
+      let totalValue = 0;
+
+      filteredItems.forEach(item => {
+        totalGoldWeight += item.goldWeight || 0;
+        totalGrams += item.weightGrams || ((item.goldWeight || 0) * 3.75);
+        totalLabor += item.labor || 0;
+        totalValue += item.amount || 0;
+      });
+
+      const summaryGold = document.getElementById('catalog-summary-gold');
+      if (summaryGold) summaryGold.textContent = `${formatNumber(totalGoldWeight)} chỉ (~${totalGrams.toFixed(2)}g)`;
+
+      const summaryLabor = document.getElementById('catalog-summary-labor');
+      if (summaryLabor) summaryLabor.textContent = formatCurrency(totalLabor);
+
+      const summaryTotal = document.getElementById('catalog-summary-total');
+      if (summaryTotal) summaryTotal.textContent = formatCurrency(totalValue);
+    }
+
+    function getPurityBadgeClass(purityOrType) {
+      const str = String(purityOrType).toUpperCase();
+      if (str.includes('9999') || str.includes('24K')) {
+        return 'bg-amber-100 text-amber-900 border border-amber-300';
+      } else if (str.includes('750') || str.includes('18K')) {
+        return 'bg-yellow-100 text-yellow-900 border border-yellow-300';
+      } else if (str.includes('610') || str.includes('15K')) {
+        return 'bg-orange-100 text-orange-900 border border-orange-300';
+      } else if (str.includes('KIM CƯƠNG')) {
+        return 'bg-sky-100 text-sky-900 border border-sky-300';
+      } else {
+        return 'bg-purple-100 text-purple-900 border border-purple-300';
+      }
+    }
+
+    function renderCatalogTable(items) {
+      const tbody = document.getElementById('catalog-table-body');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (items.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="12" class="p-8 text-center text-slate-400">
+              <i class="fa-solid fa-box-open text-3xl mb-2 text-slate-300"></i>
+              <p class="font-medium">Không tìm thấy sản phẩm nào phù hợp với bộ lọc.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      items.forEach((item) => {
+        const badgeClass = getPurityBadgeClass(item.type || item.category);
+        const statusBadge = item.status.includes('VIP') 
+          ? 'bg-rose-100 text-rose-800 border-rose-300' 
+          : item.status.includes('GIA') 
+          ? 'bg-blue-100 text-blue-800 border-blue-300' 
+          : 'bg-emerald-100 text-emerald-800 border-emerald-300';
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-amber-50/40 transition border-b border-slate-100 items-center';
+        tr.innerHTML = `
+          <td class="p-2 text-center">
+            <div class="relative w-11 h-11 mx-auto rounded-lg overflow-hidden border border-amber-200 bg-slate-50 shadow-sm flex items-center justify-center group">
+              <img src="${item.image}" alt="${item.name}" 
+                   onerror="this.src='${JEWELRY_FALLBACK_SVG}'" 
+                   class="w-full h-full object-cover group-hover:scale-125 transition duration-200">
+            </div>
+          </td>
+          <td class="p-2">
+            <span class="font-mono font-bold text-amber-900 bg-amber-50/80 px-2 py-0.5 rounded border border-amber-300/60 block text-center">${item.id}</span>
+          </td>
+          <td class="p-2">
+            <div class="font-bold text-slate-900 text-xs">${item.name}</div>
+            <div class="text-[10px] text-slate-500 font-normal flex items-center gap-1.5 mt-0.5">
+              <span>${item.counter}</span>
+              <span>•</span>
+              <span class="text-amber-700 font-medium">${item.purity}</span>
+            </div>
+          </td>
+          <td class="p-2 text-center">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${badgeClass}">${item.type}</span>
+          </td>
+          <td class="p-2 text-right">
+            <div class="font-mono font-bold text-slate-800">${formatNumber(item.totalWeight)} chỉ</div>
+            <div class="text-[10px] text-slate-400 font-normal">~${item.weightGrams}g</div>
+          </td>
+          <td class="p-2 text-right">
+            <span class="font-mono text-slate-500">${formatNumber(item.stoneWeight)} chỉ</span>
+          </td>
+          <td class="p-2 text-right">
+            <span class="font-mono font-bold text-red-700 bg-red-50 px-1.5 py-0.5 rounded border border-red-200/60 inline-block">${formatNumber(item.goldWeight)} chỉ</span>
+          </td>
+          <td class="p-2 text-right font-mono text-slate-700">
+            ${formatCurrency(item.labor)}
+          </td>
+          <td class="p-2 text-right font-mono text-slate-600">
+            ${formatCurrency(item.unitPrice)}
+          </td>
+          <td class="p-2 text-right">
+            <span class="font-mono font-extrabold text-red-700 text-[13px]">${formatCurrency(item.amount)}</span>
+          </td>
+          <td class="p-2 text-center">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold border ${statusBadge}">${item.status}</span>
+          </td>
+          <td class="p-2 text-center">
+            <div class="flex items-center justify-center gap-1.5">
+              <button onclick="addCatalogItemToPos('${item.id}')" title="Bán hàng - Thêm vào POS" class="px-2 py-1 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-bold rounded shadow-sm flex items-center gap-1 active:scale-95 transition text-[10px] whitespace-nowrap">
+                <i class="fa-solid fa-cart-plus"></i> Bán
+              </button>
+              <button onclick="sendCatalogItemToTagPrinter('${item.id}')" title="In tem vàng TT22" class="px-2 py-1 bg-white hover:bg-amber-50 text-slate-700 hover:text-amber-900 font-semibold rounded border border-slate-300 hover:border-amber-400 shadow-sm flex items-center gap-1 active:scale-95 transition text-[10px] whitespace-nowrap">
+                <i class="fa-solid fa-tag text-amber-600"></i> Tem
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderCatalogGrid(items) {
+      const grid = document.getElementById('catalog-cards-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full p-8 text-center text-slate-400">
+            <i class="fa-solid fa-box-open text-3xl mb-2 text-slate-300"></i>
+            <p class="font-medium">Không tìm thấy sản phẩm nào phù hợp.</p>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-amber-400/80 transition-all duration-300 flex flex-col overflow-hidden group';
+        card.innerHTML = `
+          <!-- Image Header -->
+          <div class="relative h-44 bg-slate-100 overflow-hidden">
+            <img src="${item.image}" alt="${item.name}" 
+                 onerror="this.src='${JEWELRY_FALLBACK_SVG}'" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none"></div>
+            
+            <!-- Badges overlay -->
+            <div class="absolute top-2 left-2 flex items-center gap-1">
+              <span class="bg-black/75 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded border border-amber-400/30 shadow">
+                ${item.type}
+              </span>
+            </div>
+
+            <div class="absolute top-2 right-2">
+              <span class="bg-white/90 backdrop-blur-md text-slate-900 font-mono text-[10px] font-bold px-2 py-0.5 rounded border border-slate-200 shadow">
+                ${item.id}
+              </span>
+            </div>
+
+            <div class="absolute bottom-2 left-2 right-2 flex justify-between items-end text-white">
+              <span class="text-[10px] bg-burgundy-900/90 backdrop-blur-md text-amber-200 px-2 py-0.5 rounded font-semibold border border-amber-400/30">
+                ${item.counter}
+              </span>
+              <span class="text-[10px] font-medium text-amber-300">
+                ${item.status}
+              </span>
+            </div>
+          </div>
+
+          <!-- Card Content Body -->
+          <div class="p-3 flex-1 flex flex-col justify-between space-y-2.5">
+            <div>
+              <h4 class="font-bold text-slate-900 text-xs line-clamp-1 group-hover:text-amber-800 transition" title="${item.name}">
+                ${item.name}
+              </h4>
+              <div class="mt-1 flex items-baseline justify-between">
+                <span class="text-sm font-extrabold text-red-700 font-mono">${formatCurrency(item.amount)}</span>
+                <span class="text-[10px] text-slate-500 font-medium">Hàm lượng: <b class="text-amber-700">${item.purity}</b></span>
+              </div>
+            </div>
+
+            <!-- Jewelry Standard Specs Box -->
+            <div class="bg-slate-50 rounded-lg p-2 border border-slate-200/80 text-[11px] grid grid-cols-2 gap-x-2 gap-y-1 font-mono">
+              <div class="flex justify-between">
+                <span class="text-slate-500 font-sans">Tổng TL:</span>
+                <span class="font-bold text-slate-800">${formatNumber(item.totalWeight)} chỉ</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500 font-sans">TL Đá:</span>
+                <span class="text-slate-600">${formatNumber(item.stoneWeight)} chỉ</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500 font-sans">TL Vàng:</span>
+                <span class="font-bold text-red-600">${formatNumber(item.goldWeight)} chỉ</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-500 font-sans">Gam:</span>
+                <span class="text-slate-700">~${item.weightGrams}g</span>
+              </div>
+              <div class="col-span-2 pt-1 border-t border-slate-200/60 flex justify-between font-sans text-[10px]">
+                <span class="text-slate-500">Tiền Công: <b class="text-slate-800 font-mono">${formatCurrency(item.labor)}</b></span>
+                <span class="text-slate-500">Đơn giá: <b class="text-slate-800 font-mono">${formatCurrency(item.unitPrice)}</b></span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-2 gap-2 pt-1">
+              <button onclick="addCatalogItemToPos('${item.id}')" class="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 font-bold py-1.5 px-2 rounded-lg text-xs flex items-center justify-center gap-1 shadow-sm active:scale-95 transition">
+                <i class="fa-solid fa-cart-plus text-slate-950"></i> Bán POS
+              </button>
+              <button onclick="sendCatalogItemToTagPrinter('${item.id}')" class="bg-slate-100 hover:bg-amber-100 text-slate-700 hover:text-amber-900 font-semibold py-1.5 px-2 rounded-lg text-xs flex items-center justify-center gap-1 border border-slate-300 hover:border-amber-400 active:scale-95 transition">
+                <i class="fa-solid fa-tag text-amber-600"></i> In Tem
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function addCatalogItemToPos(productId) {
+      const item = MOCK_PRODUCTS.find(p => p.id === productId);
+      if (!item) return;
+
+      const uniqueSuffix = Math.floor(Math.random() * 900 + 100);
+      appState.cartNewGold.push({
+        ...item,
+        id: item.id + '-' + uniqueSuffix
+      });
+
+      renderNewGoldCart();
+      showToast(`Đã thêm "${item.name}" vào giỏ hàng POS!`, 'success');
+    }
+
+    function sendCatalogItemToTagPrinter(productId) {
+      const item = MOCK_PRODUCTS.find(p => p.id === productId);
+      if (!item) return;
+
+      const nameInput = document.getElementById('tag-name-input');
+      const typeInput = document.getElementById('tag-type-input');
+      const purityInput = document.getElementById('tag-purity-input');
+      const kltInput = document.getElementById('tag-klt-input');
+      const kldInput = document.getElementById('tag-kld-input');
+      const klvInput = document.getElementById('tag-klv-input');
+      const laborInput = document.getElementById('tag-labor-input');
+      const codeInput = document.getElementById('tag-code-input');
+
+      if (nameInput) nameInput.value = item.name;
+      if (typeInput) {
+        if (item.category === 'VÀNG 9999') typeInput.value = 'Vàng 999.9 (24K)';
+        else if (item.category === 'VÀNG 750' || item.type === 'VÀNG 750') typeInput.value = 'Vàng 750 (18K Ý)';
+        else if (item.category === 'VÀNG 610') typeInput.value = 'Vàng 610 (15K)';
+        else typeInput.value = 'Vàng Trắng 585 (14K)';
+      }
+      if (purityInput) purityInput.value = item.purity;
+      if (kltInput) kltInput.value = formatNumber(item.totalWeight) + ' chỉ';
+      if (kldInput) kldInput.value = formatNumber(item.stoneWeight) + ' chỉ';
+      if (klvInput) klvInput.value = formatNumber(item.goldWeight) + ' chỉ';
+      if (laborInput) laborInput.value = formatCurrency(item.labor);
+      if (codeInput) codeInput.value = item.id;
+
+      updateTagPreview();
+      switchTab('tem');
+      showToast(`Đã chuyển "${item.name}" sang bàn In Tem Thông tư 22!`, 'success');
+    }
+
+    // INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      populateDatalists();
+      renderNewGoldCart();
+      renderOldGoldCart();
+      renderInventoryTable();
+      renderSalesTransactions();
+      updateTagPreview();
+      renderCatalogViews();
+    });
+  </script>
+
+</body>
+</html>
