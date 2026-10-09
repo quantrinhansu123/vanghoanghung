@@ -149,38 +149,37 @@
         </div>
       </div>
 
-      <!-- 2. Live Gold Rate Ticker (Centered Capsule, Responsive) -->
-      <div class="hidden xl:flex items-center bg-black/45 backdrop-blur-md border border-amber-500/35 rounded-full px-4 py-1.5 shadow-inner gap-3 text-xs shrink min-w-0">
-        <div class="flex items-center gap-1.5 shrink-0 border-r border-white/10 pr-3">
+      <!-- 2. Live Gold Rate Ticker (Compact & Adaptive, Zero Overlap) -->
+      <div class="hidden lg:flex items-center bg-black/50 backdrop-blur-md border border-amber-500/40 rounded-full px-3 py-1 shadow-inner gap-2 text-xs shrink-0 select-none">
+        <div class="flex items-center gap-1.5 shrink-0 border-r border-white/10 pr-2">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span class="text-amber-400 font-bold uppercase tracking-wider text-[11px] whitespace-nowrap">Tỉ Giá Trực Tuyến</span>
+          <span class="text-amber-400 font-bold uppercase tracking-wider text-[10px] whitespace-nowrap">Tỉ Giá</span>
         </div>
-        <div class="flex items-center gap-3.5 divide-x divide-white/10 shrink-0">
-          <div class="flex items-center gap-1.5 whitespace-nowrap shrink-0">
-            <span class="text-slate-400 font-medium">SJC:</span>
-            <span class="font-bold text-white font-mono">88.50 - 90.50</span>
-            <span class="text-[10px] text-emerald-400 bg-emerald-950/70 px-1 py-0.2 rounded font-mono font-bold">▲</span>
+        <div class="flex items-center gap-2.5 shrink-0">
+          <div class="flex items-center gap-1 whitespace-nowrap shrink-0">
+            <span class="text-slate-400 font-medium text-[11px]">SJC:</span>
+            <span class="font-bold text-white font-mono text-[11px]">88.50 - 90.50</span>
+            <span class="text-[9px] text-emerald-400 font-mono font-bold">▲</span>
           </div>
-          <div class="pl-3.5 flex items-center gap-1.5 whitespace-nowrap shrink-0">
-            <span class="text-slate-400 font-medium">Nhẫn 999.9:</span>
-            <span class="font-bold text-white font-mono">87.20 - 88.70</span>
-            <span class="text-[10px] text-emerald-400 bg-emerald-950/70 px-1 py-0.2 rounded font-mono font-bold">▲</span>
+          <div class="pl-2 border-l border-white/10 flex items-center gap-1 whitespace-nowrap shrink-0">
+            <span class="text-slate-400 font-medium text-[11px]">Nhẫn:</span>
+            <span class="font-bold text-white font-mono text-[11px]">87.20 - 88.70</span>
+            <span class="text-[9px] text-emerald-400 font-mono font-bold">▲</span>
           </div>
-          <div class="pl-3.5 flex items-center gap-1.5 whitespace-nowrap shrink-0">
-            <span class="text-slate-400 font-medium">Vàng 18K (750):</span>
-            <span class="font-bold text-white font-mono">62.80 - 64.90</span>
-            <span class="text-[10px] text-rose-400 bg-rose-950/70 px-1 py-0.2 rounded font-mono font-bold">▼</span>
+          <div class="hidden 2xl:flex pl-2 border-l border-white/10 items-center gap-1 whitespace-nowrap shrink-0">
+            <span class="text-slate-400 font-medium text-[11px]">18K:</span>
+            <span class="font-bold text-white font-mono text-[11px]">62.80 - 64.90</span>
+            <span class="text-[9px] text-rose-400 font-mono font-bold">▼</span>
           </div>
-          <div class="pl-3.5 flex items-center gap-1.5 whitespace-nowrap shrink-0">
-            <span class="text-slate-400 font-medium">Vàng 610:</span>
-            <span class="font-bold text-white font-mono">51.10 - 53.20</span>
-            <span class="text-[10px] text-emerald-400 bg-emerald-950/70 px-1 py-0.2 rounded font-mono font-bold">▲</span>
+          <div class="hidden 2xl:flex pl-2 border-l border-white/10 items-center gap-1 whitespace-nowrap shrink-0">
+            <span class="text-slate-400 font-medium text-[11px]">610:</span>
+            <span class="font-bold text-white font-mono text-[11px]">51.10 - 53.20</span>
+            <span class="text-[9px] text-emerald-400 font-mono font-bold">▲</span>
           </div>
         </div>
-        <span class="text-[10px] text-amber-300/80 border-l border-white/10 pl-2 font-mono whitespace-nowrap shrink-0">Tr.đ/lượng</span>
       </div>
 
       <!-- 3. Cashier & Utility Actions (Right aligned, strictly no-wrap) -->
@@ -246,55 +245,7 @@
         <button onclick="switchTab('tem')" id="tab-tem" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-200 hover:bg-white/5 border border-transparent transition-all shrink-0">
           <div class="w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 shrink-0">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><circle cx="7" cy="7" r=".5" fill="currentColor"/></svg>
-          
-      <!-- DANH SÁCH LÔ TEM KIM HOÀN CHỜ IN (MÁY ZEBRA / GODEX / BIXOLON) -->
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b pb-3 mb-3">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><circle cx="7" cy="7" r=".5" fill="currentColor"/></svg>
-            </div>
-            <div>
-              <h4 class="font-bold text-sm text-slate-900">DANH SÁCH LÔ TEM KIM HOÀN CHỜ IN ẤN</h4>
-              <p class="text-xs text-slate-500">Định dạng tem bướm 2 cánh chuẩn Thông tư 22/BKHCN • Tự động mã hóa Barcode Code 128</p>
-            </div>
           </div>
-          <div class="flex items-center gap-2">
-            <button onclick="toggleSelectAllTags()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold hover:bg-slate-50">
-              Chọn Tất Cả
-            </button>
-            <button onclick="printSelectedTags()" class="px-3 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold rounded-lg text-xs shadow hover:from-amber-400 hover:to-amber-500 flex items-center gap-1.5 active:scale-95 transition">
-              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
-              In Lô Đã Chọn (<span id="selected-tags-count">8</span>)
-            </button>
-          </div>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left border-collapse">
-            <thead class="bg-slate-50 text-slate-700 font-semibold border-b">
-              <tr>
-                <th class="p-2.5 w-10 text-center"><input type="checkbox" id="check-all-tags" checked onchange="toggleSelectAllTags(this.checked)"></th>
-                <th class="p-2.5 w-28">Mã Barcode</th>
-                <th class="p-2.5">Tên Mặt Hàng Trang Sức</th>
-                <th class="p-2.5 text-center">Tuổi / Loại</th>
-                <th class="p-2.5 text-right">Hàm Lượng</th>
-                <th class="p-2.5 text-right">Tổng TL (KLT)</th>
-                <th class="p-2.5 text-right text-slate-500">TL Đá (KLĐ)</th>
-                <th class="p-2.5 text-right text-red-700 font-bold">TL Vàng (KLV)</th>
-                <th class="p-2.5 text-right">Tiền Công</th>
-                <th class="p-2.5 text-center">Trạng Thái</th>
-                <th class="p-2.5 text-center w-28">Thao Tác</th>
-              </tr>
-            </thead>
-            <tbody id="tags-batch-tbody" class="divide-y divide-slate-100 font-medium">
-              <!-- Rendered via JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
           <span class="whitespace-nowrap">IN TEM VÀNG (TT22)</span>
         </button>
 
@@ -302,51 +253,7 @@
         <button onclick="switchTab('nhap')" id="tab-nhap" class="tab-btn flex items-center gap-2 px-3.5 py-2 rounded-lg text-slate-300 hover:text-amber-200 hover:bg-white/5 border border-transparent transition-all shrink-0">
           <div class="w-6 h-6 rounded-md flex items-center justify-center bg-white/5 border border-white/10 text-amber-400 shrink-0">
             <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-          
-      <!-- BẢNG NHẬT KÝ PHIẾU NHẬP KHO GẦN ĐÂY -->
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b pb-3 mb-3">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-            </div>
-            <div>
-              <h4 class="font-bold text-sm text-slate-900">NHẬT KÝ PHIẾU NHẬP KHO NỮ TRANG GẦN ĐÂY</h4>
-              <p class="text-xs text-slate-500">Đối soát số lượng món, trọng lượng vàng thực, tiền công thợ và nguồn cung cấp</p>
-            </div>
           </div>
-          <div class="flex items-center gap-2 text-xs">
-            <span class="text-slate-500">Tổng nhập hôm nay:</span>
-            <span class="font-bold text-slate-900 font-mono bg-slate-100 px-2 py-1 rounded">6 phiếu | 48.600 chỉ</span>
-          </div>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left border-collapse">
-            <thead class="bg-slate-50 text-slate-700 font-semibold border-b">
-              <tr>
-                <th class="p-2.5 w-28">Số Phiếu</th>
-                <th class="p-2.5 w-24">Ngày Giờ</th>
-                <th class="p-2.5">Nhà Cung Cấp / Chành</th>
-                <th class="p-2.5">Tên Mặt Hàng Nhập</th>
-                <th class="p-2.5 text-center">Quầy / Loại</th>
-                <th class="p-2.5 text-center">SL</th>
-                <th class="p-2.5 text-right">Tổng TL (KLT)</th>
-                <th class="p-2.5 text-right text-red-700 font-bold">TL Vàng Thực</th>
-                <th class="p-2.5 text-right">Công Vốn</th>
-                <th class="p-2.5 text-right font-bold text-slate-900">Tổng Vốn Nhập</th>
-                <th class="p-2.5 text-center">Trạng Thái</th>
-                <th class="p-2.5 text-center w-24">Thao Tác</th>
-              </tr>
-            </thead>
-            <tbody id="inbound-history-tbody" class="divide-y divide-slate-100 font-medium">
-              <!-- Rendered via JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
           <span class="whitespace-nowrap">NHẬP HÀNG & KHO</span>
         </button>
 
@@ -689,7 +596,7 @@
 
         </div>
 
-      </div>
+    </div>
 
     </div>
 
@@ -946,6 +853,54 @@
 
       </div>
 
+    
+      <!-- DANH SÁCH LÔ TEM KIM HOÀN CHỜ IN (MÁY ZEBRA / GODEX / BIXOLON) -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b pb-3 mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><circle cx="7" cy="7" r=".5" fill="currentColor"/></svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-900">DANH SÁCH LÔ TEM KIM HOÀN CHỜ IN ẤN</h4>
+              <p class="text-xs text-slate-500">Định dạng tem bướm 2 cánh chuẩn Thông tư 22/BKHCN • Tự động mã hóa Barcode Code 128</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="toggleSelectAllTags()" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold hover:bg-slate-50">
+              Chọn Tất Cả
+            </button>
+            <button onclick="printSelectedTags()" class="px-3 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold rounded-lg text-xs shadow hover:from-amber-400 hover:to-amber-500 flex items-center gap-1.5 active:scale-95 transition">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+              In Lô Đã Chọn (<span id="selected-tags-count">8</span>)
+            </button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left border-collapse">
+            <thead class="bg-slate-50 text-slate-700 font-semibold border-b">
+              <tr>
+                <th class="p-2.5 w-10 text-center"><input type="checkbox" id="check-all-tags" checked onchange="toggleSelectAllTags(this.checked)"></th>
+                <th class="p-2.5 w-28">Mã Barcode</th>
+                <th class="p-2.5">Tên Mặt Hàng Trang Sức</th>
+                <th class="p-2.5 text-center">Tuổi / Loại</th>
+                <th class="p-2.5 text-right">Hàm Lượng</th>
+                <th class="p-2.5 text-right">Tổng TL (KLT)</th>
+                <th class="p-2.5 text-right text-slate-500">TL Đá (KLĐ)</th>
+                <th class="p-2.5 text-right text-red-700 font-bold">TL Vàng (KLV)</th>
+                <th class="p-2.5 text-right">Tiền Công</th>
+                <th class="p-2.5 text-center">Trạng Thái</th>
+                <th class="p-2.5 text-center w-28">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="tags-batch-tbody" class="divide-y divide-slate-100 font-medium">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
 
     <!-- TAB 3: NHẬP HÀNG & KẾT NỐI CÂN ĐIỆN TỬ -->
@@ -1048,6 +1003,50 @@
             </button>
           </div>
         </form>
+      </div>
+
+    
+      <!-- BẢNG NHẬT KÝ PHIẾU NHẬP KHO GẦN ĐÂY -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b pb-3 mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-slate-900">NHẬT KÝ PHIẾU NHẬP KHO NỮ TRANG GẦN ĐÂY</h4>
+              <p class="text-xs text-slate-500">Đối soát số lượng món, trọng lượng vàng thực, tiền công thợ và nguồn cung cấp</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="text-slate-500">Tổng nhập hôm nay:</span>
+            <span class="font-bold text-slate-900 font-mono bg-slate-100 px-2 py-1 rounded">6 phiếu | 48.600 chỉ</span>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left border-collapse">
+            <thead class="bg-slate-50 text-slate-700 font-semibold border-b">
+              <tr>
+                <th class="p-2.5 w-28">Số Phiếu</th>
+                <th class="p-2.5 w-24">Ngày Giờ</th>
+                <th class="p-2.5">Nhà Cung Cấp / Chành</th>
+                <th class="p-2.5">Tên Mặt Hàng Nhập</th>
+                <th class="p-2.5 text-center">Quầy / Loại</th>
+                <th class="p-2.5 text-center">SL</th>
+                <th class="p-2.5 text-right">Tổng TL (KLT)</th>
+                <th class="p-2.5 text-right text-red-700 font-bold">TL Vàng Thực</th>
+                <th class="p-2.5 text-right">Công Vốn</th>
+                <th class="p-2.5 text-right font-bold text-slate-900">Tổng Vốn Nhập</th>
+                <th class="p-2.5 text-center">Trạng Thái</th>
+                <th class="p-2.5 text-center w-24">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="inbound-history-tbody" class="divide-y divide-slate-100 font-medium">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
       </div>
 
     </div>
@@ -1156,128 +1155,49 @@
         </div>
 
         <div class="p-4 space-y-4">
-          <!-- Section 0: Cân Đối Tiền Mặt & Sổ Quỹ Quầy -->
-          <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-            <h4 class="font-bold text-xs text-slate-800 uppercase mb-2.5 flex items-center gap-2">
-              <svg class="w-4 h-4 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
-              1. Cân Đối Tiền Mặt & Sổ Quỹ Quầy Bán Hàng Trong Ca
-            </h4>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 text-xs">
-              <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
-                <span class="text-slate-500 block text-[10px] uppercase font-semibold">Quỹ Đầu Ca</span>
-                <span class="font-bold font-mono text-slate-900 text-sm">15,000,000 đ</span>
-              </div>
-              <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
-                <span class="text-slate-500 block text-[10px] uppercase font-semibold">Thu Bán Vàng Mới</span>
-                <span class="font-bold font-mono text-emerald-700 text-sm">+128,450,000 đ</span>
-              </div>
-              <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
-                <span class="text-slate-500 block text-[10px] uppercase font-semibold">Chi Thu Vàng Cũ</span>
-                <span class="font-bold font-mono text-rose-700 text-sm">-34,200,000 đ</span>
-              </div>
-              <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
-                <span class="text-slate-500 block text-[10px] uppercase font-semibold">Chuyển Khoản QR</span>
-                <span class="font-bold font-mono text-blue-700 text-sm">-45,500,000 đ</span>
-              </div>
-              <div class="bg-emerald-50 p-2.5 rounded-lg border border-emerald-300 shadow-sm">
-                <span class="text-emerald-800 block text-[10px] uppercase font-bold">Tiền Mặt Tại Két</span>
-                <span class="font-extrabold font-mono text-emerald-900 text-sm">63,750,000 đ</span>
-              </div>
-              <div class="bg-amber-50 p-2.5 rounded-lg border border-amber-300 shadow-sm">
-                <span class="text-amber-800 block text-[10px] uppercase font-bold">Tồn Ca Sau Nhận</span>
-                <span class="font-extrabold font-mono text-amber-900 text-sm">15,000,000 đ</span>
-              </div>
-            </div>
-          </div>
-
           <!-- Section 1: Hàng Mới -->
           <div>
-            <h4 class="font-bold text-xs text-slate-700 uppercase mb-2 flex items-center justify-between">
-              <span>2. Cân Đối Số Dư Vàng Mới Theo Chủng Loại</span>
-              <span class="text-slate-500 text-[11px] font-normal">Quầy 01 - Trưng bày tại tủ</span>
-            </h4>
+            <h4 class="font-bold text-xs text-slate-700 uppercase mb-2">1. Cân Đối Số Dư Vàng Mới</h4>
             <div class="overflow-x-auto">
               <table class="w-full text-xs text-left border border-slate-200">
                 <thead class="bg-slate-100 text-slate-700 font-semibold border-b">
                   <tr>
                     <th class="p-2 border">Nguyên liệu mới</th>
-                    <th class="p-2 border text-center">Tồn Đầu</th>
-                    <th class="p-2 border text-center">Nhập</th>
-                    <th class="p-2 border text-center">Bán</th>
-                    <th class="p-2 border text-center font-bold text-blue-900">Tồn Cuối (SL)</th>
-                    <th class="p-2 border text-right">Tổng TL (Chỉ)</th>
+                    <th class="p-2 border text-center">SL</th>
+                    <th class="p-2 border text-right">Tổng TL</th>
                     <th class="p-2 border text-right">TL Đá</th>
-                    <th class="p-2 border text-right text-red-700 font-bold">TL Vàng</th>
+                    <th class="p-2 border text-right">TL Vàng</th>
                     <th class="p-2 border text-right">Quy Vàng 10</th>
                     <th class="p-2 border text-right">Công Vốn</th>
-                    <th class="p-2 border text-right font-bold text-slate-900">Tổng Vốn Trưng Bày</th>
+                    <th class="p-2 border text-right">Tổng Vốn</th>
+                    <th class="p-2 border text-right">Công Lẻ</th>
+                    <th class="p-2 border text-right">Tổng Bán</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
-                  <tr class="hover:bg-slate-50">
-                    <td class="p-2 border font-bold text-amber-900">👑 VÀNG TA 9999 (SJC & NHẪN)</td>
-                    <td class="p-2 border text-center font-mono">15</td>
-                    <td class="p-2 border text-center font-mono text-emerald-700">+10</td>
-                    <td class="p-2 border text-center font-mono text-rose-700">-6</td>
-                    <td class="p-2 border text-center font-mono font-bold bg-blue-50 text-blue-900">19</td>
+                <tbody>
+                  <tr class="bg-amber-50/40">
+                    <td class="p-2 border font-bold text-blue-900">VÀNG 9999</td>
+                    <td class="p-2 border text-center">5</td>
+                    <td class="p-2 border text-right font-mono">29.200</td>
+                    <td class="p-2 border text-right font-mono">2.200</td>
                     <td class="p-2 border text-right font-mono">27.000</td>
-                    <td class="p-2 border text-right font-mono text-slate-400">0.000</td>
-                    <td class="p-2 border text-right font-mono font-bold text-red-700">27.000</td>
                     <td class="p-2 border text-right font-mono">27.000</td>
-                    <td class="p-2 border text-right font-mono">650,000</td>
-                    <td class="p-2 border text-right font-bold text-slate-900">238,950,000</td>
+                    <td class="p-2 border text-right">650,000</td>
+                    <td class="p-2 border text-right font-bold text-blue-700">55,000,000</td>
+                    <td class="p-2 border text-right">1,100,000</td>
+                    <td class="p-2 border text-right font-bold text-red-600">135,000,000</td>
                   </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="p-2 border font-bold text-amber-800">✨ VÀNG Ý 750 (18K)</td>
-                    <td class="p-2 border text-center font-mono">20</td>
-                    <td class="p-2 border text-center font-mono text-emerald-700">+5</td>
-                    <td class="p-2 border text-center font-mono text-rose-700">-4</td>
-                    <td class="p-2 border text-center font-mono font-bold bg-blue-50 text-blue-900">21</td>
-                    <td class="p-2 border text-right font-mono">42.500</td>
-                    <td class="p-2 border text-right font-mono text-slate-400">2.500</td>
-                    <td class="p-2 border text-right font-mono font-bold text-red-700">40.000</td>
-                    <td class="p-2 border text-right font-mono">30.000</td>
-                    <td class="p-2 border text-right font-mono">2,400,000</td>
-                    <td class="p-2 border text-right font-bold text-slate-900">254,000,000</td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="p-2 border font-bold text-amber-700">💍 VÀNG TÂY 610 (15K)</td>
-                    <td class="p-2 border text-center font-mono">18</td>
-                    <td class="p-2 border text-center font-mono text-emerald-700">+8</td>
-                    <td class="p-2 border text-center font-mono text-rose-700">-5</td>
-                    <td class="p-2 border text-center font-mono font-bold bg-blue-50 text-blue-900">21</td>
-                    <td class="p-2 border text-right font-mono">25.800</td>
-                    <td class="p-2 border text-right font-mono text-slate-400">1.800</td>
-                    <td class="p-2 border text-right font-mono font-bold text-red-700">24.000</td>
-                    <td class="p-2 border text-right font-mono">14.640</td>
-                    <td class="p-2 border text-right font-mono">1,850,000</td>
-                    <td class="p-2 border text-right font-bold text-slate-900">100,200,000</td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="p-2 border font-bold text-slate-700">💎 KIM CƯƠNG THIÊN NHIÊN GIA</td>
-                    <td class="p-2 border text-center font-mono">5</td>
-                    <td class="p-2 border text-center font-mono text-emerald-700">+2</td>
-                    <td class="p-2 border text-center font-mono text-rose-700">-1</td>
-                    <td class="p-2 border text-center font-mono font-bold bg-blue-50 text-blue-900">6</td>
-                    <td class="p-2 border text-right font-mono">8.200</td>
-                    <td class="p-2 border text-right font-mono text-slate-400">1.200</td>
-                    <td class="p-2 border text-right font-mono font-bold text-red-700">7.000</td>
-                    <td class="p-2 border text-right font-mono">5.250</td>
-                    <td class="p-2 border text-right font-mono">3,200,000</td>
-                    <td class="p-2 border text-right font-bold text-slate-900">125,500,000</td>
-                  </tr>
-                  <tr class="bg-amber-100/80 font-extrabold text-slate-900">
-                    <td class="p-2 border text-burgundy-900">TỔNG CỘNG VÀNG MỚI</td>
-                    <td class="p-2 border text-center font-mono">58</td>
-                    <td class="p-2 border text-center font-mono text-emerald-700">+25</td>
-                    <td class="p-2 border text-center font-mono text-rose-700">-16</td>
-                    <td class="p-2 border text-center font-mono font-bold text-blue-900 bg-amber-200">67</td>
-                    <td class="p-2 border text-right font-mono">103.500</td>
-                    <td class="p-2 border text-right font-mono">5.500</td>
-                    <td class="p-2 border text-right font-mono text-red-700">98.000</td>
-                    <td class="p-2 border text-right font-mono">76.890</td>
-                    <td class="p-2 border text-right font-mono">8,100,000</td>
-                    <td class="p-2 border text-right font-mono text-red-700 text-sm">718,650,000</td>
+                  <tr class="bg-yellow-300 font-extrabold text-slate-900">
+                    <td class="p-2 border">TỔNG CỘNG</td>
+                    <td class="p-2 border text-center">5</td>
+                    <td class="p-2 border text-right font-mono">29.200</td>
+                    <td class="p-2 border text-right font-mono">2.200</td>
+                    <td class="p-2 border text-right font-mono">27.000</td>
+                    <td class="p-2 border text-right font-mono">27.000</td>
+                    <td class="p-2 border text-right">650,000</td>
+                    <td class="p-2 border text-right">55,000,000</td>
+                    <td class="p-2 border text-right">1,100,000</td>
+                    <td class="p-2 border text-right">135,000,000</td>
                   </tr>
                 </tbody>
               </table>
@@ -1286,10 +1206,7 @@
 
           <!-- Section 2: Hàng Thu Vàng Cũ -->
           <div>
-            <h4 class="font-bold text-xs text-slate-700 uppercase mb-2 flex items-center justify-between">
-              <span>3. Cân Đối Số Dư Vàng Cũ Thu Mua Lại Trong Ca</span>
-              <span class="text-slate-500 text-[11px] font-normal">Chờ nấu lại / Phân kim</span>
-            </h4>
+            <h4 class="font-bold text-xs text-slate-700 uppercase mb-2">2. Cân Đối Số Dư Vàng Cũ Thu Mua Lại</h4>
             <div class="overflow-x-auto">
               <table class="w-full text-xs text-left border border-slate-200">
                 <thead class="bg-slate-100 text-slate-700 font-semibold border-b">
@@ -1297,53 +1214,33 @@
                     <th class="p-2 border">Nguyên liệu mua cũ</th>
                     <th class="p-2 border text-center">Số lượng</th>
                     <th class="p-2 border text-right">Tổng TL</th>
-                    <th class="p-2 border text-right">TL Đá Trừ</th>
-                    <th class="p-2 border text-right text-red-700 font-bold">TL Vàng Thực</th>
+                    <th class="p-2 border text-right">TL Đá</th>
+                    <th class="p-2 border text-right">TL Vàng</th>
                     <th class="p-2 border text-right">Quy Vàng 10</th>
-                    <th class="p-2 border text-right">Đơn Giá Mua TB</th>
-                    <th class="p-2 border text-right font-bold text-slate-900">Tổng Vốn Trả Khách</th>
+                    <th class="p-2 border text-right">Giá Mua</th>
+                    <th class="p-2 border text-right">Tổng Vốn Trả Khách</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="hover:bg-slate-50">
-                    <td class="p-2 border font-semibold text-amber-900">VÀNG 9999 (CŨ)</td>
-                    <td class="p-2 border text-center font-mono">2</td>
-                    <td class="p-2 border text-right font-mono">3.000</td>
-                    <td class="p-2 border text-right font-mono">0.000</td>
-                    <td class="p-2 border text-right font-mono font-bold text-red-700">3.000</td>
-                    <td class="p-2 border text-right font-mono">3.000</td>
-                    <td class="p-2 border text-right font-mono">8,720,000</td>
-                    <td class="p-2 border text-right font-mono font-bold text-emerald-700">26,160,000</td>
+                  <tr class="bg-amber-50/40">
+                    <td class="p-2 border font-medium">VÀNG 610 (CŨ)</td>
+                    <td class="p-2 border text-center">1</td>
+                    <td class="p-2 border text-right font-mono">1.600</td>
+                    <td class="p-2 border text-right font-mono">0.100</td>
+                    <td class="p-2 border text-right font-mono">1.500</td>
+                    <td class="p-2 border text-right font-mono">0.915</td>
+                    <td class="p-2 border text-right">3,866,000</td>
+                    <td class="p-2 border text-right font-bold text-emerald-700">5,800,000</td>
                   </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="p-2 border font-semibold text-amber-800">VÀNG 750 (18K Ý CŨ)</td>
-                    <td class="p-2 border text-center font-mono">3</td>
-                    <td class="p-2 border text-right font-mono">5.200</td>
-                    <td class="p-2 border text-right font-mono">0.200</td>
-                    <td class="p-2 border text-right font-mono font-bold text-red-700">5.000</td>
-                    <td class="p-2 border text-right font-mono">3.750</td>
-                    <td class="p-2 border text-right font-mono">6,280,000</td>
-                    <td class="p-2 border text-right font-mono font-bold text-emerald-700">31,400,000</td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td class="p-2 border font-semibold text-amber-700">VÀNG 610 (TÂY CŨ)</td>
-                    <td class="p-2 border text-center font-mono">4</td>
-                    <td class="p-2 border text-right font-mono">6.500</td>
-                    <td class="p-2 border text-right font-mono">0.500</td>
-                    <td class="p-2 border text-right font-mono font-bold text-red-700">6.000</td>
-                    <td class="p-2 border text-right font-mono">3.660</td>
-                    <td class="p-2 border text-right font-mono">5,110,000</td>
-                    <td class="p-2 border text-right font-mono font-bold text-emerald-700">30,660,000</td>
-                  </tr>
-                  <tr class="bg-amber-100/80 font-extrabold text-slate-900">
-                    <td class="p-2 border text-burgundy-900">TỔNG CỘNG THU MUA CŨ</td>
-                    <td class="p-2 border text-center font-mono">9</td>
-                    <td class="p-2 border text-right font-mono">14.700</td>
-                    <td class="p-2 border text-right font-mono">0.700</td>
-                    <td class="p-2 border text-right font-mono text-red-700">14.000</td>
-                    <td class="p-2 border text-right font-mono">10.410</td>
-                    <td class="p-2 border text-right font-mono">-</td>
-                    <td class="p-2 border text-right font-mono text-emerald-800 text-sm">88,220,000</td>
+                  <tr class="bg-yellow-300 font-extrabold text-slate-900">
+                    <td class="p-2 border">TỔNG CỘNG</td>
+                    <td class="p-2 border text-center">1</td>
+                    <td class="p-2 border text-right font-mono">1.600</td>
+                    <td class="p-2 border text-right font-mono">0.100</td>
+                    <td class="p-2 border text-right font-mono">1.500</td>
+                    <td class="p-2 border text-right font-mono">0.915</td>
+                    <td class="p-2 border text-right">-</td>
+                    <td class="p-2 border text-right">5,800,000</td>
                   </tr>
                 </tbody>
               </table>
@@ -1933,14 +1830,14 @@
 
     // MOCK TAGS BATCH PRINT (IN TEM VÀNG TT22)
     const MOCK_TAGS_BATCH = [
-      { id: 'HH-610-02', name: 'Nhẫn Nữ Ruby Cao Cấp', type: 'VÀNG 750 (18K)', purity: '75.0% Au', klt: 2.400, kld: 0.400, klv: 2.000, labor: 350000, selected: true },
-      { id: 'HH-SJC-1C', name: 'Nhẫn Trơn SJC Ép Vỉ 1 Chỉ', type: 'VÀNG 9999 (24K)', purity: '99.99% Au', klt: 1.000, kld: 0.000, klv: 1.000, labor: 50000, selected: true },
-      { id: 'HH-SJC-2C', name: 'Nhẫn Trơn SJC Ép Vỉ 2 Chỉ', type: 'VÀNG 9999 (24K)', purity: '99.99% Au', klt: 2.000, kld: 0.000, klv: 2.000, labor: 80000, selected: true },
-      { id: 'HH-750-09', name: 'Dây Chuyền Ý 18K Mắt Xích Figaro', type: 'VÀNG 750 (18K)', purity: '75.0% Au', klt: 3.200, kld: 0.000, klv: 3.200, labor: 400000, selected: true },
-      { id: 'HH-9999-01', name: 'Lắc Tay Hoa Mai Khắc Nổi 9999', type: 'VÀNG 9999 (24K)', purity: '99.99% Au', klt: 6.500, kld: 0.500, klv: 6.000, labor: 500000, selected: true },
-      { id: 'HH-KC-SOL', name: 'Nhẫn Kim Cương GIA 5.4ly', type: 'VÀNG 750 (18K)', purity: '75.0% Au', klt: 1.850, kld: 0.350, klv: 1.500, labor: 1200000, selected: true },
-      { id: 'HH-610-COC', name: 'Nhẫn Cóc Thiềm Thừ Chiêu Tài', type: 'VÀNG 610 (15K)', purity: '61.0% Au', klt: 2.100, kld: 0.200, klv: 1.900, labor: 280000, selected: true },
-      { id: 'HH-18K-BONG', name: 'Bông Tai Kim Tiền Vàng Ý 18K', type: 'VÀNG 750 (18K)', purity: '75.0% Au', klt: 0.950, kld: 0.050, klv: 0.900, labor: 250000, selected: true }
+      { id: 'HH-610-02', name: 'Nhẫn Nữ Ruby Cao Cấp', type: 'VÀNG 750', purity: '75.0% Au', klt: 2.400, kld: 0.400, klv: 2.000, labor: 350000, selected: true },
+      { id: 'HH-SJC-1C', name: 'Nhẫn Trơn SJC Ép Vỉ 1 Chỉ', type: 'VÀNG 9999', purity: '99.99% Au', klt: 1.000, kld: 0.000, klv: 1.000, labor: 50000, selected: true },
+      { id: 'HH-SJC-2C', name: 'Nhẫn Trơn SJC Ép Vỉ 2 Chỉ', type: 'VÀNG 9999', purity: '99.99% Au', klt: 2.000, kld: 0.000, klv: 2.000, labor: 80000, selected: true },
+      { id: 'HH-750-09', name: 'Dây Chuyền Ý 18K Mắt Xích Figaro', type: 'VÀNG 750', purity: '75.0% Au', klt: 3.200, kld: 0.000, klv: 3.200, labor: 400000, selected: true },
+      { id: 'HH-9999-01', name: 'Lắc Tay Hoa Mai Khắc Nổi 9999', type: 'VÀNG 9999', purity: '99.99% Au', klt: 6.500, kld: 0.500, klv: 6.000, labor: 500000, selected: true },
+      { id: 'HH-KC-SOL', name: 'Nhẫn Kim Cương GIA 5.4ly', type: 'VÀNG 750', purity: '75.0% Au', klt: 1.850, kld: 0.350, klv: 1.500, labor: 1200000, selected: true },
+      { id: 'HH-610-COC', name: 'Nhẫn Cóc Thiềm Thừ Chiêu Tài', type: 'VÀNG 610', purity: '61.0% Au', klt: 2.100, kld: 0.200, klv: 1.900, labor: 280000, selected: true },
+      { id: 'HH-18K-BONG', name: 'Bông Tai Kim Tiền Vàng Ý 18K', type: 'VÀNG 750', purity: '75.0% Au', klt: 0.950, kld: 0.050, klv: 0.900, labor: 250000, selected: true }
     ];
 
     const MOCK_INVENTORY_ITEMS = [
