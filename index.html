@@ -97,10 +97,312 @@
         display: none !important;
       }
     }
+  
+    /* Left Sidebar Transitions & Collapsed State */
+    #main-sidebar.collapsed {
+      width: 4.5rem !important; /* 72px */
+    }
+    #main-sidebar.collapsed .truncate,
+    #main-sidebar.collapsed .menu-group button span span,
+    #main-sidebar.collapsed .menu-group div,
+    #main-sidebar.collapsed #menu-search-input,
+    #main-sidebar.collapsed .fa-chevron-down,
+    #main-sidebar.collapsed .menu-group button span i + span,
+    #main-sidebar.collapsed #sidebar-user-info {
+      display: none !important;
+    }
+    #main-sidebar.collapsed .menu-group button {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    #main-sidebar.collapsed #btn-toggle-sidebar i {
+      transform: rotate(180deg);
+    }
+
   </style>
+
+  <!-- Các Module Phân Hệ Kim Hoàn Nâng Cao -->
+  <script src="js/master-data.js"></script>
+  <script src="js/transactions.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/smart-tv.js"></script>
+  <script src="js/hardware.js"></script>
+
 </head>
 
-<body class="bg-slate-100 font-sans text-slate-800 h-screen flex flex-col overflow-hidden select-none">
+<body class="bg-slate-100 font-sans text-slate-800 h-screen w-screen overflow-hidden select-none flex">
+
+  <!-- ========================================== -->
+  <!-- THANH MENU TRÁI (LEFT SIDEBAR SAAS ERP)     -->
+  <!-- ========================================== -->
+  <aside id="main-sidebar" class="w-64 bg-[#0d0205] text-slate-300 flex flex-col shrink-0 border-r border-amber-500/20 z-30 transition-all duration-300 select-none">
+    
+    <!-- Brand Header in Sidebar -->
+    <div class="p-3 border-b border-amber-500/20 flex items-center justify-between">
+      <div class="flex items-center space-x-2.5 overflow-hidden">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-bold shrink-0 shadow">
+          <i class="fa-solid fa-gem text-sm"></i>
+        </div>
+        <div class="leading-tight truncate">
+          <h1 class="font-cinzel text-xs font-black gold-gradient-text tracking-wider truncate">HOÀNG HƯNG ERP</h1>
+          <p class="text-[9px] text-amber-300/80 font-mono">Phiên Bản Pro 4.0</p>
+        </div>
+      </div>
+      <button onclick="toggleSidebarCollapse()" id="btn-toggle-sidebar" class="text-slate-400 hover:text-amber-300 p-1 rounded-lg hover:bg-white/5 transition" title="Thu gọn / Mở rộng menu">
+        <i class="fa-solid fa-angles-left text-xs transition-transform duration-300"></i>
+      </button>
+    </div>
+
+    <!-- Quick Search Menu Box -->
+    <div class="px-2.5 pt-2 pb-1">
+      <div class="relative">
+        <input type="text" id="menu-search-input" oninput="filterSidebarMenu(this.value)" placeholder="Tìm chức năng..." class="w-full bg-black/40 border border-white/10 rounded-lg pl-7 pr-2 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500/60">
+        <i class="fa-solid fa-magnifying-glass text-[11px] text-slate-400 absolute left-2.5 top-2.5"></i>
+      </div>
+    </div>
+
+    <!-- Nav Links List (Accordion Groups) -->
+    <div id="sidebar-menu-list" class="flex-1 overflow-y-auto custom-scroll p-2 space-y-1 text-xs">
+      
+      <!-- 1. GIAO DỊCH KHÁCH -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-khach')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-cash-register text-amber-400 w-4"></i>
+            <span>GIAO DỊCH KHÁCH</span>
+          </span>
+          <i id="chevron-acc-khach" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-khach" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="navigateToView('pos')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition flex items-center justify-between">
+            <span>• Mua - Bán (POS)</span>
+            <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 py-0.2 rounded font-mono">F1</span>
+          </button>
+          <button onclick="navigateToView('operations', 'scrapPurchases')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Mua dẻ / Phế liệu</span>
+          </button>
+          <button onclick="navigateToView('pos')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Đổi vàng (Cấn trừ)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. GIAO DỊCH THU NGÂN -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-thungan')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-vault text-amber-400 w-4"></i>
+            <span>GIAO DỊCH THU NGÂN</span>
+          </span>
+          <i id="chevron-acc-thungan" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-thungan" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="navigateToView('sodu')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Mở / Đóng quầy & Giao ca</span>
+          </button>
+          <button onclick="navigateToView('pos')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Thanh toán đa kênh (QR/Thẻ)</span>
+          </button>
+          <button onclick="navigateToView('operations', 'counterTransfers')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Thu chi điều chuyển quầy</span>
+          </button>
+          <button onclick="navigateToView('sodu')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Số dư thu ngân & Tài sản</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. GIAO DỊCH HÀNG & KHO -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-hang')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-boxes-stacked text-amber-400 w-4"></i>
+            <span>GIAO DỊCH HÀNG</span>
+          </span>
+          <i id="chevron-acc-hang" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-hang" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="navigateToView('nhap')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Nhập hàng tạo mã, in tem</span>
+          </button>
+          <button onclick="navigateToView('operations', 'pendingApprovals')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition flex items-center justify-between">
+            <span>• Duyệt nhập kho 2 cấp</span>
+            <span class="text-[9px] bg-red-500/20 text-red-300 px-1 rounded font-bold">1 chờ</span>
+          </button>
+          <button onclick="navigateToView('catalog')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Bảng mặt hàng (Catalog)</span>
+          </button>
+          <button onclick="navigateToView('tem')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• In tem vàng Thông tư 22</span>
+          </button>
+          <button onclick="navigateToView('operations', 'trayAudit')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition flex items-center gap-1.5">
+            <span>• Kiểm kê Barcode / RFID</span>
+            <span class="text-[9px] bg-purple-500/20 text-purple-300 px-1 rounded font-mono font-bold">RFID</span>
+          </button>
+          <button onclick="navigateToView('tracuu')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Chuyển quầy & Tra tồn</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4. GIAO DỊCH THỢ -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-tho')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-hammer text-amber-400 w-4"></i>
+            <span>GIAO DỊCH THỢ</span>
+          </span>
+          <i id="chevron-acc-tho" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-tho" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="navigateToView('operations', 'craftsmanOrders')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Gia công / Rung rửa / Xi mạ</span>
+          </button>
+          <button onclick="navigateToView('operations', 'craftsmanOrders')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Bù trừ hao hụt tuổi vàng</span>
+          </button>
+          <button onclick="navigateToView('masterdata', 'craftsmen')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Công nợ & Thanh toán thợ</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5. DANH MỤC MASTER DATA (20 danh mục) -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-masterdata')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-database text-amber-400 w-4"></i>
+            <span>DANH MỤC MASTER DATA</span>
+          </span>
+          <i id="chevron-acc-masterdata" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-masterdata" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="navigateToView('masterdata', 'customers')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">1. Khách hàng & Nhóm khách</button>
+          <button onclick="navigateToView('masterdata', 'branches')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">2. Cửa hàng & Chi nhánh</button>
+          <button onclick="navigateToView('masterdata', 'counters')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">3. Quầy kho phân cấp</button>
+          <button onclick="navigateToView('masterdata', 'goldTypes')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">4. Loại vàng & Nhóm vàng</button>
+          <button onclick="navigateToView('masterdata', 'productCategories')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">5. Nhóm hàng & Ngành hàng</button>
+          <button onclick="navigateToView('masterdata', 'units')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">6. Đơn vị tính (ĐVT)</button>
+          <button onclick="navigateToView('masterdata', 'craftsmen')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">7. Thợ kim hoàn & Xưởng</button>
+          <button onclick="navigateToView('masterdata', 'suppliers')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">8. Nhà cung cấp & Chành</button>
+          <button onclick="navigateToView('masterdata', 'standards')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">9. Tiêu chuẩn cơ sở TT22</button>
+          <button onclick="navigateToView('masterdata', 'trays')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">10. Danh mục Khay & RFID</button>
+          <button onclick="navigateToView('masterdata', 'tagTemplates')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">11. Danh mục Mẫu Tem</button>
+          <button onclick="navigateToView('masterdata', 'productSkus')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">12. Danh mục Mã hàng (SKU)</button>
+          <button onclick="navigateToView('masterdata', 'currencies')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">13. Loại tiền tệ & Tỷ giá</button>
+          <button onclick="navigateToView('masterdata', 'bankAccounts')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">14. Tài khoản GD & VietQR</button>
+        </div>
+      </div>
+
+      <!-- 6. TRA CỨU -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-tracuu')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass-location text-amber-400 w-4"></i>
+            <span>TRA CỨU TOÀN DIỆN</span>
+          </span>
+          <i id="chevron-acc-tracuu" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-tracuu" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="navigateToView('tracuu')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Tra cứu thông tin hàng</button>
+          <button onclick="navigateToView('baocao')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Tra cứu mua / bán theo khách</button>
+          <button onclick="navigateToView('operations', 'priceChanges')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Lịch sử đổi bảng giá vàng</button>
+          <button onclick="navigateToView('operations', 'counterTransfers')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Thu chi giữa các quầy</button>
+          <button onclick="navigateToView('catalog')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Hàng bán chạy / bán chậm</button>
+          <button onclick="navigateToView('baocao')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Tra cứu phiếu thu chi tiền mặt</button>
+        </div>
+      </div>
+
+      <!-- 7. HỆ THỐNG BÁO CÁO -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-baocao')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie text-amber-400 w-4"></i>
+            <span>HỆ THỐNG BÁO CÁO BI</span>
+          </span>
+          <i id="chevron-acc-baocao" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-baocao" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="navigateToView('reports', 'productReports')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Nhóm Hàng (7 báo cáo)</button>
+          <button onclick="navigateToView('reports', 'cashierReports')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Nhóm Thu Ngân (8 báo cáo)</button>
+          <button onclick="navigateToView('reports', 'customerReports')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Nhóm Khách Hàng (2 báo cáo)</button>
+          <button onclick="navigateToView('reports', 'craftsmanReports')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Nhóm Thợ (3 báo cáo)</button>
+          <button onclick="navigateToView('reports', 'scrapReports')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Nhóm Dẻ (2 báo cáo)</button>
+          <button onclick="navigateToView('reports', 'inventoryReports')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Nhóm Xuất Nhập Tồn (6 báo cáo)</button>
+          <button onclick="navigateToView('reports', 'staffReports')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">• Báo Cáo Nhân Viên (3 báo cáo)</button>
+        </div>
+      </div>
+
+      <!-- 8. BẢNG GIÁ VÀNG & SMART TV -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-giabang')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-tv text-amber-400 w-4"></i>
+            <span>BẢNG GIÁ & SMART TV</span>
+          </span>
+          <i id="chevron-acc-giabang" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-giabang" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="navigateToView('operations', 'priceChanges')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition">
+            <span>• Điều chỉnh giá niêm yết</span>
+          </button>
+          <button onclick="toggleSmartTvFullscreen()" class="nav-sub-item w-full text-left py-1 px-2 rounded bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 font-bold transition flex items-center justify-between">
+            <span>• Màn hình Tivi Smart TV</span>
+            <i class="fa-solid fa-expand text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 9. TÍCH HỢP HẠ TẦNG THIẾT BỊ -->
+      <div class="menu-group">
+        <button onclick="toggleAccordion('acc-hating')" class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-white/5 text-slate-200 font-bold transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-microchip text-amber-400 w-4"></i>
+            <span>TÍCH HỢP HẠ TẦNG</span>
+          </span>
+          <i id="chevron-acc-hating" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
+        </button>
+        <div id="acc-hating" class="space-y-0.5 pl-6 pt-0.5">
+          <button onclick="toggleScaleModal()" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition flex items-center justify-between">
+            <span>• Cân điện tử Ohaus RS232</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          </button>
+          <button onclick="testPrintZplSample()" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition flex items-center justify-between">
+            <span>• Máy in tem Zebra ZD220</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          </button>
+          <button onclick="simulateRfidTrayScan('K01')" class="nav-sub-item w-full text-left py-1 px-2 rounded hover:text-amber-300 hover:bg-white/5 text-slate-300 transition flex items-center justify-between">
+            <span>• Đầu đọc RFID quét khay</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sidebar User Footer -->
+    <div class="p-3 border-t border-amber-500/20 bg-black/30 flex items-center justify-between">
+      <div id="sidebar-user-info" class="flex items-center space-x-2.5 overflow-hidden">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center text-slate-950 font-bold text-xs shrink-0 shadow">
+          H
+        </div>
+        <div class="truncate leading-tight">
+          <p class="font-bold text-xs text-white truncate">Trần Hoàng Hưng</p>
+          <p class="text-[10px] text-amber-300 truncate font-medium">Quản Lý • Quầy 01</p>
+        </div>
+      </div>
+      <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]" title="Hệ thống Online"></span>
+    </div>
+
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- MAIN APP WRAPPER (RIGHT CONTAINER)        -->
+  <!-- ========================================== -->
+  <div class="flex-1 flex flex-col h-screen overflow-hidden min-w-0">
+
+
 
   <!-- Top Luxury SaaS Bar & Live Ticker -->
   <header class="bg-gradient-to-r from-[#140205] via-[#22040c] to-[#140205] text-white shadow-2xl z-20 border-b border-amber-500/30 flex-shrink-0">
@@ -1337,7 +1639,153 @@
 
     </div>
 
+  
+    <!-- TAB: DANH MỤC MASTER DATA (20 DANH MỤC LỚN NHỎ) -->
+    <div id="content-masterdata" class="tab-pane hidden h-full p-3.5 flex flex-col gap-3 overflow-hidden bg-slate-100">
+      
+      <div class="bg-white rounded-xl p-3 shadow-sm border border-slate-200 flex flex-col gap-2.5 flex-shrink-0">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-bold shadow shrink-0">
+              <i class="fa-solid fa-database text-sm"></i>
+            </div>
+            <div>
+              <h3 id="master-data-active-title" class="font-bold text-sm text-slate-900 tracking-tight flex items-center gap-2">
+                DANH MỤC MASTER DATA
+                <span id="master-data-count-badge" class="px-2 py-0.5 rounded-full text-[10px] bg-amber-100 text-amber-900 border border-amber-300 font-mono font-bold">0 bản ghi</span>
+              </h3>
+              <p class="text-[11px] text-slate-500">Quản trị toàn bộ 20 danh mục kim hoàn chuẩn Thông tư 22/BKHCN & Sổ sách kế toán tiệm vàng</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <input type="text" oninput="searchMasterData(this.value)" placeholder="Tìm kiếm trong danh mục..." class="border border-slate-300 rounded-lg pl-8 pr-2.5 py-1.5 w-56 text-xs focus:ring-1 focus:ring-amber-500 focus:outline-none">
+              <i class="fa-solid fa-magnifying-glass text-slate-400 absolute left-2.5 top-2.5 text-xs"></i>
+            </div>
+            <button onclick="alert('Mở form thêm mới bản ghi')" class="px-3 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-lg text-xs shadow flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-plus"></i> Thêm Mới
+            </button>
+            <button onclick="alert('Đang trích xuất dữ liệu danh mục ra file Excel...')" class="px-3 py-1.5 bg-emerald-50 text-emerald-800 border border-emerald-300 font-bold rounded-lg text-xs hover:bg-emerald-100 flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-file-excel"></i> Xuất Excel
+            </button>
+          </div>
+        </div>
+
+        <!-- Category Selector Pills (Scrollable) -->
+        <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll pb-1 text-xs font-semibold">
+          <button onclick="selectMasterDataCategory('customers')" class="md-pill px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold border border-amber-600 shadow-sm transition">1. Khách Hàng</button>
+          <button onclick="selectMasterDataCategory('customerGroups')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">2. Nhóm Khách</button>
+          <button onclick="selectMasterDataCategory('branches')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">3. Cửa Hàng & Chi Nhánh</button>
+          <button onclick="selectMasterDataCategory('counters')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">4. Quầy Kho Phân Cấp</button>
+          <button onclick="selectMasterDataCategory('goldTypes')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">5. Loại Vàng & Tuổi Vàng</button>
+          <button onclick="selectMasterDataCategory('goldGroups')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">6. Nhóm Vàng</button>
+          <button onclick="selectMasterDataCategory('productCategories')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">7. Nhóm Hàng</button>
+          <button onclick="selectMasterDataCategory('units')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">8. Đơn Vị Tính (ĐVT)</button>
+          <button onclick="selectMasterDataCategory('craftsmen')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">9. Thợ Kim Hoàn</button>
+          <button onclick="selectMasterDataCategory('suppliers')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">10. Nhà Cung Cấp & Chành</button>
+          <button onclick="selectMasterDataCategory('standards')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">11. Tiêu Chuẩn Cơ Sở (TCCS)</button>
+          <button onclick="selectMasterDataCategory('trays')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">12. Khay & Chip RFID</button>
+          <button onclick="selectMasterDataCategory('tagTemplates')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">13. Mẫu Tem Kim Hoàn</button>
+          <button onclick="selectMasterDataCategory('productSkus')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">14. Mã Hàng (SKU)</button>
+          <button onclick="selectMasterDataCategory('currencies')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">15. Tiền Tệ & Tỷ Giá</button>
+          <button onclick="selectMasterDataCategory('bankAccounts')" class="md-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">16. Tài Khoản & VietQR</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Table Container -->
+      <div class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col min-h-0">
+        <div id="master-data-table-container" class="flex-1 overflow-auto custom-scroll">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB: GIAO DỊCH VẬN HÀNH (THU MUA DẺ, DUYỆT NHẬP KHO, RFID, THỢ, ĐIỀU CHUYỂN) -->
+    <div id="content-operations" class="tab-pane hidden h-full p-3.5 flex flex-col gap-3 overflow-hidden bg-slate-100">
+      
+      <div class="bg-white rounded-xl p-3 shadow-sm border border-slate-200 flex flex-col gap-2.5 flex-shrink-0">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center font-bold shadow shrink-0">
+              <i class="fa-solid fa-arrows-spin text-sm"></i>
+            </div>
+            <div>
+              <h3 id="operations-active-title" class="font-bold text-sm text-slate-900 tracking-tight">GIAO DỊCH VẬN HÀNH & KIỂM SOÁT</h3>
+              <p class="text-[11px] text-slate-500">Thu mua vàng dẻ • Duyệt nhập kho 2 cấp • Quét khay RFID • Quản trị thợ & Điều chuyển liên quầy</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-view switcher pills -->
+        <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll pb-1 text-xs font-semibold">
+          <button onclick="selectOperationSubView('scrapPurchases')" class="op-pill px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold border border-amber-600 shadow-sm transition">💰 Thu Mua Dẻ / Phế Liệu</button>
+          <button onclick="selectOperationSubView('pendingApprovals')" class="op-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">📋 Duyệt Nhập Kho 2 Cấp</button>
+          <button onclick="selectOperationSubView('trayAudit')" class="op-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">📡 Kiểm Kê Khay RFID</button>
+          <button onclick="selectOperationSubView('craftsmanOrders')" class="op-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">🔨 Gia Công Thợ & Hao Hụt</button>
+          <button onclick="selectOperationSubView('counterTransfers')" class="op-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">🔄 Thu Chi Điều Chuyển Quầy</button>
+          <button onclick="selectOperationSubView('priceChanges')" class="op-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">📈 Lịch Sử Đổi Bảng Giá</button>
+        </div>
+      </div>
+
+      <div class="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col min-h-0">
+        <div id="operations-table-container" class="flex-1 overflow-auto custom-scroll">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB: HỆ THỐNG BÁO CÁO TOÀN DIỆN (31 BÁO CÁO PHÂN NHÓM) -->
+    <div id="content-reports-hub" class="tab-pane hidden h-full p-3.5 flex flex-col gap-3 overflow-hidden bg-slate-100">
+      
+      <div class="bg-white rounded-xl p-3 shadow-sm border border-slate-200 flex flex-col gap-2.5 flex-shrink-0">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-800 text-white flex items-center justify-center font-bold shadow shrink-0">
+              <i class="fa-solid fa-chart-column text-sm"></i>
+            </div>
+            <div>
+              <h3 id="report-group-title" class="font-bold text-sm text-slate-900 tracking-tight">TRUNG TÂM BÁO CÁO QUẢN TRỊ & BI KIM HOÀN</h3>
+              <p class="text-[11px] text-slate-500">Phân tích chuyên sâu 7 nhóm báo cáo chuẩn định dạng kế toán tiệm vàng</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2 text-xs">
+            <label class="text-slate-500 font-medium">Kỳ báo cáo:</label>
+            <select class="border rounded-lg px-2.5 py-1.5 bg-slate-50 font-bold text-slate-800">
+              <option>Hôm nay (09/10/2026)</option>
+              <option>Tuần này</option>
+              <option selected>Tháng 10/2026</option>
+              <option>Quý 4/2026</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Report Group Switcher Pills -->
+        <div class="flex items-center gap-1.5 overflow-x-auto custom-scroll pb-1 text-xs font-semibold">
+          <button onclick="selectReportCategory('productReports')" class="bc-pill px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-bold border border-amber-600 shadow-sm transition">📦 Nhóm Hàng (7 BC)</button>
+          <button onclick="selectReportCategory('cashierReports')" class="bc-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">💼 Nhóm Thu Ngân (8 BC)</button>
+          <button onclick="selectReportCategory('customerReports')" class="bc-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">👥 Nhóm Khách Hàng (2 BC)</button>
+          <button onclick="selectReportCategory('craftsmanReports')" class="bc-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">🔨 Nhóm Thợ (3 BC)</button>
+          <button onclick="selectReportCategory('scrapReports')" class="bc-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">💰 Nhóm Dẻ (2 BC)</button>
+          <button onclick="selectReportCategory('inventoryReports')" class="bc-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">📊 Xuất Nhập Tồn (6 BC)</button>
+          <button onclick="selectReportCategory('staffReports')" class="bc-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-700 transition">👤 Nhân Viên Bán Hàng (3 BC)</button>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto custom-scroll min-h-0">
+        <div id="report-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+    </div>
+
   </main>
+  </div> <!-- END MAIN APP WRAPPER -->
+
 
   <!-- MODAL: IN GIẤY ĐẢM BẢO VÀNG & HÓA ĐƠN ĐIỆN TỬ NGHỊ ĐỊNH 123 / TT78 -->
   <div id="warranty-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
@@ -2044,6 +2492,11 @@
         }
       }
 
+      // Highlight active item in Left Sidebar if matched
+      document.querySelectorAll('#sidebar-menu-list .nav-sub-item').forEach(subBtn => {
+        subBtn.classList.remove('text-amber-300', 'bg-white/10', 'font-bold');
+      });
+
       // RE-RENDER TAB CONTENTS ON SWITCH
       try {
         if (tabId === 'pos') {
@@ -2058,25 +2511,81 @@
           renderInboundReceiptsTable();
         } else if (tabId === 'tracuu') {
           renderInventoryTable();
-        } else if (tabId === 'baocao') {
+        } else if (tabId === 'baocao' || tabId === 'sodu') {
           renderSalesTransactions();
+        } else if (tabId === 'masterdata') {
+          if (typeof renderMasterDataTable === 'function') renderMasterDataTable();
+        } else if (tabId === 'operations') {
+          if (typeof renderOperationsTable === 'function') renderOperationsTable();
+        } else if (tabId === 'reports-hub') {
+          if (typeof renderReportView === 'function') renderReportView();
         }
       } catch (err) {
         console.error('Error refreshing tab:', tabId, err);
       }
     }
 
+    // SIDEBAR & COMPREHENSIVE VIEW NAVIGATION
     let isSidebarCollapsed = false;
     function toggleSidebarCollapse() {
-      const sidebar = document.getElementById('saas-sidebar');
+      const sidebar = document.getElementById('main-sidebar');
       if (!sidebar) return;
       isSidebarCollapsed = !isSidebarCollapsed;
-      if (isSidebarCollapsed) {
-        sidebar.classList.remove('w-64');
-        sidebar.classList.add('w-18');
+      sidebar.classList.toggle('collapsed');
+      const icon = document.querySelector('#btn-toggle-sidebar i');
+      if (icon) {
+        icon.style.transform = isSidebarCollapsed ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+    }
+
+    function toggleAccordion(accId) {
+      const acc = document.getElementById(accId);
+      const chevron = document.getElementById('chevron-' + accId);
+      if (acc) {
+        const isHidden = acc.classList.toggle('hidden');
+        if (chevron) {
+          chevron.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+      }
+    }
+
+    function filterSidebarMenu(query) {
+      const kw = query ? query.toLowerCase().trim() : '';
+      const items = document.querySelectorAll('#sidebar-menu-list .nav-sub-item');
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (!kw || text.includes(kw)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateToView(viewId, subParam) {
+      if (viewId === 'masterdata') {
+        switchTab('masterdata');
+        if (typeof selectMasterDataCategory === 'function' && subParam) {
+          selectMasterDataCategory(subParam);
+        } else if (typeof renderMasterDataTable === 'function') {
+          renderMasterDataTable();
+        }
+      } else if (viewId === 'operations') {
+        switchTab('operations');
+        if (typeof selectOperationSubView === 'function' && subParam) {
+          selectOperationSubView(subParam);
+        } else if (typeof renderOperationsTable === 'function') {
+          renderOperationsTable();
+        }
+      } else if (viewId === 'reports') {
+        switchTab('reports-hub');
+        if (typeof selectReportCategory === 'function' && subParam) {
+          selectReportCategory(subParam);
+        } else if (typeof renderReportView === 'function') {
+          renderReportView();
+        }
       } else {
-        sidebar.classList.remove('w-18');
-        sidebar.classList.add('w-64');
+        switchTab(viewId);
       }
     }
 
@@ -3199,6 +3708,66 @@
       initApp();
     }
   </script>
+
+
+  <!-- ============================================================== -->
+  <!-- MÀN HÌNH TIVI SMART TV TOÀN MÀN HÌNH (FULLSCREEN PRICE BOARD)  -->
+  <!-- ============================================================== -->
+  <div id="smart-tv-fullscreen-modal" class="hidden fixed inset-0 z-[100] bg-gradient-to-b from-[#120206] via-[#1c0309] to-[#0a0103] text-white flex flex-col justify-between p-6 select-none overflow-hidden">
+    
+    <!-- TV Header: Tiệm Vàng Logo & Đồng Hồ Kỹ Thuật Số Khổng Lồ -->
+    <div class="flex items-center justify-between border-b-2 border-amber-500/40 pb-4">
+      <div class="flex items-center space-x-4">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300 via-amber-500 to-amber-700 p-1 shadow-2xl flex items-center justify-center shrink-0">
+          <div class="w-full h-full bg-[#160307] rounded-xl flex items-center justify-center">
+            <i class="fa-solid fa-gem text-amber-400 text-3xl"></i>
+          </div>
+        </div>
+        <div>
+          <h1 class="font-cinzel text-3xl md:text-4xl font-black gold-gradient-text tracking-wider uppercase">HOÀNG HƯNG JEWELRY</h1>
+          <p class="text-amber-200 text-sm md:text-base font-semibold mt-1">BẢNG GIÁ VÀNG TRỰC TUYẾN NIÊM YẾT • 124 PHỐ KIM HOÀN, Q.1 • HOTLINE: 0942 88 99 77</p>
+        </div>
+      </div>
+
+      <!-- Digital Clock for TV -->
+      <div class="flex items-center gap-4">
+        <div class="text-right">
+          <div id="smart-tv-date" class="text-amber-300 text-base font-medium">Thứ Sáu, Ngày 09/10/2026</div>
+          <div id="smart-tv-clock" class="text-4xl md:text-5xl font-mono font-black text-amber-400 tracking-widest drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]">--:--:--</div>
+        </div>
+        <button onclick="toggleSmartTvFullscreen()" class="ml-4 p-3 rounded-xl bg-white/10 hover:bg-white/20 text-white transition" title="Đóng toàn màn hình (ESC)">
+          <i class="fa-solid fa-compress text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- TV Table: Bảng giá vàng với chữ to, độ nét cao cho TV 55 - 85 inch -->
+    <div class="flex-1 my-4 flex flex-col justify-center overflow-hidden">
+      <div class="rounded-2xl border-2 border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.2)] overflow-hidden bg-black/40 backdrop-blur-md">
+        <table class="w-full text-center border-collapse">
+          <thead class="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 text-slate-950 font-black text-lg md:text-2xl uppercase tracking-wider">
+            <tr>
+              <th class="py-3 px-4 text-left">LOẠI VÀNG NIÊM YẾT</th>
+              <th class="py-3 px-3">HÀM LƯỢNG</th>
+              <th class="py-3 px-4 text-right">GIÁ MUA VÀO</th>
+              <th class="py-3 px-4 text-right">GIÁ BÁN RA</th>
+              <th class="py-3 px-4">BIẾN ĐỘNG</th>
+            </tr>
+          </thead>
+          <tbody id="smart-tv-rates-tbody" class="divide-y divide-amber-500/20">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TV Footer: Marquee chạy chữ chúc mừng & thông điệp tiệm vàng -->
+    <div class="border-t border-amber-500/30 pt-3 flex items-center overflow-hidden bg-black/50 rounded-xl px-4 py-2 text-amber-300 font-semibold text-sm md:text-base">
+      <span class="mr-3 text-amber-400 shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-bullhorn animate-pulse"></i> THÔNG BÁO:</span>
+      <marquee id="smart-tv-marquee" scrollamount="6" class="flex-1"></marquee>
+    </div>
+
+  </div>
 
 </body>
 </html>
